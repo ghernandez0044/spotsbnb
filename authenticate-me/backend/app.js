@@ -7,6 +7,9 @@ const csurf = require('csurf')
 const helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 
+// Import Sequelize error handler
+const { ValidationError } = require('sequelize')
+
 // Import routes
 const routes = require('./routes')
 
@@ -54,6 +57,40 @@ app.use(
 
 // Connect all routes
 app.use(routes)
+
+
+// Connect error handlers
+
+// Catch unhandled requess and forward to error handler
+app.use((req, res, next) => {
+    const err = new Error('The requested resource could not be found.')
+    err.title = 'Resource Not Found'
+    err.errors = ['The requested resource could not be found.']
+    err.status = 404
+    next(err)
+})
+
+// Process Sequelize errors
+app.use((err, req, res, next) => {
+    // Check if error is a Sequelize error
+    if(err instanceof ValidationError){
+        err.errors = err.errors.map((e) => e.message)
+        err.title = 'Validation error'
+    }
+    next(err)
+})
+
+// Error formatter error handler
+app.use((err, req, res, next) => {
+    res.status(err.status || 500)
+    console.error(err)
+    res.json({
+        title: err.title || 'Server Error',
+        message: err.message,
+        errors: err.errors,
+        stack: isProduction ? null : err.stack
+    })
+})
 
 // Export the app 
 module.exports = app
