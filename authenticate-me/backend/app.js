@@ -7,6 +7,9 @@ const csurf = require('csurf')
 const helmet = require('helmet')
 const cookieParser = require('cookie-parser')
 
+// Import routes
+const routes = require('./routes')
+
 // Check if environment is in production or not
 const { environment } = require('./config')
 const isProduction = environment === 'production'
@@ -48,3 +51,9 @@ app.use(
         }
     })
 )
+
+// Connect all routes
+app.use(routes)
+
+// Export the app 
+module.exports = app
