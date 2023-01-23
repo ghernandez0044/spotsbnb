@@ -1,11 +1,43 @@
 const router = require('express').Router()
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
+const { User } = require('../../db/models')
 
-// Test endpoint
-router.post('/test', (req, res) => {
-    res.json({
-        requestBody: req.body
-    })
-})
+// Global middleware
+router.use(restoreUser)
+
+// // Test endpoint
+// router.post('/test', (req, res) => {
+//     res.json({
+//         requestBody: req.body
+//     })
+// })
+
+// // Another test endpoint (for setTokenCookie)
+// router.get('/set-token-cookie', async (req, res) => {
+//     const user = await User.findOne({
+//         where: {
+//             username: 'FakeUser2'
+//         }
+//     })
+
+//     setTokenCookie(res, user)
+
+//     return res.json({
+//         user
+//     })
+// })
+
+// // Another test endpoint (for restoreUser)
+// router.get('/restore-user', (req, res) => {
+//     return res.json(req.user)
+// })
+
+// // Another test endpoint (for requireAuth)
+// router.get('/require-auth', requireAuth, (req, res) => {
+//     return res.json(req.user)
+// })
+
+
 
 
 
