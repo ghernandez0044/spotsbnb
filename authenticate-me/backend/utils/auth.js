@@ -57,3 +57,18 @@ function restoreUser(req, res, next){
 
     })
 }
+
+// This function will be for requiring a session user to be authenticated before accessing a route
+function requireAuth(req, res, next){
+    if(req.user) return next()
+
+    // If there is no current user, return an error
+    const err = new Error('Authentication required')
+    err.title = 'Authentication required'
+    err.errors = ['Authentication required'],
+    err.status = 401
+    return next(err)
+}
+
+// Export all of the helper functions
+module.exports = { setTokenCookie, restoreUser, requireAuth }
