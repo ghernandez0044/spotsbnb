@@ -1,9 +1,60 @@
 'use strict';
+
+const bcrypt = require('bcryptjs')
+
+
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
+
+    // This method will return an object with only the User instance information that is safe to save to a a JWT
+    toSafeObject(){
+      const { id, username, email } = this
+      return { id, username, email }
+    }
+
+    // This method will validate a password
+    validatePassword(password){
+      return bcrypt.compareSync(password, this.hashedPassword.toString())
+    }
+
+    // This static method returns a User with a particular id
+    static getCurrentUserById(id){
+      return User.scope('currentUser').findByPk(id)
+    }
+
+    // This static method will search for one User with the specified credential
+    static async login({ credential, password }){
+      const { Op } = require('sequelize')
+
+      const user = await User.scope('authentication').findOne({
+        where: {
+          [Op.or]: {
+            username: credential,
+            email: credential
+          }
+        }
+      })
+
+      if(user && user.validatePassword(password)){
+        return await User.scope('currentUser').findByPk(user.id)
+      }
+    }
+
+    // This static method will sign up a user
+    static async signup({ username, email, password }){
+      const hashedPassword = bcrypt.hashSync(password)
+      const user = await User.create({
+        username,
+        email,
+        hashedPassword
+      })
+      return await User.scope('currentUser').findByPk(user.id)
+    }
+
+
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
