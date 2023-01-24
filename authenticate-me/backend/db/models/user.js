@@ -3,9 +3,7 @@
 const bcrypt = require('bcryptjs')
 
 
-const {
-  Model
-} = require('sequelize');
+const { Model, Validator } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
@@ -44,9 +42,11 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     // This static method will sign up a user
-    static async signup({ username, email, password }){
+    static async signup({ firstName, lastName, username, email, password }){
       const hashedPassword = bcrypt.hashSync(password)
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
@@ -86,6 +86,12 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256],
         isEmail: true
       }
+    },
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
     },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
