@@ -1,16 +1,22 @@
 const router = require('express').Router()
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
 const { User } = require('../../db/models')
+const sessionRouter = require('./session')
+const usersRouter = require('./users')
 
 // Global middleware
 router.use(restoreUser)
 
-// // Test endpoint
-// router.post('/test', (req, res) => {
-//     res.json({
-//         requestBody: req.body
-//     })
-// })
+// Connecting routers
+router.use('/session', sessionRouter)
+router.use('/users', usersRouter)
+
+// Test endpoint
+router.post('/test', (req, res) => {
+    res.json({
+        requestBody: req.body
+    })
+})
 
 // // Another test endpoint (for setTokenCookie)
 // router.get('/set-token-cookie', async (req, res) => {
