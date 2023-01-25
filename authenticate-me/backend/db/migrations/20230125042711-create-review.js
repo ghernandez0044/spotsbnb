@@ -1,7 +1,5 @@
 'use strict';
 
-const { mapFinderOptions } = require('sequelize/types/utils');
-
 /** @type {import('sequelize-cli').Migration} */
 
 options.tableName = 'Reviews'
