@@ -62,9 +62,29 @@ function seedSpotImages(num){
     return spotImages
 }
 
-console.log(seedSpotImages(2))
+// console.log(seedSpotImages(2))
+
+function seedBookings(num){
+    const bookings = new Array(num).fill('')
+
+    for(i in bookings){
+
+        let startingDate = faker.date.soon()
+
+        bookings[i] = {
+            spotId: rNum(10),
+            userId: rNum(10),
+            startDate: startingDate,
+            endDate: faker.date.future(1, startingDate)
+        }
+    }
+    return bookings
+}
+
+console.log(seedBookings(4))
 
 module.exports = {
     seedUsers,
-    seedSpots
+    seedSpots,
+    seedSpotImages
 }
