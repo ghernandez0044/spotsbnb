@@ -44,7 +44,7 @@ function seedSpots(num){
             price: basePrice += 10.75
         }
 
-        while(spots.name.length >= 50){
+        while(spots[i].name.length >= 50){
             spots.name = faker.name.firstName()
         }
 
@@ -53,7 +53,7 @@ function seedSpots(num){
     return spots
 }
 
-// console.log(seedSpots(4))
+console.log(seedSpots(4))
 
 function seedSpotImages(num){
     const spotImages = new Array(num).fill('')
