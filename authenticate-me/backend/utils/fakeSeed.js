@@ -81,10 +81,49 @@ function seedBookings(num){
     return bookings
 }
 
-console.log(seedBookings(4))
+// console.log(seedBookings(4))
+
+function seedReviews(num){
+    const reviews = new Array(num).fill('')
+
+    for(i in reviews){
+        reviews[i] = {
+            spotId: rNum(10),
+            userId: rNum(10),
+            review: faker.lorem.paragraph(3),
+            stars: rNum(5)
+        }
+
+        while(reviews.stars === 0){
+            review.stars = rNum(5)
+        }
+
+    }
+    return reviews
+}
+
+// console.log(seedReviews(2))
+
+function seedReviewImages(num){
+    const reviewImages = new Array(num).fill('')
+
+    for(i in reviewImages){
+        reviewImages[i] = {
+            reviewId: rNum(10),
+            url: faker.image.city()
+        }
+    }
+
+    return reviewImages
+}
+
+// console.log(seedReviewImages(4))
 
 module.exports = {
     seedUsers,
     seedSpots,
-    seedSpotImages
+    seedSpotImages,
+    seedBookings,
+    seedReviews,
+    seedReviewImages
 }
