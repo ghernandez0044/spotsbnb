@@ -53,7 +53,7 @@ function seedSpots(num){
     return spots
 }
 
-console.log(seedSpots(4))
+// console.log(seedSpots(4))
 
 function seedSpotImages(num){
     const spotImages = new Array(num).fill('')
@@ -97,12 +97,12 @@ function seedReviews(num){
         reviews[i] = {
             spotId: rNum(13),
             userId: rNum(13),
-            review: faker.lorem.paragraph(3),
+            review: faker.lorem.paragraph(1),
             stars: rNum(5)
         }
 
-        while(reviews.stars === 0){
-            review.stars = rNum(5)
+        while(reviews[i].stars === 0){
+            reviews[i].stars = rNum(5)
         }
 
     }
