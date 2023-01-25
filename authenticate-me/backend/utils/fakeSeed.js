@@ -43,6 +43,11 @@ function seedSpots(num){
             description: faker.lorem.paragraph(3),
             price: basePrice += 10.75
         }
+
+        while(spots.name.length >= 50){
+            spots.name = faker.name.firstName()
+        }
+
     }
 
     return spots
