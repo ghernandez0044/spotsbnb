@@ -28,32 +28,34 @@ function seedUsers(num){
 function seedSpots(num){
     const spots = new Array(num).fill('')
 
+    let basePrice = 100.50
+
     for(i in spots){
         spots[i] = {
-            ownerId: rNum(10),
+            ownerId: rNum(13),
             address: faker.address.streetAddress(false),
             city: faker.address.cityName(),
             state: faker.address.state(),
             country: faker.address.country(),
-            lat: faker.address.latitude(),
-            lng: faker.address.longitude(),
+            lat: Number(faker.address.latitude()),
+            lng: Number(faker.address.longitude()),
             name: faker.name.firstName(),
             description: faker.lorem.paragraph(3),
-            price: faker.commerce.price(50)
+            price: basePrice += 10.75
         }
     }
 
     return spots
 }
 
-// console.log(seedSpots(2))
+// console.log(seedSpots(4))
 
 function seedSpotImages(num){
     const spotImages = new Array(num).fill('')
 
     for(i in spotImages){
         spotImages[i] = {
-            spotId: rNum(10),
+            spotId: rNum(13),
             url: faker.image.city(),
             preview: faker.datatype.boolean()
         }
@@ -72,8 +74,8 @@ function seedBookings(num){
         let startingDate = faker.date.soon()
 
         bookings[i] = {
-            spotId: rNum(10),
-            userId: rNum(10),
+            spotId: rNum(13),
+            userId: rNum(13),
             startDate: startingDate,
             endDate: faker.date.future(1, startingDate)
         }
@@ -88,8 +90,8 @@ function seedReviews(num){
 
     for(i in reviews){
         reviews[i] = {
-            spotId: rNum(10),
-            userId: rNum(10),
+            spotId: rNum(13),
+            userId: rNum(13),
             review: faker.lorem.paragraph(3),
             stars: rNum(5)
         }
