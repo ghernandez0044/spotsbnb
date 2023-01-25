@@ -43,12 +43,17 @@ function seedSpots(num){
             description: faker.lorem.paragraph(3),
             price: basePrice += 10.75
         }
+
+        while(spots[i].name.length >= 50){
+            spots.name = faker.name.firstName()
+        }
+
     }
 
     return spots
 }
 
-// console.log(seedSpots(4))
+console.log(seedSpots(4))
 
 function seedSpotImages(num){
     const spotImages = new Array(num).fill('')
