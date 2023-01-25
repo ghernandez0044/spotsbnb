@@ -40,7 +40,7 @@ function seedSpots(num){
             lat: Number(faker.address.latitude()),
             lng: Number(faker.address.longitude()),
             name: faker.name.firstName(),
-            description: faker.lorem.paragraph(3),
+            description: faker.lorem.paragraph(1),
             price: basePrice += 10.75
         }
 
