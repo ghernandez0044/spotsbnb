@@ -48,7 +48,21 @@ function seedSpots(num){
 
 // console.log(seedSpots(2))
 
+function seedSpotImages(num){
+    const spotImages = new Array(num).fill('')
 
+    for(i in spotImages){
+        spotImages[i] = {
+            spotId: rNum(10),
+            url: faker.image.city(),
+            preview: faker.datatype.boolean()
+        }
+    }
+
+    return spotImages
+}
+
+console.log(seedSpotImages(2))
 
 module.exports = {
     seedUsers,
