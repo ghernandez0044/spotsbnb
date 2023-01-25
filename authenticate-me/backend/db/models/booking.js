@@ -11,11 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // One-to-Many Relationship between Users and Bookings
       Booking.belongsTo(
         models.User,
         { foreignKey: 'userId' }
       )
 
+      // One-To-Many Relationship between Spots and Bookings
       Booking.belongsTo(
         models.Spot,
         { foreignKey: 'spotId' }
