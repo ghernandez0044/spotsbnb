@@ -113,8 +113,15 @@ router.get('/:spotId', async (req, res, next) => {
             attributes: ['id', 'url', 'preview']
         }
     })
-    
-    res.status(200).json(spot)
+
+    if(spot){
+        res.status(200).json(spot)
+    } else {
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        next(err)
+    }
+
 })
 
 
