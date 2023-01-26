@@ -19,7 +19,7 @@ const validateLogin = [
 ]
 
 
-// Restore session user
+// Restore session user - Get the Current User
 router.get('/', restoreUser, (req, res) => {
     const { user } = req
 
@@ -51,7 +51,13 @@ router.post('/', validateLogin, async (req, res, next) => {
     await setTokenCookie(res, user)
 
     return res.json({
-        user
+        user: {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username
+        }
     })
 
 })
