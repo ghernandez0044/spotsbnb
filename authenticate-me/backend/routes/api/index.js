@@ -3,6 +3,7 @@ const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
 const { User } = require('../../db/models')
 const sessionRouter = require('./session')
 const usersRouter = require('./users')
+const spotsRouter = require('./spots')
 
 // Global middleware
 router.use(restoreUser)
@@ -10,6 +11,7 @@ router.use(restoreUser)
 // Connecting routers
 router.use('/session', sessionRouter)
 router.use('/users', usersRouter)
+router.use('/spots', spotsRouter)
 
 // Test endpoint
 router.post('/test', (req, res) => {
@@ -42,6 +44,7 @@ router.post('/test', (req, res) => {
 // router.get('/require-auth', requireAuth, (req, res) => {
 //     return res.json(req.user)
 // })
+
 
 
 
