@@ -101,7 +101,28 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.status(200).json(currentUserSpots)
 })
 
+// Get details of a Spot from an id - no authentication required
+router.get('/:spotId', async (req, res, next) => {
 
+    const spot = await Spot.findOne({
+        where: {
+            id: req.params.spotId
+        },
+        include: {
+            model: SpotImage,
+            attributes: ['id', 'url', 'preview']
+        }
+    })
+
+    if(spot){
+        res.status(200).json(spot)
+    } else {
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        next(err)
+    }
+
+})
 
 
 
