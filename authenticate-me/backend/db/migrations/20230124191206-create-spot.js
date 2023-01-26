@@ -20,6 +20,7 @@ module.exports = {
       },
       ownerId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'Users',
           key: 'id'
@@ -43,16 +44,18 @@ module.exports = {
         allowNull: false
       },
       lat: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       lng: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        allowNull: false
       },
       name: {
         type: Sequelize.STRING(50)
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(254),
         allowNull: false
       },
       price: {

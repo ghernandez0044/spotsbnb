@@ -48,6 +48,10 @@ function seedSpots(num){
             spots.name = faker.name.firstName()
         }
 
+        while(spots[i].description.length >= 254){
+            spots.description = faker.lorem.paragraph(1)
+        }
+
     }
 
     return spots
