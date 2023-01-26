@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
 
     // This method will return an object with only the User instance information that is safe to save to a a JWT
     toSafeObject(){
-      const { id, username, email } = this
-      return { id, username, email }
+      const { id, username, email, firstName, lastName } = this
+      return { id, username, email, firstName, lastName }
     }
 
     // This method will validate a password
