@@ -4,6 +4,7 @@ const { User } = require('../../db/models')
 const sessionRouter = require('./session')
 const usersRouter = require('./users')
 const spotsRouter = require('./spots')
+const reviewsRouter = require('./reviews')
 
 // Global middleware
 router.use(restoreUser)
@@ -12,6 +13,7 @@ router.use(restoreUser)
 router.use('/session', sessionRouter)
 router.use('/users', usersRouter)
 router.use('/spots', spotsRouter)
+router.use('/reviews', reviewsRouter)
 
 // Test endpoint
 router.post('/test', (req, res) => {
