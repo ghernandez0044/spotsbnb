@@ -11,7 +11,73 @@ if(process.env.NODE_ENV === 'production'){
 
 options.tableName = 'SpotImages'
 
-const spotImages = seedSpotImages(13)
+const spotImages = [
+  {
+    spotId: 12,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 3,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 8,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: true
+  },
+  {
+    spotId: 10,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: true
+  },
+  {
+    spotId: 5,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 9,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 8,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: true
+  },
+  {
+    spotId: 11,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 11,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 13,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: true
+  },
+  {
+    spotId: 10,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: true
+  },
+  {
+    spotId: 6,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  },
+  {
+    spotId: 5,
+    url: 'https://loremflickr.com/640/480/city',
+    preview: false
+  }
+]
 
 
 module.exports = {
