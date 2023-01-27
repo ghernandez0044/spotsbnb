@@ -235,6 +235,33 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 })
 
 
+// Delete a Spot - require authentication - require authorization
+router.delete('/:spotId', requireAuth, async (req, res, next) => {
+    console.log(req.params.spotId)
+    const paramsId = Number(req.params.spotId)
+    const currentSpot = await Spot.findByPk(paramsId)
+
+    if(!currentSpot){
+        const err = new Error("Spot couldn't be found.")
+        err.status = 404
+        next(err)
+    }
+
+    if(currentSpot.ownerId !== req.user.id){
+        const err = new Error("Spot doesn't belong to this user")
+        err.status = 400
+        next(err)
+    } else {
+        await currentSpot.destroy()
+
+        return res.status(200).json({
+            message: "Succesfully deleted",
+            statusCode: 200
+        })
+    }
+
+})
+
 
 
 

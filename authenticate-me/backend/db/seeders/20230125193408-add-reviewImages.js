@@ -12,19 +12,19 @@ if(process.env.NODE_ENV === 'production'){
 options.tableName = 'ReviewImages'
 
 const reviewImages = [
+  { reviewId: 1, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
   { reviewId: 3, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 9, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 7, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 10, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 7, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 8, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 9, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 8, url: 'https://loremflickr.com/640/480/city' },
   { reviewId: 4, url: 'https://loremflickr.com/640/480/city' },
-  { reviewId: 3, url: 'https://loremflickr.com/640/480/city' }
+  { reviewId: 5, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 6, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 7, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 8, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 9, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 10, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 11, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 12, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 13, url: 'https://loremflickr.com/640/480/city' }
 ]
 
 module.exports = {
