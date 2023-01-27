@@ -23,7 +23,7 @@ function seedUsers(num){
 
 }
 
-// console.log(seedUsers(2))
+// console.log(seedUsers(10))
 
 function seedSpots(num){
     const spots = new Array(num).fill('')
@@ -57,7 +57,7 @@ function seedSpots(num){
     return spots
 }
 
-// console.log(seedSpots(4))
+// console.log(seedSpots(13))
 
 function seedSpotImages(num){
     const spotImages = new Array(num).fill('')
@@ -73,7 +73,7 @@ function seedSpotImages(num){
     return spotImages
 }
 
-// console.log(seedSpotImages(2))
+// console.log(seedSpotImages(13))
 
 function seedBookings(num){
     const bookings = new Array(num).fill('')
@@ -92,7 +92,7 @@ function seedBookings(num){
     return bookings
 }
 
-// console.log(seedBookings(4))
+// console.log(seedBookings(13))
 
 function seedReviews(num){
     const reviews = new Array(num).fill('')
@@ -109,11 +109,15 @@ function seedReviews(num){
             reviews[i].stars = rNum(5)
         }
 
+        while(reviews[i].review.length >= 254){
+            reviews[i].review = faker.lorem.paragraph(1)
+        }
+
     }
     return reviews
 }
 
-// console.log(seedReviews(2))
+// console.log(seedReviews(13))
 
 function seedReviewImages(num){
     const reviewImages = new Array(num).fill('')
@@ -128,7 +132,7 @@ function seedReviewImages(num){
     return reviewImages
 }
 
-// console.log(seedReviewImages(4))
+// console.log(seedReviewImages(13))
 
 module.exports = {
     seedUsers,

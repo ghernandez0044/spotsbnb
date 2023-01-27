@@ -47,7 +47,7 @@ router.get('/', async (req, res, next) => {
         spot.dataValues.previewImage = previewUrl
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         Spots: spots
     })
 })
@@ -98,7 +98,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     }
 
-    res.status(200).json(currentUserSpots)
+    return res.status(200).json({
+        Spots: currentUserSpots
+    })
 })
 
 // Get details of a Spot from an id - no authentication required
@@ -115,7 +117,7 @@ router.get('/:spotId', async (req, res, next) => {
     })
 
     if(spot){
-        res.status(200).json(spot)
+        return res.status(200).json(spot)
     } else {
         const err = new Error("Spot couldn't be found")
         err.status = 404
@@ -142,7 +144,7 @@ router.post('/', requireAuth, async (req, res, next) => {
                                            })
 
     if(createdSpot){
-        res.status(201).json(createdSpot)
+        return res.status(201).json(createdSpot)
     }
 
 })
@@ -151,7 +153,6 @@ router.post('/', requireAuth, async (req, res, next) => {
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
-    console.log(spot)
     const { url, preview } = req.body
 
     if(!spot){
@@ -159,9 +160,6 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
         err.status = 404
         next(err)
     }
-
-    console.log(spot.ownerId)
-    console.log(req.user.id)
     
     if(spot.ownerId !== req.user.id){
         const err = new Error('User does not own this spot')
@@ -184,7 +182,57 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 })
 
 
+// Edit a Spot - require authentication - require authorization
+router.put('/:spotId', requireAuth, async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } =  req.body
+    const paramsId = Number(req.params.spotId)
 
+    const spot = await Spot.findByPk(paramsId)
+
+    if(!spot){
+        const err = new Error("Spot couldn't be found")
+        err.status = 400
+        next(err)
+    }
+
+    if(spot.ownerId !== req.user.id){
+        const err = new Error("Spot doesn't belong to this user")
+        err.status = 400
+        next(err)
+    } else {
+        if(address){
+            spot.dataValues.address = address
+        }
+        if(city){
+            spot.dataValues.city = city
+        }
+        if(state){
+            spot.dataValues.state = state
+        }
+        if(country){
+            spot.dataValues.country = country
+        }
+        if(lat){
+            spot.dataValues.lat = lat
+        }
+        if(lng){
+            spot.dataValues.lng = lng
+        }
+        if(name){
+            spot.dataValues.name = name
+        }
+        if(description){
+            spot.dataValues.description = description
+        }
+        if(price){
+            spot.dataValues.price = price
+        }
+    
+        spot.save()
+
+        return res.status(200).json(spot)
+    }
+})
 
 
 

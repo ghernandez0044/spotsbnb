@@ -11,7 +11,21 @@ if(process.env.NODE_ENV === 'production'){
 
 options.tableName = 'ReviewImages'
 
-const reviewImages = seedReviewImages(13)
+const reviewImages = [
+  { reviewId: 3, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 9, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 7, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 2, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 10, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 7, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 8, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 9, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 8, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 4, url: 'https://loremflickr.com/640/480/city' },
+  { reviewId: 3, url: 'https://loremflickr.com/640/480/city' }
+]
 
 module.exports = {
   async up (queryInterface, Sequelize) {
