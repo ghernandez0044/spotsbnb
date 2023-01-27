@@ -11,7 +11,7 @@ options.tableName = 'Spots'
 
 const spots = [
   {
-    ownerId: 5,
+    ownerId: 1,
     address: '7118 Rowe Stream',
     city: 'Hilo',
     state: 'Hawaii',
@@ -23,7 +23,7 @@ const spots = [
     price: 111.25
   },
   {
-    ownerId: 9,
+    ownerId: 2,
     address: '30048 Marcelle Corner',
     city: 'Bend',
     state: 'Maine',
@@ -35,7 +35,7 @@ const spots = [
     price: 122
   },
   {
-    ownerId: 12,
+    ownerId: 3,
     address: '59020 Kane Circle',
     city: 'La Mesa',
     state: 'Wisconsin',
@@ -47,7 +47,7 @@ const spots = [
     price: 132.75
   },
   {
-    ownerId: 5,
+    ownerId: 4,
     address: '76686 Feil Brook',
     city: 'Mission Viejo',
     state: 'North Carolina',
@@ -59,7 +59,7 @@ const spots = [
     price: 143.5
   },
   {
-    ownerId: 7,
+    ownerId: 5,
     address: '4993 Daisy Park',
     city: 'Eau Claire',
     state: 'Ohio',
@@ -71,7 +71,7 @@ const spots = [
     price: 154.25
   },
   {
-    ownerId: 12,
+    ownerId: 6,
     address: '32122 Karlie Roads',
     city: 'Milwaukee',
     state: 'Iowa',
@@ -83,7 +83,7 @@ const spots = [
     price: 165
   },
   {
-    ownerId: 4,
+    ownerId: 7,
     address: '938 Hilll Court',
     city: 'Mesa',
     state: 'West Virginia',
@@ -95,7 +95,7 @@ const spots = [
     price: 175.75
   },
   {
-    ownerId: 2,
+    ownerId: 8,
     address: '35127 Hodkiewicz Lake',
     city: 'Lawrence',
     state: 'Kansas',
@@ -107,7 +107,7 @@ const spots = [
     price: 186.5
   },
   {
-    ownerId: 6,
+    ownerId: 9,
     address: '094 Effie Estate',
     city: 'Atascocita',
     state: 'Kansas',
@@ -131,7 +131,7 @@ const spots = [
     price: 208
   },
   {
-    ownerId: 7,
+    ownerId: 11,
     address: '2384 Antonio Burg',
     city: 'Kettering',
     state: 'Illinois',
@@ -143,7 +143,7 @@ const spots = [
     price: 218.75
   },
   {
-    ownerId: 13,
+    ownerId: 12,
     address: '198 Hosea Forks',
     city: 'Pontiac',
     state: 'Wisconsin',
@@ -155,7 +155,7 @@ const spots = [
     price: 229.5
   },
   {
-    ownerId: 3,
+    ownerId: 13,
     address: '2952 Ryan Haven',
     city: 'Orlando',
     state: 'South Carolina',
