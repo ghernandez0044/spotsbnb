@@ -84,13 +84,13 @@ module.exports = (sequelize, DataTypes) => {
       // Many-To-Many Relationship between Users and Spots through Reviews join table
       User.belongsToMany(
         models.Spot,
-        { through: models.Review }
+        { through: models.Review, foreignKey: 'userId', otherKey: 'spotId' }
       )
 
       // Many-To-Many Relationship between Users and Spots through Bookings join table
       User.belongsToMany(
         models.Spot,
-        { through: models.Booking }
+        { through: models.Booking, foreignKey: 'userId', otherKey: 'spotId' }
       )
 
     }
