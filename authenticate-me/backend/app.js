@@ -61,7 +61,7 @@ app.use(routes)
 
 // Connect error handlers
 
-// Catch unhandled requess and forward to error handler
+// Catch unhandled requests and forward to error handler
 app.use((req, res, next) => {
     const err = new Error('The requested resource could not be found.')
     err.title = 'Resource Not Found'

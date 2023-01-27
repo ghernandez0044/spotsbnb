@@ -124,7 +124,7 @@ router.get('/:spotId', async (req, res, next) => {
 
 })
 
-// Create a spot
+// Create a spot - require authentication
 router.post('/', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
 
@@ -146,6 +146,44 @@ router.post('/', requireAuth, async (req, res, next) => {
     }
 
 })
+
+// Add an Image to a Spot based on the Spot's id - require authentication - require authorization
+router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    console.log(spot)
+    const { url, preview } = req.body
+
+    if(!spot){
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        next(err)
+    }
+
+    console.log(spot.ownerId)
+    console.log(req.user.id)
+    
+    if(spot.ownerId !== req.user.id){
+        const err = new Error('User does not own this spot')
+        err.status = 400
+        next(err)
+    }
+
+    const newImage = await SpotImage.create({
+        spotId: spot.id,
+        url,
+        preview
+    })
+
+    return res.status(200).json({
+        id: newImage.id,
+        url,
+        preview
+    })
+
+})
+
+
 
 
 
