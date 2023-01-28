@@ -29,20 +29,24 @@ router.get('/current', requireAuth, async (req, res, next) => {
         }
     })
 
-    if(reviews){
-        
+    if(!reviews[0]){
+        return res.status(400).json({
+            "message": "No reviews found",
+            "statusCode": 400
+        })
+    } else {
         let payload = reviews[0].toJSON()
         let url = payload.Spot.SpotImages[0].url
-
+    
         payload.Spot.previewImage = url
-
+    
         delete payload.Spot.SpotImages
-
-
+    
         return res.status(200).json({
             Reviews: payload
         })
     }
+
 })
 
 
@@ -118,7 +122,30 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
 })
 
+// Delete a Review - require authentication - require authorization
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
+    const review = await Review.findByPk(req.params.reviewId)
 
+    if(!review){
+        const err = new Error("Review couldn't be found")
+        err.status = 404
+        next(err)
+    }
+
+    if(review.userId !== req.user.id){
+        const err = new Error("Review doesn't belong to user")
+        err.status = 400
+        next(err)
+    }
+
+    await review.destroy()
+
+    return res.status(200).json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+      })
+
+})
 
 
 
