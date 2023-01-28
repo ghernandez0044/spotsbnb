@@ -4,7 +4,7 @@ const router = express.Router()
 const { handleValidationErrors } = require('../../utils/validation')
 const { requireAuth } = require('../../utils/auth')
 const { Op } = require('sequelize')
-const { Spot, SpotImage, Review, User, sequelize} = require('../../db/models');
+const { Spot, SpotImage, Review, User, ReviewImage, sequelize} = require('../../db/models');
 
 // Get all Spots
 router.get('/', async (req, res, next) => {
@@ -262,7 +262,29 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 
 })
 
+// Get all Reviews by a Spot's id - no authentication required
+router.get('/:spotId/reviews', async (req, res, next) => {
+    const reviews = await Review.findAll({
+        include: [
+            { model: User, attributes: ['id', 'firstName', 'lastName'] },
+            { model: ReviewImage, attributes: ['id', 'url'] }
+        ],
+        where: {
+            spotId: req.params.spotId
+        }
+    })
+    
+    if(!reviews[0]){
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        next(err)
+    } else {
+     return res.status(200).json({
+                         Reviews: reviews
+                                 })
+    }
 
+})
 
 
 module.exports = router
