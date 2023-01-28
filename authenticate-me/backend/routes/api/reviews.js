@@ -87,6 +87,37 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 })
 
 
+// Edit a Review - require authentication - require authorization
+router.put('/:reviewId', requireAuth, async (req, res, next) => {
+    const currentReview = await Review.findByPk(req.params.reviewId)
+
+    if(!currentReview){
+        const err = new Error("Review couldn't be found")
+    }
+
+    if(currentReview.userId !== req.user.id){
+        const err = new Error("Review doesn't belong to user")
+        err.status = 400
+        next(err)
+    }
+
+    const { review, stars } = req.body
+
+    if(review){
+        currentReview.review = review
+    }
+    if(stars){
+        currentReview.stars = stars
+    }
+
+    await currentReview.save()
+
+    const payload = await Review.findByPk(req.params.reviewId)
+
+    return res.status(200).json(payload)
+
+})
+
 
 
 
