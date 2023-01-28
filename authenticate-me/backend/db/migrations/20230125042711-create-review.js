@@ -41,11 +41,7 @@ module.exports = {
         allowNull: false
       },
       stars: {
-        type: Sequelize.INTEGER,
-        validate: {
-          min: 1,
-          max: 5
-        }
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
