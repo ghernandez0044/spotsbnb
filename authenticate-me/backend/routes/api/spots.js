@@ -6,6 +6,7 @@ const { requireAuth } = require('../../utils/auth')
 const { Op } = require('sequelize')
 const { Spot, SpotImage, Review, User, ReviewImage, sequelize} = require('../../db/models');
 
+
 // Get all Spots
 router.get('/', async (req, res, next) => {
 
@@ -286,5 +287,42 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
 })
 
+
+// Create a Review for a Spot based on the Spot's id - require authentication
+router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    const { review, stars } = req.body
+
+    if(!spot){
+        const err = new Error("Spot couldn't be found")
+        err.status = 400
+        next(err)
+    }
+
+    const potentialReview = await Review.findOne({
+        where: {
+            spotId: req.params.spotId,
+            userId: req.user.id
+        }
+    })
+
+    console.log(potentialReview)
+
+    if(potentialReview){
+        const err = new Error('User already has a review for this spot')
+        err.status = 403
+        next(err)
+    }
+
+   const createdReview = await spot.createReview({
+        userId: req.user.id,
+        review,
+        stars
+    })
+
+    return res.status(201).json(createdReview)
+
+})
 
 module.exports = router
