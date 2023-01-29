@@ -371,5 +371,70 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
 })
 
+// Create a Booking from a Spot based on the Spot's id - require authentication - requires proper authorization
+router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if(!spot){
+        const err = new Error("Spot couldn't be found")
+        err.status = 400
+        next(err)
+    }
+
+    if(spot.id === req.user.id){
+        const err = new Error("Cannot Book your own Spot")
+        err.status = 400
+        next(err)
+    }
+
+    const { startDate, endDate } = req.body
+
+    const potentialBookings = await Booking.findAll({
+        where: {
+            spotId: req.params.spotId
+        }
+    })
+
+    for(let booking of potentialBookings){
+        console.log(booking.startDate)
+        const year = new Date(booking.startDate).getFullYear()
+        const month = new Date(booking.startDate).getMonth()
+        const day = new Date(booking.startDate).getDay()
+
+        const newYear = new Date(startDate).getFullYear()
+        const newMonth = new Date(startDate).getMonth()
+        const newDay = new Date(startDate).getDay()
+
+        if(year === newYear && month === newMonth && day === newDay){
+            const err = new Error('Start date conflicts with an existing booking')
+            err.status = 403
+            next(err)
+        }
+
+        const endYear = new Date(booking.endDate).getFullYear()
+        const endMonth = new Date(booking.endDate).getMonth()
+        const endDay = new Date(booking.endDate).getDay()
+
+        const newEndYear = new Date(endDate).getFullYear()
+        const newEndMonth = new Date(endDate).getMonth()
+        const newEndDay = new Date(endDate).getDay()
+
+        if(endYear === newEndYear && endMonth === newEndMonth && endDay === newEndDay){
+            const err = new Error('End date conflicts with an existing booking')
+            err.status = 403
+            next(err)
+        }
+    }
+
+    const booking = await spot.createBooking({
+        userId: req.user.id,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate)
+    })
+
+    return res.status(200).json(booking)
+
+})
+
 
 module.exports = router
