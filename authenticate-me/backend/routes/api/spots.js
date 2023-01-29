@@ -126,7 +126,8 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
                     [
                       sequelize.fn("AVG", sequelize.col("stars")), 
                       "avgRating"
-                    ] 
+                    ],
+                    'id' 
                 ]
             },
             where: {
