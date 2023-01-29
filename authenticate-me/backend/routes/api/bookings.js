@@ -16,13 +16,15 @@ router.get('/current', requireAuth, async (req, res, next) => {
         ]
     })
 
-    const payload = bookings[0].toJSON()
+    const payload = []
 
-    const url = payload.Spot.SpotImages[0].url
-
-    delete payload.Spot.SpotImages
-
-    payload.Spot.previewImage = url
+    for(let booking of bookings){
+        const bookingObj = booking.toJSON()
+        const url = bookingObj.Spot.SpotImages[0].url
+        delete bookingObj.Spot.SpotImages
+        bookingObj.Spot.previewImage = url
+        payload.push(bookingObj)
+    }
 
     return res.status(200).json({
         Bookings: payload
@@ -102,6 +104,45 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
 
 })
 
+
+// Delete a Booking - require authentication - require authorization
+router.delete('/:bookingId', requireAuth, async (req, res, next) => {
+    const booking = await Booking.findByPk(req.params.bookingId)
+
+    if(!booking){
+        const err = new Error("Booking couldn't be found")
+        err.status = 404
+        next(err)
+    }
+
+    const spot = await Spot.findOne({
+        where: {
+            id: booking.userId
+        }
+    })
+
+
+
+    if(booking.userId !== req.user.id || spot.ownerId !== req.user.id){
+        const err = new Error("Booking or Spot do not belong to current user")
+        err.status = 403
+        next(err)
+    }
+
+    const today = new Date()
+
+    if(today.getTime() <= booking.startDate.getTime()){
+        const err = new Error("Bookings that have been started can't be deleted")
+        err.status = 403
+        next(err)
+    }
+
+    await booking.destroy()
+    return res.status(200).json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+})
 
 
 
