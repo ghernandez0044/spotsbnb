@@ -36,7 +36,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
     } else {
         let payload = reviews[0].toJSON()
-        let url = payload.Spot.SpotImages[0].url
+        console.log(payload)
+        let url = payload.Spot.SpotImages[0] ? payload.Spot.SpotImages[0].url : null
     
         payload.Spot.previewImage = url
     

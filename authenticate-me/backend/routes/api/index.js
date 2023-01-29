@@ -7,6 +7,7 @@ const spotsRouter = require('./spots')
 const reviewsRouter = require('./reviews')
 const bookingsRouter = require('./bookings')
 const spotImagesRouter = require('./spot-images')
+const reviewImagesRouter = require('./review-images')
 
 // Global middleware
 router.use(restoreUser)
@@ -18,6 +19,7 @@ router.use('/spots', spotsRouter)
 router.use('/reviews', reviewsRouter)
 router.use('/bookings', bookingsRouter)
 router.use('/spot-images', spotImagesRouter)
+router.use('/review-images', reviewImagesRouter)
 
 // Test endpoint
 router.post('/test', (req, res) => {
