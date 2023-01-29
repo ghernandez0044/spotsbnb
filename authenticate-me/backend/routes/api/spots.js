@@ -135,9 +135,9 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
             }
         })
 
-        console.log(avgRating[0].avgRating)
+        console.log('avgRating', avgRating[0].avgRating)
 
-        console.log(spot)
+        console.log('spot', spot)
 
         spot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].avgRating).toFixed(1))
 
