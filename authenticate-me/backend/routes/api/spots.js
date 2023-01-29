@@ -126,15 +126,20 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
                     [
                       sequelize.fn("AVG", sequelize.col("stars")), 
                       "avgRating"
-                    ] 
+                    ]
                 ]
             },
+            raw: true,
             where: {
                 spotId: spot.id
             }
         })
 
-        spot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].toJSON().avgRating).toFixed(1))
+        console.log(avgRating[0].avgRating)
+
+        console.log(spot)
+
+        spot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].avgRating).toFixed(1))
 
         const previewImages = await SpotImage.findAll({
             where: {
