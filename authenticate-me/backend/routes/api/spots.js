@@ -396,7 +396,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     })
 
     for(let booking of potentialBookings){
-        console.log(booking.startDate)
         const year = new Date(booking.startDate).getFullYear()
         const month = new Date(booking.startDate).getMonth()
         const day = new Date(booking.startDate).getDay()
