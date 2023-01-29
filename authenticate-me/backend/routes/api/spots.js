@@ -4,7 +4,7 @@ const router = express.Router()
 const { handleValidationErrors } = require('../../utils/validation')
 const { requireAuth } = require('../../utils/auth')
 const { Op } = require('sequelize')
-const { Spot, SpotImage, Review, User, ReviewImage, sequelize} = require('../../db/models');
+const { Spot, SpotImage, Review, User, ReviewImage, Booking, sequelize} = require('../../db/models');
 
 
 // Get all Spots
@@ -324,5 +324,52 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     return res.status(201).json(createdReview)
 
 })
+
+// Get all Bookings for a Spot based on the Spot's id - require authentication
+router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+    const bookings = await Booking.findAll({
+        where: {
+            spotId: req.params.spotId
+        },
+        include: [
+            { model: User, attributes: ['id', 'firstName', 'lastName'] }
+        ]
+    })
+
+    if(!bookings){
+        const err = new Error("Spot couldn't be found")
+        err.status = 400
+        next(err)
+    }
+
+    console.log(bookings)
+
+    if(bookings[0].userId !== req.user.id){
+
+        const safeArray = []
+
+        for(let booking of bookings){
+            const bookingObj = booking.toJSON()
+            delete bookingObj.id
+            delete bookingObj.userId
+            delete bookingObj.createdAt
+            delete bookingObj.updatedAt
+            delete bookingObj.User
+
+            safeArray.push(bookingObj)
+        }
+
+        return res.status(200).json({
+            Bookings: safeArray
+        })
+
+    } else {
+        return res.status(200).json({
+            Bookings: bookings
+        })
+    }
+
+})
+
 
 module.exports = router
