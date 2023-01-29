@@ -8,9 +8,116 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking, sequelize} = requir
 
 
 // Get all Spots
-router.get('/', async (req, res, next) => {
+router.get('/', handleValidationErrors, async (req, res, next) => {
 
-    const spots = await Spot.findAll()
+    const where = {}
+
+    const size = req.query.size ? req.query.size : 20
+    const page = req.query.page ? req.query.page : 1
+
+    if(page <= 0){
+        const err = new Error('Page must be greater than or equal to 1')
+        err.status = 400
+        next(err)
+    }
+
+    if(size <= 0){
+        const err = new Error('Size must be greater than or equal to 1')
+        err.status = 400
+        next(err)
+    }
+
+   const minLat = req.query.minLat ? req.query.minLat : null
+   const maxLat = req.query.maxLat ? req.query.maxLat : null
+   const minLng = req.query.minLng ? req.query.minLng : null
+   const maxLng = req.query.maxLng ? req.query.maxLng : null
+   const minPrice = req.query.minPrice ? req.query.minPrice : null
+   const maxPrice = req.query.maxPrice ? req.query.maxPrice : null
+
+   if(maxLat > 90){
+    const err = new Error('Maximum latitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(minLat < 0){
+    const err = new Error('Maximum latitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(minLng < -90){
+    const err = new Error('Minimum longitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(maxLng > 90){
+    const err = new Error('Maximum longitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(minPrice < 0){
+    const err = new Error('Minimum price must be greater than or equal to 0')
+    err.status = 400
+    next(err)
+   }
+
+   if(maxPrice < 0){
+    const err = new Error('Maximum price must be greater than or equal to 0')
+    err.status = 400
+    next(err)
+   }
+
+    if(minLat && maxLat){
+        where.lat = {
+                [Op.between]: [minLat, maxLat]
+            }
+    } else if(minLat){
+        where.lat = {
+            [Op.gte]: minLat
+        }
+    } else if(maxLat){
+        where.lat = {
+            [Op.lte]: maxLat
+        }
+    }
+
+
+   if(minLng && maxLng){
+    where.lng =  {
+            [Op.between]: [minLng, maxLng]
+        }
+    } else if(minLng){
+        where.lng = {
+            [Op.gte]: minLng
+        }
+    } else if(maxLat){
+        where.lng = {
+            [Op.lte]: maxLat
+        }
+    }
+
+    if(minPrice && maxPrice){
+        where.price =  {
+                [Op.between]: [minPrice, maxPrice]
+            }
+        } else if(minPrice){
+            where.price = {
+                [Op.gte]: minPrice
+            }
+        } else if(maxPrice){
+            where.price = {
+                [Op.lte]: maxPrice
+            }
+        }
+
+    const spots = await Spot.findAll({
+        limit: size,
+        offset: (page - 1) * size,
+        where
+    })
 
     for(let spot of spots){
         const avgRating = await Review.findAll({
@@ -49,7 +156,9 @@ router.get('/', async (req, res, next) => {
     }
 
     return res.status(200).json({
-        Spots: spots
+        Spots: spots,
+        page,
+        size
     })
 })
 
