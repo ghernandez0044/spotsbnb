@@ -25,8 +25,32 @@ const validateSignup = [
 ]
 
 // User Sign Up
-router.post('/', validateSignup, async (req, res) => {
+router.post('/', validateSignup, async (req, res, next) => {
     const { firstName, lastName, email, password, username } = req.body
+
+    const potentialUser = await User.scope('includeEmail').findAll({
+        where: {
+            email: email
+        }
+    })
+    
+    if(potentialUser.email === email){
+        const err = new Error('User with that email already exists')
+        err.status = 400
+        next(err)
+    }
+    
+    const potentialUser2 = await User.scope('includeEmail').findAll({
+        where: {
+            username: username
+        }
+    })
+
+    if(potentialUser2.username === username){
+        const err = new Error('User with that username already exists')
+        err.status = 400
+        next(err)
+    }
 
     const user = await User.signup({
         firstName,
@@ -36,14 +60,15 @@ router.post('/', validateSignup, async (req, res) => {
         password
     })
 
-    await setTokenCookie(res, user)
+   const cookie = await setTokenCookie(res, user)
 
     return res.json({
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
         username: user.username,
-        password: user.password
+        password: user.password,
+        token: cookie
     })
 })
 
