@@ -469,6 +469,15 @@ router.post('/:spotId/reviews', requireAuth, handleValidationErrors, async (req,
 
 // Get all Bookings for a Spot based on the Spot's id - require authentication
 router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if(!spot){
+        const err = new Error("Spot couldn't be found")
+        err.status = 400
+        next(err)
+    }
+
     const bookings = await Booking.findAll({
         where: {
             spotId: req.params.spotId
@@ -478,15 +487,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
         ]
     })
 
-    if(!bookings){
-        const err = new Error("Spot couldn't be found")
-        err.status = 400
-        next(err)
-    }
-
-    console.log(bookings)
-
-    if(bookings[0].userId !== req.user.id){
+    if(bookings.userId !== req.user.id){
 
         const safeArray = []
 
