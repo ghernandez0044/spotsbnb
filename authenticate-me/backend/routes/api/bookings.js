@@ -20,7 +20,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     for(let booking of bookings){
         const bookingObj = booking.toJSON()
-        const url = bookingObj.Spot.SpotImages[0].url
+        const url = bookingObj.Spot.SpotImages[0] ? bookingObj.Spot.SpotImages[0].url : null
         delete bookingObj.Spot.SpotImages
         bookingObj.Spot.previewImage = url
         payload.push(bookingObj)
@@ -42,11 +42,19 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         next(err)
     }
 
+    if(booking.userId !== req.user.id){
+        const err = new Error('Booking must belong to the current user')
+        err.status = 400
+        next(err)
+    }
+
     const today = new Date()
 
     const { startDate, endDate } = req.body
 
-    if(today.getTime() <= booking.startDate.getTime()){
+    const start = new Date(booking.startDate)
+
+    if(today.getTime() >= start.getTime()){
         const err = new Error("Past bookings can't be modified")
         err.status = 403
         next(err)
@@ -88,13 +96,10 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         }
     }
 
-
-    if(startDate){
-        booking.startDate = new Date(startDate)
-    }
-    if(endDate){
-        booking.endDate = new Date(endDate)
-    }
+    booking.set({
+        startDate,
+        endDate
+    })
 
     await booking.save()
 
@@ -131,7 +136,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
 
     const today = new Date()
 
-    if(today.getTime() <= booking.startDate.getTime()){
+    if(today.getTime() >= booking.startDate.getTime()){
         const err = new Error("Bookings that have been started can't be deleted")
         err.status = 403
         next(err)

@@ -36,7 +36,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
     } else {
         let payload = reviews[0].toJSON()
-        console.log(payload)
+        delete payload.Spot.createdAt
+        delete payload.Spot.updatedAt
         let url = payload.Spot.SpotImages[0] ? payload.Spot.SpotImages[0].url : null
     
         payload.Spot.previewImage = url
@@ -98,6 +99,8 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
     if(!currentReview){
         const err = new Error("Review couldn't be found")
+        err.status = 400
+        next(err)
     }
 
     if(currentReview.userId !== req.user.id){
@@ -108,12 +111,17 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
     const { review, stars } = req.body
 
-    if(review){
-        currentReview.review = review
-    }
-    if(stars){
-        currentReview.stars = stars
-    }
+    // if(review){
+    //     currentReview.review = review
+    // }
+    // if(stars){
+    //     currentReview.stars = stars
+    // }
+
+    currentReview.set({
+        review,
+        stars
+    })
 
     await currentReview.save()
 

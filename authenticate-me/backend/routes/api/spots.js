@@ -225,13 +225,24 @@ router.get('/:spotId', async (req, res, next) => {
         where: {
             id: req.params.spotId
         },
-        include: {
+        include: [
+            {
             model: SpotImage,
             attributes: ['id', 'url', 'preview']
+        },
+        {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
         }
+    ]
     })
 
+    
+
     if(spot){
+        const owner = spot.dataValues.User
+        delete spot.dataValues.User
+        spot.dataValues.Owner = owner
         return res.status(200).json(spot)
     } else {
         const err = new Error("Spot couldn't be found")
@@ -242,7 +253,7 @@ router.get('/:spotId', async (req, res, next) => {
 })
 
 // Create a spot - require authentication
-router.post('/', requireAuth, async (req, res, next) => {
+router.post('/', requireAuth, handleValidationErrors, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
 
     const createdSpot = await Spot.create({
@@ -298,7 +309,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
 
 // Edit a Spot - require authentication - require authorization
-router.put('/:spotId', requireAuth, async (req, res, next) => {
+router.put('/:spotId', requireAuth, handleValidationErrors, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } =  req.body
     const paramsId = Number(req.params.spotId)
 
@@ -315,35 +326,52 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         err.status = 400
         next(err)
     } else {
-        if(address){
-            spot.dataValues.address = address
-        }
-        if(city){
-            spot.dataValues.city = city
-        }
-        if(state){
-            spot.dataValues.state = state
-        }
-        if(country){
-            spot.dataValues.country = country
-        }
-        if(lat){
-            spot.dataValues.lat = lat
-        }
-        if(lng){
-            spot.dataValues.lng = lng
-        }
-        if(name){
-            spot.dataValues.name = name
-        }
-        if(description){
-            spot.dataValues.description = description
-        }
-        if(price){
-            spot.dataValues.price = price
-        }
+        // if(address){
+        //     spot.dataValues.address = address
+        //     if(!address) {
+        //         const err = new Error('Street address is required')
+        //         err.status = 400
+        //         next(err)
+        //     }
+        // }
+        // if(city){
+        //     spot.dataValues.city = city
+        // }
+        // if(state){
+        //     spot.dataValues.state = state
+        // }
+        // if(country){
+        //     spot.dataValues.country = country
+        // }
+        // if(lat){
+        //     spot.dataValues.lat = lat
+        // }
+        // if(lng){
+        //     spot.dataValues.lng = lng
+        // }
+        // if(name){
+        //     spot.dataValues.name = name
+        // }
+        // if(description){
+        //     spot.dataValues.description = description
+        // }
+        // if(price){
+        //     spot.dataValues.price = price
+        // }
+
+        spot.set({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
     
-        spot.save()
+        await spot.save()
 
         return res.status(200).json(spot)
     }
@@ -403,7 +431,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
 
 // Create a Review for a Spot based on the Spot's id - require authentication
-router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+router.post('/:spotId/reviews', requireAuth, handleValidationErrors, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
     const { review, stars } = req.body
@@ -441,6 +469,15 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
 // Get all Bookings for a Spot based on the Spot's id - require authentication
 router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if(!spot){
+        const err = new Error("Spot couldn't be found")
+        err.status = 400
+        next(err)
+    }
+
     const bookings = await Booking.findAll({
         where: {
             spotId: req.params.spotId
@@ -450,15 +487,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
         ]
     })
 
-    if(!bookings){
-        const err = new Error("Spot couldn't be found")
-        err.status = 400
-        next(err)
-    }
-
-    console.log(bookings)
-
-    if(bookings[0].userId !== req.user.id){
+    if(bookings.userId !== req.user.id){
 
         const safeArray = []
 
