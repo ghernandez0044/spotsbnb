@@ -326,40 +326,52 @@ router.put('/:spotId', requireAuth, handleValidationErrors, async (req, res, nex
         err.status = 400
         next(err)
     } else {
-        if(address){
-            spot.dataValues.address = address
-            if(!address) {
-                const err = new Error('Street address is required')
-                err.status = 400
-                next(err)
-            }
-        }
-        if(city){
-            spot.dataValues.city = city
-        }
-        if(state){
-            spot.dataValues.state = state
-        }
-        if(country){
-            spot.dataValues.country = country
-        }
-        if(lat){
-            spot.dataValues.lat = lat
-        }
-        if(lng){
-            spot.dataValues.lng = lng
-        }
-        if(name){
-            spot.dataValues.name = name
-        }
-        if(description){
-            spot.dataValues.description = description
-        }
-        if(price){
-            spot.dataValues.price = price
-        }
+        // if(address){
+        //     spot.dataValues.address = address
+        //     if(!address) {
+        //         const err = new Error('Street address is required')
+        //         err.status = 400
+        //         next(err)
+        //     }
+        // }
+        // if(city){
+        //     spot.dataValues.city = city
+        // }
+        // if(state){
+        //     spot.dataValues.state = state
+        // }
+        // if(country){
+        //     spot.dataValues.country = country
+        // }
+        // if(lat){
+        //     spot.dataValues.lat = lat
+        // }
+        // if(lng){
+        //     spot.dataValues.lng = lng
+        // }
+        // if(name){
+        //     spot.dataValues.name = name
+        // }
+        // if(description){
+        //     spot.dataValues.description = description
+        // }
+        // if(price){
+        //     spot.dataValues.price = price
+        // }
+
+        spot.set({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
     
-        spot.save()
+        await spot.save()
 
         return res.status(200).json(spot)
     }
@@ -419,7 +431,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
 
 // Create a Review for a Spot based on the Spot's id - require authentication
-router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+router.post('/:spotId/reviews', requireAuth, handleValidationErrors, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
     const { review, stars } = req.body
