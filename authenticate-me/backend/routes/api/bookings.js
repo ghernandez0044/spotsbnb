@@ -20,7 +20,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     for(let booking of bookings){
         const bookingObj = booking.toJSON()
-        const url = bookingObj.Spot.SpotImages[0].url
+        const url = bookingObj.Spot.SpotImages[0] ? bookingObj.Spot.SpotImages[0].url : null
         delete bookingObj.Spot.SpotImages
         bookingObj.Spot.previewImage = url
         payload.push(bookingObj)
@@ -131,7 +131,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
 
     const today = new Date()
 
-    if(today.getTime() <= booking.startDate.getTime()){
+    if(today.getTime() >= booking.startDate.getTime()){
         const err = new Error("Bookings that have been started can't be deleted")
         err.status = 403
         next(err)
