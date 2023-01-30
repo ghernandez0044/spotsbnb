@@ -225,13 +225,24 @@ router.get('/:spotId', async (req, res, next) => {
         where: {
             id: req.params.spotId
         },
-        include: {
+        include: [
+            {
             model: SpotImage,
             attributes: ['id', 'url', 'preview']
+        },
+        {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
         }
+    ]
     })
 
+    
+
     if(spot){
+        const owner = spot.dataValues.User
+        delete spot.dataValues.User
+        spot.dataValues.Owner = owner
         return res.status(200).json(spot)
     } else {
         const err = new Error("Spot couldn't be found")
@@ -242,7 +253,7 @@ router.get('/:spotId', async (req, res, next) => {
 })
 
 // Create a spot - require authentication
-router.post('/', requireAuth, async (req, res, next) => {
+router.post('/', requireAuth, handleValidationErrors, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
 
     const createdSpot = await Spot.create({
@@ -298,7 +309,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
 
 // Edit a Spot - require authentication - require authorization
-router.put('/:spotId', requireAuth, async (req, res, next) => {
+router.put('/:spotId', requireAuth, handleValidationErrors, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } =  req.body
     const paramsId = Number(req.params.spotId)
 
@@ -317,6 +328,11 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     } else {
         if(address){
             spot.dataValues.address = address
+            if(!address) {
+                const err = new Error('Street address is required')
+                err.status = 400
+                next(err)
+            }
         }
         if(city){
             spot.dataValues.city = city

@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
-        min: 0,
+        min: -90,
         max: 90
       }
     },
@@ -88,8 +88,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
-        min: -90,
-        max: 90
+        min: -180,
+        max: 180
       }
     },
     name: {
