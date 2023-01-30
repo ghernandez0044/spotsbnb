@@ -120,28 +120,41 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
     })
 
     for(let spot of spots){
-        const avgRating = await Review.findAll({
-            attributes: {
-                include: [ 
-                    [
-                      sequelize.fn("AVG", sequelize.col("stars")), 
-                      "avgRating"
-                    ]
-                ]
-            },
+        // const avgRating = await Review.findAll({
+        //     attributes: {
+        //         include: [ 
+        //             [
+        //               sequelize.fn("AVG", sequelize.col("stars")), 
+        //               "avgRating"
+        //             ]
+        //         ]
+        //     },
+        //     where: {
+        //         spotId: spot.id
+        //     },
+        //     subQuery: false,
+        //     raw: true
+        // })
+
+        const reviews = await Review.findAll({
             where: {
-                spotId: spot.id
-            },
-            subQuery: false,
-            raw: true
+               spotId: spot.id 
+            }
         })
 
-        console.log('query result', avgRating)
-        console.log('avgRating', avgRating[0].avgRating)
+        let totalStars = 0
 
-        console.log('spot', spot)
+        for(let review of reviews){
+            const rating = review.stars
+            console.log('Rating', rating)
+            totalStars += rating
+        }
 
-        spot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].avgRating).toFixed(1))
+        const avgRating = Number(Number(totalStars / reviews.length).toFixed(1))
+
+        spot.dataValues.avgRating = avgRating ? avgRating : 0
+
+        // spot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].avgRating).toFixed(1))
 
         const previewImages = await SpotImage.findAll({
             where: {
@@ -179,21 +192,39 @@ router.get('/current', requireAuth, async (req, res, next) => {
     })
 
     for(let currentUserSpot of currentUserSpots){
-        const avgRating = await Review.findAll({
-            attributes: {
-                include: [ 
-                    [
-                      sequelize.fn("AVG", sequelize.col("stars")), 
-                      "avgRating"
-                    ] 
-                ]
-            },
+        // const avgRating = await Review.findAll({
+        //     attributes: {
+        //         include: [ 
+        //             [
+        //               sequelize.fn("AVG", sequelize.col("stars")), 
+        //               "avgRating"
+        //             ] 
+        //         ]
+        //     },
+        //     where: {
+        //         spotId: currentUserSpot.id
+        //     }
+        // })
+
+        // currentUserSpot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].toJSON().avgRating).toFixed(1))
+
+        const reviews = await Review.findAll({
             where: {
-                spotId: currentUserSpot.id
+               spotId: currentUserSpot.id 
             }
         })
 
-        currentUserSpot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].toJSON().avgRating).toFixed(1))
+        let totalStars = 0
+
+        for(let review of reviews){
+            const rating = review.stars
+            console.log('Rating', rating)
+            totalStars += rating
+        }
+
+        const avgRating = Number(Number(totalStars / reviews.length).toFixed(1))
+
+        currentUserSpot.dataValues.avgRating = avgRating ? avgRating : 0
 
         const previewImages = await SpotImage.findAll({
             where: {
