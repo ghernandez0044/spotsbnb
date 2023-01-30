@@ -99,6 +99,8 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
     if(!currentReview){
         const err = new Error("Review couldn't be found")
+        err.status = 400
+        next(err)
     }
 
     if(currentReview.userId !== req.user.id){
@@ -109,12 +111,17 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
     const { review, stars } = req.body
 
-    if(review){
-        currentReview.review = review
-    }
-    if(stars){
-        currentReview.stars = stars
-    }
+    // if(review){
+    //     currentReview.review = review
+    // }
+    // if(stars){
+    //     currentReview.stars = stars
+    // }
+
+    currentReview.set({
+        review,
+        stars
+    })
 
     await currentReview.save()
 
