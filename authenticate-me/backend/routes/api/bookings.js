@@ -42,11 +42,19 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         next(err)
     }
 
+    if(booking.userId !== req.user.id){
+        const err = new Error('Booking must belong to the current user')
+        err.status = 400
+        next(err)
+    }
+
     const today = new Date()
 
     const { startDate, endDate } = req.body
 
-    if(today.getTime() <= booking.startDate.getTime()){
+    const start = new Date(booking.startDate)
+
+    if(today.getTime() >= start.getTime()){
         const err = new Error("Past bookings can't be modified")
         err.status = 403
         next(err)
@@ -88,13 +96,10 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         }
     }
 
-
-    if(startDate){
-        booking.startDate = new Date(startDate)
-    }
-    if(endDate){
-        booking.endDate = new Date(endDate)
-    }
+    booking.set({
+        startDate,
+        endDate
+    })
 
     await booking.save()
 
