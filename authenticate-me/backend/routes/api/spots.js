@@ -129,10 +129,10 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
                     ]
                 ]
             },
-            raw: true,
             where: {
                 spotId: spot.id
-            }
+            },
+            subQuery: false
         })
 
         console.log('avgRating', avgRating[0].avgRating)
