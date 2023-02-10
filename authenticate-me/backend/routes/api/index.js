@@ -22,11 +22,11 @@ router.use('/spot-images', spotImagesRouter)
 router.use('/review-images', reviewImagesRouter)
 
 // Test endpoint
-router.post('/test', (req, res) => {
-    res.json({
-        requestBody: req.body
-    })
-})
+// router.post('/test', (req, res) => {
+//     res.json({
+//         requestBody: req.body
+//     })
+// })
 
 // // Another test endpoint (for setTokenCookie)
 // router.get('/set-token-cookie', async (req, res) => {

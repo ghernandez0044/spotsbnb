@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 export async function csrfFetch(url, options = {}){
     // set options.method to 'GET' if there is no method
-    options.method = options.metjod || 'GET'
+    options.method = options.method || 'GET'
     // set options.headers to an empty object if there is no headers
     options.headers = options.headers || {}
 
@@ -23,3 +23,7 @@ export async function csrfFetch(url, options = {}){
     return res
 }
 
+// call this to get the "XSRF-TOKEN" cookie, should only be used in development
+export function restoreCSRF(){
+    return csrfFetch('/api/csrf/restore')
+}
