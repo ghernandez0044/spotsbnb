@@ -9,13 +9,16 @@ import { restoreUser } from './store/session';
 function App() { 
   // Create dispatch method
   const dispatch = useDispatch()
+
+  // Create state variable to check if user is loaded
+  const [ isLoaded, setIsLoaded ] = useState(false)
   
   // Restoring the Session User
   useEffect(() => {
-    dispatch(restoreUser())
+    dispatch(restoreUser()).then(() => setIsLoaded(true))
   }, [dispatch])
 
-  return (
+  return isLoaded && (
     <Switch>
         <Route exact path='/'>
           <h1>Homepage</h1>
