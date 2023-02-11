@@ -24,7 +24,7 @@ const REMOVE_USER = 'session/removeUser'
     }
 
 // Thunks
-    // Call API to login
+    // Call API to login thunk
     export const login = (user) => async dispatch => {
         const { credential, password } = user
         const response = await csrfFetch('/api/session', {
@@ -39,6 +39,17 @@ const REMOVE_USER = 'session/removeUser'
           const data = await response.json()
           dispatch(setUser(data.user))
           return response
+        }
+      }
+
+      // Restore the Session User thunk
+      export const restoreUser = () => async dispatch => {
+        const response = await csrfFetch('api/session')
+
+        if(response.ok){
+            const data = await response.json()
+            dispatch(setUser(data.user))
+            return response
         }
       }
 

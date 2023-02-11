@@ -2,12 +2,15 @@
 import React, { useState } from 'react'
 import * as sessionActions from '../../store/session'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './LoginForm.css'
 
 function LoginFormPage(){
     // Create dispatch method
     const dispatch = useDispatch()
+
+    // Create history method
+    const history = useHistory()
 
     // Subscribe to session state slice
     const sessionUser = useSelector((state) => state.session.user)
@@ -18,7 +21,7 @@ function LoginFormPage(){
     const [ errors, setErrors ] = useState([])
 
     // If there is user already logged in, redirect to homepage
-    if(sessionUser) <Redirect to="/" />
+    if(sessionUser) history.replace('/')
 
     // Handle submission event
     const handleSubmit = (e) => {
