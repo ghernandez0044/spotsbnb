@@ -1,5 +1,5 @@
 // Necessary imports
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
@@ -10,6 +10,9 @@ function ProfileButton({ user }){
 
     // Create state variables
     const [ showMenu, setShowMenu ] = useState('')
+
+    // Create useRef hook
+    const ulRef = useRef()
 
     // Function to open dropdown menu
     const openMenu = () => {
@@ -27,7 +30,9 @@ function ProfileButton({ user }){
     useEffect(() => {
         if(!showMenu) return 
 
-        const closeMenu = (e) => setShowMenu(false)
+        const closeMenu = (e) => {
+            if(!ulRef.current.contains(e.target)) setShowMenu(false)
+        }
 
         document.addEventListener('click', closeMenu)
 
@@ -43,7 +48,7 @@ function ProfileButton({ user }){
             <button onClick={openMenu}>
                 User Icon
             </button>
-            <ul className={showMenu ? '' : 'hidden'}>
+            <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
                 <li className='list-item'>{user.username}</li>
                 <li className='list-item'>{user.firstName} {user.lastName}</li>
                 <li className='list-item'>{user.email}</li>
