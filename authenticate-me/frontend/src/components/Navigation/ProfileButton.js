@@ -1,5 +1,5 @@
 // Necessary imports
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
@@ -8,6 +8,9 @@ function ProfileButton({ user }){
     // Create dispatch method
     const dispatch = useDispatch()
 
+    // Create state variables
+    const [ showMenu, setShowMenu ] = useState('')
+
     // Function to logout user
     const logout = (e) => {
         e.preventDefault()
@@ -15,15 +18,15 @@ function ProfileButton({ user }){
     }
 
     // Create class name for unordered list
-    const ulClassName = 'profile-dropdown'
+    const ulClassName = 'profile-dropdown' + (showMenu ? '' : 'hidden')
 
 
     return (
-        <div className=''>
-            <button>
-                <i className="fa-regular fa-user" />
+        <div>
+            <button onClick={() => setShowMenu(!showMenu)}>
+                User Icon
             </button>
-            <ul className={ulClassName}>
+            <ul className={showMenu ? '' : 'hidden'}>
                 <li className='list-item'>{user.username}</li>
                 <li className='list-item'>{user.firstName} {user.lastName}</li>
                 <li className='list-item'>{user.email}</li>

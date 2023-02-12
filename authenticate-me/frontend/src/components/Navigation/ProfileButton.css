@@ -1,14 +1,18 @@
 .profile-dropdown {
-    /* border: 3px solid lime; */
-    display: flex;
+    border: 3px solid lime;
+    /* display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: auto;
-    margin: auto;
+    margin: auto; */
 }
 
 .list-item {
     /* border: 3px solid lime; */
     margin: 5px auto;
     padding: 5px 3px;
+}
+
+.hidden {
+    display: none;
 }

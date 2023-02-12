@@ -22,8 +22,6 @@ function Navigation({ isLoaded }){
             <>
                 <li className='list-item'>
                     <NavLink to='/login'>Log In</NavLink>
-                </li>
-                <li className='list-item'>
                     <NavLink to='/signup'>Sign Up</NavLink>
                 </li>
             </>
