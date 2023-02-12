@@ -53,6 +53,27 @@ const REMOVE_USER = 'session/removeUser'
         }
       }
 
+      // Signup User thunk
+      export const signup = (user) => async dispatch => {
+        const { firstName, lastName, username, email, password } = user
+        const response = await csrfFetch('/api/users', {
+            method: 'POST',
+            body: JSON.stringify({
+                firstName,
+                lastName,
+                username,
+                email,
+                password
+            })
+        })
+
+        if(response.ok){
+            const data = await response.json()
+            dispatch(setUser(data.user))
+            return response
+        }
+      }
+
 // Create initial state
 const initialState = { user: null }
 
