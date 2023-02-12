@@ -1,27 +1,21 @@
 // Necessary imports
 import React, { useState } from 'react'
 import * as sessionActions from '../../store/session'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useModal } from '../../context/Modal'
 import './LoginForm.css'
 
-function LoginFormPage(){
+function LoginFormModal(){
     // Create dispatch method
     const dispatch = useDispatch()
-
-    // Create history method
-    const history = useHistory()
-
-    // Subscribe to session state slice
-    const sessionUser = useSelector((state) => state.session.user)
 
     // Create state variables
     const [ credential, setCredential ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ errors, setErrors ] = useState([])
 
-    // If there is user already logged in, redirect to homepage
-    if(sessionUser) history.replace('/')
+    // Consume the context from Redux store
+    const { closeModal } = useModal()
 
     // Handle submission event
     const handleSubmit = (e) => {
@@ -29,7 +23,7 @@ function LoginFormPage(){
 
         setErrors([])
 
-        return dispatch(sessionActions.login({ credential, password })).catch(async (res) => {
+        return dispatch(sessionActions.login({ credential, password })).then(closeModal).catch(async (res) => {
             const data = await res.json()
             if(data && data.errors) setErrors(data.errors)
         })
@@ -57,4 +51,4 @@ function LoginFormPage(){
     )
 }
 
-export default LoginFormPage
+export default LoginFormModal

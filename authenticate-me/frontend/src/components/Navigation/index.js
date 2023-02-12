@@ -3,6 +3,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ProfileButton from './ProfileButton'
+import OpenModalButton from '../OpenModalButton'
+import LoginFormModal from '../LoginFormModal'
 import './Navigation.css'
 
 function Navigation({ isLoaded }){
@@ -21,7 +23,7 @@ function Navigation({ isLoaded }){
         sessionLinks = (
             <>
                 <li className='list-item'>
-                    <NavLink to='/login'>Log In</NavLink>
+                    <OpenModalButton buttonText='Log In' modalComponent={<LoginFormModal />} />
                     <NavLink to='/signup'>Sign Up</NavLink>
                 </li>
             </>
