@@ -74,6 +74,18 @@ const REMOVE_USER = 'session/removeUser'
         }
       }
 
+      // Logout User thunk
+      export const logout = () => async dispatch => {
+        const response = await csrfFetch('/api/session', {
+            method: 'DELETE'
+        })
+
+        if(response.ok){
+            dispatch(removeUser())
+            return response
+        }
+      }
+
 // Create initial state
 const initialState = { user: null }
 
