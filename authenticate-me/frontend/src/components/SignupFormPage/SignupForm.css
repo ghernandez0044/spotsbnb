@@ -9,9 +9,8 @@
 
 .form-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-content: space-between;
 }
 
 .element {
