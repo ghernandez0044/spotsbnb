@@ -1,7 +1,8 @@
 // Necessary Imports
 import { Route, Switch } from 'react-router-dom'
 import LoginFormPage from './components/LoginFormPage';
-import { useEffect } from 'react'
+import SignupFormPage from './components/SignupFormPage';
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { restoreUser } from './store/session';
 
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route exact path='/login'>
           <LoginFormPage />
+        </Route>
+        <Route exact path='/signup'>
+          <SignupFormPage />
         </Route>
     </Switch>
   );
