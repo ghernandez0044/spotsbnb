@@ -2,6 +2,7 @@
 import { Route, Switch } from 'react-router-dom'
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
+import Navigation from './components/Navigation';
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { restoreUser } from './store/session';
@@ -20,17 +21,20 @@ function App() {
   }, [dispatch])
 
   return isLoaded && (
-    <Switch>
-        <Route exact path='/'>
-          <h1>Homepage</h1>
-        </Route>
-        <Route exact path='/login'>
-          <LoginFormPage />
-        </Route>
-        <Route exact path='/signup'>
-          <SignupFormPage />
-        </Route>
-    </Switch>
+    <>
+      <Navigation isLoaded={isLoaded} />
+      <Switch>
+          <Route exact path='/'>
+            <h1>Homepage</h1>
+          </Route>
+          <Route exact path='/login'>
+            <LoginFormPage />
+          </Route>
+          <Route exact path='/signup'>
+            <SignupFormPage />
+          </Route>
+      </Switch>
+    </>
   );
 }
 
