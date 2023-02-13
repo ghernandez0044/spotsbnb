@@ -1,27 +1,28 @@
-*, *:after, *:before {
-    box-sizing: border-box;
-}
-
 .form-header {
     display: flex;
     justify-content: center;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: space-between;
+.login-form-container {
+    /* border: 3px solid lime; */
+    position: static;
+    width: 500px;
+    height: 250px;
 }
 
-.element {
-    margin: 5px auto;
+.login-element {
+    /* border: 3px solid red; */
+    position: relative;
+    width: fit-content;
+    margin: 12px auto;
     padding: auto;
 }
 
 .login-button {
     height: 35px;
     width: 100px;
+    position: relative;
+    left: -5%;
     margin: auto;
-    padding: auto;
+    padding: 5px;
 }
