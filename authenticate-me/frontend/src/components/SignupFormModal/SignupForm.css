@@ -5,24 +5,21 @@
 
 .form-container {
     /* border: 3px solid red; */
-    position: static;
+    position: relative;
     width: 500px;
     height: auto;
 }
 
 .element {
     /* border: 3px solid lime; */
-    position: relative;
     width: fit-content;
     margin: 12px auto;
     padding: auto;
 }
 
-.login-button {
+.signup-button {
     height: 35px;
     width: 100px;
-    position: relative;
-    left: 15%;
     margin: auto;
     padding: auto;
 }

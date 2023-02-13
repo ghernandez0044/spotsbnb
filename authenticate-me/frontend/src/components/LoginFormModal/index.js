@@ -29,6 +29,19 @@ function LoginFormModal(){
         })
     }
 
+    // Handle demo user submission event
+    const demoSubmit = (e) => {
+        e.preventDefault()
+
+        return dispatch(sessionActions.login({
+            credential: 'demo1@user.io',
+            password: 'password1'
+        })).then(closeModal).catch(async (res) => {
+            const data = await res.json()
+            if(data && data.errors) setErrors(data.errors)
+        })
+    }
+
 
     return (
         <>
@@ -45,7 +58,10 @@ function LoginFormModal(){
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required />
                     </li>
                     <li className='login-element'>
-                        <button type='submit' className='login-button'>Log In</button>
+                        <button type='submit' className='login-button' disabled={credential.length < 4 || password.length < 6}>Log In</button>
+                    </li>
+                    <li className='login-element'>
+                        <button type='submit' className='login-button' onClick={demoSubmit}>Demo User</button>
                     </li>
                 </ul>
             </form>

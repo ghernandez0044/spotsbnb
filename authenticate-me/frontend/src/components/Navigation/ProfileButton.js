@@ -58,9 +58,9 @@ function ProfileButton({ user }){
             <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
                 {user ? (
                 <>
-                    <li className='list-item'>{user.username}</li>
-                    <li className='list-item'>{user.firstName} {user.lastName}</li>
-                    <li className='list-item'>{user.email}</li>
+                    <li className='list-item'>Hello, {user.firstName} {user.lastName}</li>
+                    <li className='list-item'>Username: {user.username}</li>
+                    <li className='list-item'>Email: {user.email}</li>
                     <li className='list-item'>
                     <button onClick={logout}>Log Out</button>
                     </li>

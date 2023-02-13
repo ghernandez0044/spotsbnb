@@ -1,5 +1,5 @@
 .profile-dropdown {
-    border: 3px solid lime;
+    /* border: 3px solid lime; */
     /* display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,6 +9,7 @@
 
 .list-item {
     /* border: 3px solid lime; */
+    width: fit-content;
     margin: 5px auto;
     padding: 5px 3px;
 }
