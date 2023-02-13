@@ -40,7 +40,7 @@ function ProfileButton({ user }){
     }, [showMenu])
 
     // Create class name for unordered list
-    const ulClassName = 'profile-dropdown' + (showMenu ? '' : 'hidden')
+    // const ulClassName = 'profile-dropdown' + (showMenu ? '' : 'hidden')
 
 
     return (
