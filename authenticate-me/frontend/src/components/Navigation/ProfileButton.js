@@ -3,6 +3,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
+import OpenModalButton from '../OpenModalButton'
+import LoginFormModal from '../LoginFormModal'
+import SignupFormModal from '../SignupFormModal'
 
 function ProfileButton({ user }){
     // Create dispatch method
@@ -49,12 +52,31 @@ function ProfileButton({ user }){
                 User Icon
             </button>
             <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
-                <li className='list-item'>{user.username}</li>
-                <li className='list-item'>{user.firstName} {user.lastName}</li>
-                <li className='list-item'>{user.email}</li>
-                <li className='list-item'>
+                {user ? (
+                <>
+                    <li className='list-item'>{user.username}</li>
+                    <li className='list-item'>{user.firstName} {user.lastName}</li>
+                    <li className='list-item'>{user.email}</li>
+                    <li className='list-item'>
                     <button onClick={logout}>Log Out</button>
-                </li>
+                    </li>
+                </>
+                ) : (
+                <>
+                    <li>
+                    <OpenModalButton
+                        buttonText="Log In"
+                        modalComponent={<LoginFormModal />}
+                    />
+                    </li>
+                    <li>
+                    <OpenModalButton
+                        buttonText="Sign Up"
+                        modalComponent={<SignupFormModal />}
+                    />
+                    </li>
+                </>
+                )}
             </ul>
         </div>
     )
