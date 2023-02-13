@@ -72,7 +72,7 @@ function SignupFormModal(){
                             <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' required />
                     </li>
                     <li className='element'>
-                        <button type='submit' disabled={errors.length > 0} className='signup-button'>Sign Up</button>
+                        <button type='submit' className='signup-button' disabled={firstName.length <= 0 || lastName.length <= 0 || username.length < 4 || email.length <= 0 || password.length < 6 || confirmPassword.length < 6 || password !== confirmPassword}>Sign Up</button>
                     </li>
                 </ul>
             </form>
