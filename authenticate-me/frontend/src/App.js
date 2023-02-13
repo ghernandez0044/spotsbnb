@@ -1,6 +1,6 @@
 // Necessary Imports
 import { Route, Switch } from 'react-router-dom'
-import SignupFormPage from './components/SignupFormPage';
+import SignupFormPage from './components/SignupFormModal';
 import Navigation from './components/Navigation';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
