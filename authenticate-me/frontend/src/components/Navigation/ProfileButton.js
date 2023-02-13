@@ -23,10 +23,14 @@ function ProfileButton({ user }){
         setShowMenu(true)
     }
 
+    // Create function to close dropdown menu
+    const closeMenu = () => setShowMenu(false)
+
     // Function to logout user
     const logout = (e) => {
         e.preventDefault()
         dispatch(sessionActions.logout())
+        closeMenu()
     }
 
     // Create event listener for closing menu
@@ -66,12 +70,14 @@ function ProfileButton({ user }){
                     <li>
                     <OpenModalButton
                         buttonText="Log In"
+                        onButtonClick={closeMenu}
                         modalComponent={<LoginFormModal />}
                     />
                     </li>
                     <li>
                     <OpenModalButton
                         buttonText="Sign Up"
+                        onButtonClick={closeMenu}
                         modalComponent={<SignupFormModal />}
                     />
                     </li>
