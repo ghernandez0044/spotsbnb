@@ -1,6 +1,5 @@
 // Necessary Imports
 import { Route, Switch } from 'react-router-dom'
-import SignupFormPage from './components/SignupFormModal';
 import Navigation from './components/Navigation';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -25,10 +24,7 @@ function App() {
       {isLoaded && (
          <Switch>
          <Route exact path='/'>
-           <h1>Homepage</h1>
-         </Route>
-         <Route exact path='/signup'>
-           <SignupFormPage />
+           <h1 style={{ textAlign: 'center' }}>Welcome To SpotsBnb!</h1>
          </Route>
      </Switch>
       )}

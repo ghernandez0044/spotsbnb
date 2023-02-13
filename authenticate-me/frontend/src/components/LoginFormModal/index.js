@@ -58,7 +58,7 @@ function LoginFormModal(){
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required />
                     </li>
                     <li className='login-element'>
-                        <button type='submit' className='login-button'>Log In</button>
+                        <button type='submit' className='login-button' disabled={credential.length < 4 || password.length < 6}>Log In</button>
                     </li>
                     <li className='login-element'>
                         <button type='submit' className='login-button' onClick={demoSubmit}>Demo User</button>
