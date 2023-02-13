@@ -52,31 +52,29 @@ function SignupFormModal(){
                         </li>
                     ))}
                 </ul>
-                <label className='element'>
-                    First Name
-                    <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='First Name' required />
-                </label>
-                <label className='element'>
-                    Last Name
-                    <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' required />
-                </label>
-                <label className='element'>
-                    Username
-                    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' required />
-                </label>
-                <label className='element'>
-                    Email
-                    <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required />
-                </label>
-                <label className='element'>
-                    Password
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required />
-                </label>
-                <label className='element'>
-                    Confirm Password
-                    <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' required />
-                </label>
-                <button type='submit' disabled={errors.length > 0} className='login-button'>Sign Up</button>
+                <ul>
+                    <li className='element'>
+                            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='First Name' required />
+                    </li>
+                    <li className='element'>
+                            <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' required />
+                    </li>
+                    <li className='element'>
+                            <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' required />
+                    </li>
+                    <li className='element'>
+                            <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required />
+                    </li>
+                    <li className='element'>
+                            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required />
+                    </li>
+                    <li className='element'>
+                            <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' required />
+                    </li>
+                    <li className='element'>
+                        <button type='submit' disabled={errors.length > 0} className='login-button'>Sign Up</button>
+                    </li>
+                </ul>
             </form>
         </>
     )

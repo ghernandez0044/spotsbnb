@@ -3,6 +3,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
+import OpenModalMenuItem from './OpenModalMenuItem'
+import LoginFormModal from '../LoginFormModal'
+import SignupFormModal from '../SignupFormModal'
 
 function ProfileButton({ user }){
     // Create dispatch method
@@ -20,10 +23,14 @@ function ProfileButton({ user }){
         setShowMenu(true)
     }
 
+    // Create function to close dropdown menu
+    const closeMenu = () => setShowMenu(false)
+
     // Function to logout user
     const logout = (e) => {
         e.preventDefault()
         dispatch(sessionActions.logout())
+        closeMenu()
     }
 
     // Create event listener for closing menu
@@ -49,12 +56,33 @@ function ProfileButton({ user }){
                 User Icon
             </button>
             <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
-                <li className='list-item'>{user.username}</li>
-                <li className='list-item'>{user.firstName} {user.lastName}</li>
-                <li className='list-item'>{user.email}</li>
-                <li className='list-item'>
+                {user ? (
+                <>
+                    <li className='list-item'>{user.username}</li>
+                    <li className='list-item'>{user.firstName} {user.lastName}</li>
+                    <li className='list-item'>{user.email}</li>
+                    <li className='list-item'>
                     <button onClick={logout}>Log Out</button>
-                </li>
+                    </li>
+                </>
+                ) : (
+                <>
+                    <li>
+                    <OpenModalMenuItem
+                        itemText="Log In"
+                        onItemClick={closeMenu}
+                        modalComponent={<LoginFormModal />}
+                    />
+                    </li>
+                    <li>
+                    <OpenModalMenuItem
+                        itemText="Sign Up"
+                        onItemClick={closeMenu}
+                        modalComponent={<SignupFormModal />}
+                    />
+                    </li>
+                </>
+                )}
             </ul>
         </div>
     )
