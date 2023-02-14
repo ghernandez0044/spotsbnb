@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { restoreUser } from './store/session';
 import SpotGallery from './components/SpotGallery';
+import SpotDetails from './components/SpotDetails';
 
 
 function App() { 
@@ -27,6 +28,9 @@ function App() {
          <Route exact path='/'>
            <h1 style={{ textAlign: 'center' }}>Welcome To SpotsBnb!</h1>
            <SpotGallery />
+         </Route>
+         <Route exact path='/spots/:id'>
+            <SpotDetails />
          </Route>
      </Switch>
       )}
