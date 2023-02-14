@@ -1,10 +1,11 @@
 // Necessary imports
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink, Route, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getSpots } from '../../store/spots'
+import SpotGalleryCard from '../SpotGalleryCard'
+import './SpotGallery.css'
 
 function SpotGallery(){
     // Create dispatch method
@@ -18,18 +19,12 @@ function SpotGallery(){
     // Create a reference to the spots state slice
     const spots = useSelector((state) => state.spots.Spots)
 
-    console.log('Spots: ', spots)
-
     return (
         <div>
             <h2 style={{ textAlign: 'center' }}>Spot Gallery</h2>
-            <ul>
+            <ul className='spot-card-container'>
                 {spots.map(spot => (
-                    <li key={spot.id}>
-                        <NavLink exact to={`/spots/${spot.id}`}>
-                            {spot.name}
-                        </NavLink>
-                    </li>
+                    <SpotGalleryCard spot={spot} />
                 ))}
             </ul>
         </div>

@@ -1,0 +1,11 @@
+.spot-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+img {
+    height: 270px;
+    width: 250px;
+}
