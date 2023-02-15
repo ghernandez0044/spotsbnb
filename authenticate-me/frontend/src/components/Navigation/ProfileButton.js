@@ -1,5 +1,6 @@
 // Necessary imports
 import React, { useState, useEffect, useRef } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
@@ -10,6 +11,9 @@ import SignupFormModal from '../SignupFormModal'
 function ProfileButton({ user }){
     // Create dispatch method
     const dispatch = useDispatch()
+
+    // Create history method
+    const history = useHistory()
 
     // Create state variables
     const [ showMenu, setShowMenu ] = useState('')
@@ -31,6 +35,7 @@ function ProfileButton({ user }){
         e.preventDefault()
         dispatch(sessionActions.logout())
         closeMenu()
+        history.replace('/')
     }
 
     // Create event listener for closing menu
