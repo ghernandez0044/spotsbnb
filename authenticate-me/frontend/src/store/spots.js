@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf"
 
 
 // Function to flatten and normalize data
-function normalizeData(array, object = {}){
+export const normalizeData = (array, object = {}) => {
     array.forEach(element => (
         object[element.id] = element
     ))
@@ -13,6 +13,7 @@ function normalizeData(array, object = {}){
 
 // Create type strings
 const LOAD_SPOTS = 'spot/loadSpots'
+const LOAD_SPOT = 'spot/loadSpot'
 
 // Create action creators
     // LOAD_SPOTS
@@ -23,14 +24,33 @@ const LOAD_SPOTS = 'spot/loadSpots'
         }
     }
 
+    // LOAD_SPOT
+    export const loadSpot = (spot) => {
+        return {
+            type: LOAD_SPOT,
+            spot
+        }
+    }
+
 // Create thunks
-    // LOAD SPOT Thunk
+    // LOAD_SPOTS Thunk
     export const getSpots = () => async dispatch => {
         const res = await csrfFetch('/api/spots')
 
         if(res.ok){
             const data = await res.json()
             dispatch(loadSpots(data.Spots))
+        }
+    }
+
+    // LOAD_SPOT Thunk
+    export const getSpot = (id) => async dispatch => {
+        const res = await csrfFetch(`/api/spots/${id}`)
+
+        if(res.ok){
+            const data = await res.json()
+            console.log('data: ', data)
+            dispatch(loadSpot(data))
         }
     }
 
@@ -44,6 +64,10 @@ const spotReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_SPOTS:
             newState = {...state, Spots: action.spots}
+            return newState
+        case LOAD_SPOT:
+            newState = {...state}
+            newState.Spots.push(action.spot)
             return newState
         default:
             return state

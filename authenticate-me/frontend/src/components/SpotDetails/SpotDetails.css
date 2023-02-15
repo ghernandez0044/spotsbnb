@@ -1,0 +1,23 @@
+.description-container {
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    margin: 10px auto;
+    padding: 15px 20px;
+}
+
+.booking-info-container {
+    height: fit-content;
+    width: fit-content;
+    position: sticky;
+    margin: 10px auto;
+    padding: 15px 20px;
+    left: 70%;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+}
+
