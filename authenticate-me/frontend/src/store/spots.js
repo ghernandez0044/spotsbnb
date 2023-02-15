@@ -14,6 +14,7 @@ export const normalizeData = (array, object = {}) => {
 // Create type strings
 const LOAD_SPOTS = 'spot/loadSpots'
 const LOAD_SPOT = 'spot/loadSpot'
+const CREATE_SPOT = 'spot/createSpot'
 
 // Create action creators
     // LOAD_SPOTS
@@ -28,6 +29,14 @@ const LOAD_SPOT = 'spot/loadSpot'
     export const loadSpot = (spot) => {
         return {
             type: LOAD_SPOT,
+            spot
+        }
+    }
+
+    // CREATE_SPOT
+    export const createSpot = (spot) => {
+        return {
+            type: CREATE_SPOT,
             spot
         }
     }
@@ -54,6 +63,30 @@ const LOAD_SPOT = 'spot/loadSpot'
         }
     }
 
+    // CREATE_SPOT Thunk
+    export const createASpot = (spot) => async dispatch => {
+        const { address, city, state, country, lat, lng, name, description, price } = spot
+        const res = await csrfFetch('/api/spots', {
+            method: 'POST',
+            body: JSON.stringify({
+                address,
+                city,
+                state,
+                country,
+                lat,
+                lng,
+                name,
+                description,
+                price
+            })
+        })
+
+    if(res.ok){
+        const data = await res.json()
+        dispatch(createSpot(data))
+    }
+    }
+
 // Create reducer
 const initialState = {
     Spots: []
@@ -64,10 +97,15 @@ const spotReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_SPOTS:
             newState = {...state, Spots: action.spots}
+            newState.Spots = normalizeData(newState.Spots)
             return newState
         case LOAD_SPOT:
             newState = {...state}
             newState.Spots.push(action.spot)
+            return newState
+        case CREATE_SPOT:
+            newState = {...state}
+            newState[action.spot.id] = action.spot
             return newState
         default:
             return state

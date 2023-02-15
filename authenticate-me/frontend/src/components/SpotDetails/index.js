@@ -10,7 +10,8 @@ function SpotDetails(){
 
     // Subscribe to spot slice of state
     const spots = useSelector((state) => state.spots.Spots)
-    const spot = normalizeData(spots)[id]
+    console.log('spots: ', spots)
+    const spot = spots[id]
 
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)
