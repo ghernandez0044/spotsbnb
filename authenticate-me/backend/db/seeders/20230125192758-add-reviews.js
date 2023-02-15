@@ -13,11 +13,32 @@ options.tableName = 'Reviews'
 
 const reviews = [
   { spotId: 1, userId: 1, review: 'Perspiciatis odit quam.', stars: 1 },
+  { spotId: 1, userId: 2, review: 'Sunt dolorem nulla voluptas. Nostrum maxime voluptate non veniam. Et beatae dicta fuga. Velit voluptatum incidunt consectetur illo amet earum veritatis quam.', stars: 2 },
+  { spotId: 1, userId: 3, review: 'Sunt dolorem nulla voluptas. Nostrum maxime voluptate non veniam. Et beatae dicta fuga. Velit voluptatum incidunt consectetur illo amet earum veritatis quam.', stars: 3 },
+  { spotId: 1, userId: 6, review: 'Sunt dolorem nulla voluptas. Nostrum maxime voluptate non veniam. Et beatae dicta fuga. Velit voluptatum incidunt consectetur illo amet earum veritatis quam.', stars: 4 },
+  {
+    spotId: 2,
+    userId: 6,
+    review: 'Quod ut quos et. Rerum occaecati veritatis amet dolorem voluptates.',
+    stars: 2
+  },
   {
     spotId: 2,
     userId: 2,
     review: 'Quod ut quos et. Rerum occaecati veritatis amet dolorem voluptates.',
     stars: 2
+  },
+  {
+    spotId: 2,
+    userId: 3,
+    review: 'Quod ut quos et. Rerum occaecati veritatis amet dolorem voluptates.',
+    stars: 4
+  },
+  {
+    spotId: 2,
+    userId: 4,
+    review: 'Quod ut quos et. Rerum occaecati veritatis amet dolorem voluptates.',
+    stars: 5
   },
   {
     spotId: 3,
@@ -26,10 +47,40 @@ const reviews = [
     stars: 2
   },
   {
+    spotId: 3,
+    userId: 4,
+    review: 'Porro consequuntur quisquam dolore perspiciatis.',
+    stars: 5
+  },
+  {
+    spotId: 3,
+    userId: 5,
+    review: 'Porro consequuntur quisquam dolore perspiciatis.',
+    stars: 1
+  },
+  {
+    spotId: 3,
+    userId: 6,
+    review: 'Porro consequuntur quisquam dolore perspiciatis.',
+    stars: 1
+  },
+  {
     spotId: 4,
     userId: 4,
     review: 'Sunt dolorem nulla voluptas. Nostrum maxime voluptate non veniam. Et beatae dicta fuga. Velit voluptatum incidunt consectetur illo amet earum veritatis quam.',
-    stars: 2
+    stars: 4
+  },
+  {
+    spotId: 4,
+    userId: 5,
+    review: 'Sunt dolorem nulla voluptas. Nostrum maxime voluptate non veniam. Et beatae dicta fuga. Velit voluptatum incidunt consectetur illo amet earum veritatis quam.',
+    stars: 5
+  },
+  {
+    spotId: 4,
+    userId: 6,
+    review: 'Sunt dolorem nulla voluptas. Nostrum maxime voluptate non veniam. Et beatae dicta fuga. Velit voluptatum incidunt consectetur illo amet earum veritatis quam.',
+    stars: 3
   },
   {
     spotId: 4,
@@ -46,12 +97,42 @@ const reviews = [
   {
     spotId: 5,
     userId: 7,
+    review: 'Quia accusamus et tempore est perspiciatis asperiores provident culpa.',
+    stars: 5
+  },
+  {
+    spotId: 5,
+    userId: 7,
     review: 'Dolorem consequatur repudiandae veritatis cupiditate cupiditate tempora.',
     stars: 5
   },
   {
+    spotId: 5,
+    userId: 9,
+    review: 'Dolorem consequatur repudiandae veritatis cupiditate cupiditate tempora.',
+    stars: 3
+  },
+  {
     spotId: 6,
     userId: 8,
+    review: 'Optio saepe incidunt. Quam quibusdam debitis adipisci deserunt accusamus id. Dolor reiciendis dolores temporibus vel.',
+    stars: 3
+  },
+  {
+    spotId: 6,
+    userId: 9,
+    review: 'Optio saepe incidunt. Quam quibusdam debitis adipisci deserunt accusamus id. Dolor reiciendis dolores temporibus vel.',
+    stars: 5
+  },
+  {
+    spotId: 6,
+    userId: 10,
+    review: 'Optio saepe incidunt. Quam quibusdam debitis adipisci deserunt accusamus id. Dolor reiciendis dolores temporibus vel.',
+    stars: 4
+  },
+  {
+    spotId: 6,
+    userId: 11,
     review: 'Optio saepe incidunt. Quam quibusdam debitis adipisci deserunt accusamus id. Dolor reiciendis dolores temporibus vel.',
     stars: 5
   },
@@ -59,17 +140,65 @@ const reviews = [
     spotId: 7,
     userId: 9,
     review: 'Molestiae possimus explicabo nam autem itaque quasi dolor eveniet. Consequatur error quia alias neque fugiat.',
+    stars: 4
+  },
+  {
+    spotId: 7,
+    userId: 10,
+    review: 'Molestiae possimus explicabo nam autem itaque quasi dolor eveniet. Consequatur error quia alias neque fugiat.',
     stars: 2
+  },
+  {
+    spotId: 7,
+    userId: 11,
+    review: 'Molestiae possimus explicabo nam autem itaque quasi dolor eveniet. Consequatur error quia alias neque fugiat.',
+    stars: 5
+  },
+  {
+    spotId: 7,
+    userId: 12,
+    review: 'Molestiae possimus explicabo nam autem itaque quasi dolor eveniet. Consequatur error quia alias neque fugiat.',
+    stars: 4
   },
   {
     spotId: 8,
     userId: 10,
+    review: 'Qui totam assumenda ullam possimus cum. Fugit earum nobis. Explicabo doloremque non quae sit illum nesciunt.',
+    stars: 2
+  },
+  {
+    spotId: 8,
+    userId: 11,
+    review: 'Qui totam assumenda ullam possimus cum. Fugit earum nobis. Explicabo doloremque non quae sit illum nesciunt.',
+    stars: 2
+  },
+  {
+    spotId: 8,
+    userId: 12,
+    review: 'Qui totam assumenda ullam possimus cum. Fugit earum nobis. Explicabo doloremque non quae sit illum nesciunt.',
+    stars: 5
+  },
+  {
+    spotId: 8,
+    userId: 13,
     review: 'Qui totam assumenda ullam possimus cum. Fugit earum nobis. Explicabo doloremque non quae sit illum nesciunt.',
     stars: 4
   },
   {
     spotId: 9,
     userId: 11,
+    review: 'Beatae voluptates cupiditate architecto. Itaque perferendis non nihil. Voluptas consequuntur rem unde nesciunt.',
+    stars: 3
+  },
+  {
+    spotId: 9,
+    userId: 12,
+    review: 'Beatae voluptates cupiditate architecto. Itaque perferendis non nihil. Voluptas consequuntur rem unde nesciunt.',
+    stars: 5
+  },
+  {
+    spotId: 9,
+    userId: 13,
     review: 'Beatae voluptates cupiditate architecto. Itaque perferendis non nihil. Voluptas consequuntur rem unde nesciunt.',
     stars: 3
   },
