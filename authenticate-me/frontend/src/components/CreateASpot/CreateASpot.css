@@ -1,0 +1,60 @@
+.create-a-spot-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.location-container {
+    /* border: 3px solid lime; */
+    padding: 15px;
+    margin: 10px;
+    border-bottom: 2px solid lightgray;
+}
+
+.description-container-create-spot {
+    /* border: 3px solid red; */
+    padding: 15px;
+    margin: 10px;
+    border-bottom: 2px solid lightgray;
+}
+
+.name-container {
+    /* border: 3px solid yellow; */
+    padding: 15px;
+    margin: 10px;
+    border-bottom: 2px solid lightgray;
+}
+
+.price-container {
+    /* border: 3px solid brown; */
+    padding: 15px;
+    margin: 10px;
+    border-bottom: 2px solid lightgray;
+}
+
+.button-container {
+    /* border: 3px solid black; */
+    position: relative;
+    left: 35%;
+    padding: 15px;
+    margin: 10px;
+}
+
+.location-inputs {
+    /* border: 3px solid blue; */
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 5px auto;
+}
+
+.photos-container {
+    /* border: 3px solid pink; */
+    padding: 15px;
+    margin: 10px;
+    border-bottom: 2px solid lightgray;
+}
+
+input {
+    margin: 10px auto;
+}
