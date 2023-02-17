@@ -1,5 +1,7 @@
 // Necessary imports
 import { NavLink } from 'react-router-dom'
+import OpenModalButton from '../OpenModalButton'
+import Confirmation from '../Confirmation'
 import './SpotGalleryCard.css'
 
 function SpotGalleryCard({ spot, manage }){
@@ -19,7 +21,7 @@ function SpotGalleryCard({ spot, manage }){
                     manage && (
                         <div className='manage-buttons-container'>
                             <button className='manage-button'>Update</button>
-                            <button className='manage-button'>Delete</button>
+                            <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to remove this spot from the listings?' onYes={() => console.log('yes')} onNo={() => console.log('no')} />} buttonText='Delete' />
                         </div>
                     )
                 }
