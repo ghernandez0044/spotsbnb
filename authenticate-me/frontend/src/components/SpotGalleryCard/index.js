@@ -18,8 +18,8 @@ function SpotGalleryCard({ spot, manage }){
                 {
                     manage && (
                         <div className='manage-buttons-container'>
-                            <button>Update</button>
-                            <button>Delete</button>
+                            <button className='manage-button'>Update</button>
+                            <button className='manage-button'>Delete</button>
                         </div>
                     )
                 }
