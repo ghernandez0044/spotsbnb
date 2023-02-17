@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.STRING
     },
-    url: DataTypes.STRING,
+    url: DataTypes.TEXT,
     preview: DataTypes.BOOLEAN
   }, {
     sequelize,

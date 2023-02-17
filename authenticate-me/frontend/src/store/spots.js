@@ -60,6 +60,7 @@ const CREATE_SPOT = 'spot/createSpot'
             const data = await res.json()
             console.log('data: ', data)
             dispatch(loadSpot(data))
+            return data
         }
     }
 
@@ -102,7 +103,7 @@ const spotReducer = (state = initialState, action) => {
             return newState
         case LOAD_SPOT:
             newState = {...state}
-            newState.Spots.push(action.spot)
+            newState.Spots[action.spot.id] = action.spot
             return newState
         case CREATE_SPOT:
             newState = {...state}

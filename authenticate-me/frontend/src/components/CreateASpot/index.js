@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createASpot } from '../../store/spots'
+import { createAnImage } from '../../store/spotimages'
 import { useDispatch, useSelector } from 'react-redux'
 import './CreateASpot.css'
 
@@ -36,6 +37,8 @@ function CreateASpot(){
 
         setErrors([])
 
+        const errors = []
+
         const spot = {
             name,
             description,
@@ -50,11 +53,32 @@ function CreateASpot(){
 
         const newSpot = await dispatch(createASpot(spot)).catch(async (res) => {
             const data = await res.json()
-            if(data && data.errors) setErrors(data.errors)
+            if(data && data.errors) errors.push(data.errors)
         })
 
-        
+        const previewImageObj = {
+            url: previewImage,
+            preview: true
+        }
+        const newPreviewImage = await dispatch(createAnImage(previewImageObj, newSpot.id)).catch(async (res) => {
+            const data = await res.json()
+            if(data && data.errors) errors.push(data.errors)
+        })
 
+        let images = [imageTwo, imageThree, imageFour, imageFive]
+
+        for(let image of images){
+            if(image !== ''){
+                const imageObj = {
+                    url: image,
+                    preview: false
+                }
+                const newImage = await dispatch(createAnImage(imageObj, newSpot.id))
+                if(newImage && newImage.errors) errors.push(newImage.errors)
+            }
+        }
+
+        setErrors(errors)
         setName('')
         setDescription('')
         setCity('')
@@ -64,11 +88,17 @@ function CreateASpot(){
         setLat('')
         setLng('')
         setPrice('')
+        setPreviewImage('')
+        setImageTwo('')
+        setImageThree('')
+        setImageFour('')
+        setImageFive('')
 
         history.replace(`/spots/${newSpot.id}`)
     }
 
-
+    const store = useSelector(state => state)
+    console.log('currentState: ', store)
 
     return (
         <>
