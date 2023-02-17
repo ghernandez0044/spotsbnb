@@ -32,3 +32,7 @@ img {
     border-radius: 5px;
 }
 
+.manage-buttons-container {
+    border: 3px solid lime;
+}
+

@@ -104,6 +104,7 @@ const CURRENT_SPOTS = 'spot/getCurrentSpots'
 
         if(res.ok){
             const data = await res.json()
+            console.log('data: ', data)
             dispatch(getCurrentSpots(data))
             return data
         }

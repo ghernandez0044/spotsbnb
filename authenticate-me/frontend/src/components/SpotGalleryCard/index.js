@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom'
 import './SpotGalleryCard.css'
 
-function SpotGalleryCard({ spot }){
+function SpotGalleryCard({ spot, manage }){
     const { id, address, avgRating, city, country, description, lat, lng, name, previewImage, price, state } = spot
     return (
         <li>
@@ -15,6 +15,14 @@ function SpotGalleryCard({ spot }){
                     {avgRating ? <p>Average Rating: {avgRating} stars</p> : <p>New</p>}
                     <p>Price: ${price} /night</p>
                 </div>
+                {
+                    manage && (
+                        <div className='manage-buttons-container'>
+                            <button>Update</button>
+                            <button>Delete</button>
+                        </div>
+                    )
+                }
             </div>
             </NavLink>
         </li>
