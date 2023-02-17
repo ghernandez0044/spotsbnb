@@ -7,6 +7,7 @@ import { restoreUser } from './store/session';
 import SpotGallery from './components/SpotGallery';
 import SpotDetails from './components/SpotDetails';
 import CreateASpot from './components/CreateASpot';
+import ManageSpots from './components/ManageSpots';
 
 
 function App() { 
@@ -30,11 +31,14 @@ function App() {
            <h1 style={{ textAlign: 'center' }}>Welcome To SpotsBnb!</h1>
            <SpotGallery />
          </Route>
+         <Route exact path='/spots/new'>
+            <CreateASpot />
+         </Route>
+         <Route exact path='/spots/current'>
+            <ManageSpots />
+         </Route>
          <Route exact path='/spots/:id'>
             <SpotDetails />
-         </Route>
-         <Route exact path='/new/spots'>
-            <CreateASpot />
          </Route>
      </Switch>
       )}

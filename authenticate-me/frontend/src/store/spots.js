@@ -15,6 +15,7 @@ export const normalizeData = (array, object = {}) => {
 const LOAD_SPOTS = 'spot/loadSpots'
 const LOAD_SPOT = 'spot/loadSpot'
 const CREATE_SPOT = 'spot/createSpot'
+const CURRENT_SPOTS = 'spot/getCurrentSpots'
 
 // Create action creators
     // LOAD_SPOTS
@@ -38,6 +39,14 @@ const CREATE_SPOT = 'spot/createSpot'
         return {
             type: CREATE_SPOT,
             spot
+        }
+    }
+
+    // CURRENT_SPOTS
+    export const getCurrentSpots = (spots) => {
+        return {
+            type: CURRENT_SPOTS,
+            spots
         }
     }
 
@@ -89,6 +98,18 @@ const CREATE_SPOT = 'spot/createSpot'
     }
     }
 
+    // CURRENT_SPOTS Thunk
+    export const getCurrentUserSpots = () => async dispatch => {
+        const res = await csrfFetch(`/api/spots/current`)
+
+        if(res.ok){
+            const data = await res.json()
+            console.log('data: ', data)
+            dispatch(getCurrentSpots(data))
+            return data
+        }
+    }
+
 // Create reducer
 const initialState = {
     Spots: []
@@ -108,6 +129,10 @@ const spotReducer = (state = initialState, action) => {
         case CREATE_SPOT:
             newState = {...state}
             newState.Spots[action.spot.id] = action.spot
+            return newState
+        case CURRENT_SPOTS:
+            newState = {...state}
+            newState.currentUserSpots = action.spots
             return newState
         default:
             return state

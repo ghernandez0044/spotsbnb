@@ -13,6 +13,9 @@ a:visited {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
     transition: 0.3s;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -30,5 +33,15 @@ img {
     left: 5%;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
     border-radius: 5px;
+}
+
+.manage-buttons-container {
+    /* border: 3px solid lime; */
+    display: flex;
+    justify-content: center;
+}
+
+.manage-button {
+    margin: 0 5px;
 }
 

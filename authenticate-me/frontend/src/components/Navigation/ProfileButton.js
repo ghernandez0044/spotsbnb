@@ -1,6 +1,6 @@
 // Necessary imports
 import React, { useState, useEffect, useRef } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
@@ -66,6 +66,11 @@ function ProfileButton({ user }){
                     <li className='list-item'>Hello, {user.firstName} {user.lastName}</li>
                     <li className='list-item'>Username: {user.username}</li>
                     <li className='list-item'>Email: {user.email}</li>
+                    <li className='list-item'>
+                        <Link exact to='/spots/current'>
+                         <b>Manage Your Spots</b>
+                        </Link>
+                    </li>
                     <li className='list-item'>
                     <button onClick={logout}>Log Out</button>
                     </li>

@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
                     {isLoaded && (
                         <>
                             <li id='create-spot'>
-                                <NavLink exact to ='/new/spots'>
+                                <NavLink exact to ='/spots/new'>
                                     Create A Spot
                                 </NavLink>
                             </li>
