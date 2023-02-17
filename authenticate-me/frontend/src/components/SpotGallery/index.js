@@ -17,7 +17,7 @@ function SpotGallery(){
     }, [dispatch])
 
     // Create a reference to the spots state slice
-    const spots = useSelector((state) => state.spots.Spots)
+    const spots = useSelector((state) => Object.values(state.spots.Spots))
 
     return (
         <div>

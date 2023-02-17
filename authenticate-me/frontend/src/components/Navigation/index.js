@@ -20,9 +20,16 @@ function Navigation({ isLoaded }){
             <ul className='nav-links'>
                 <div className='menu'>
                     {isLoaded && (
-                        <li>
-                            <ProfileButton user={sessionUser} />
-                        </li>
+                        <>
+                            <li id='create-spot'>
+                                <NavLink exact to ='/new/spots'>
+                                    Create A Spot
+                                </NavLink>
+                            </li>
+                            <li>
+                                <ProfileButton user={sessionUser} />
+                            </li>
+                        </>
                     )}
                 </div>
             </ul>

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { restoreUser } from './store/session';
 import SpotGallery from './components/SpotGallery';
 import SpotDetails from './components/SpotDetails';
+import CreateASpot from './components/CreateASpot';
 
 
 function App() { 
@@ -31,6 +32,9 @@ function App() {
          </Route>
          <Route exact path='/spots/:id'>
             <SpotDetails />
+         </Route>
+         <Route exact path='/new/spots'>
+            <CreateASpot />
          </Route>
      </Switch>
       )}
