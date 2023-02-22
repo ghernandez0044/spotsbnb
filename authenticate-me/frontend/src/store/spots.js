@@ -141,9 +141,9 @@ const EDIT_SPOT = 'spot/editSpot'
     }
 
     // EDIT_SPOT Thunk
-    export const editASpot = (spot) => async dispatch => {
+    export const editASpot = (spot, id) => async dispatch => {
         const { address, city, state, country, lat, lng, name, description, price } = spot
-        const res = await csrfFetch(`/api/spots/${spot.id}`, {
+        const res = await csrfFetch(`/api/spots/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 address,

@@ -1,5 +1,5 @@
 // Necessary imports
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createASpot } from '../../store/spots'
 import { createAnImage } from '../../store/spotimages'
@@ -32,6 +32,8 @@ function CreateASpot({ edit, spot }){
     const [ imageFour, setImageFour ] = useState('')
     const [ imageFive, setImageFive ] = useState('')
 
+    console.log('spot: ', spot)
+
     // Handle submission event
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -40,7 +42,7 @@ function CreateASpot({ edit, spot }){
 
         const errors = []
 
-        const spot = {
+        const newSpotObj = {
             name,
             description,
             city,
@@ -52,15 +54,16 @@ function CreateASpot({ edit, spot }){
             price
         }
 
-        if(edit){
-            const editedSpot = await dispatch(editASpot(spot)).catch(async (res) => {
+
+        if(edit && spot){
+            const editedSpot = await dispatch(editASpot(newSpotObj, spot.id)).catch(async (res) => {
                 const data = await res.json()
                 if(data && data.errors) errors.push(data.errors)
-            })
+            })            
 
             history.replace(`/spots/${editedSpot.id}`)
         } else {
-            const newSpot = await dispatch(createASpot(spot)).catch(async (res) => {
+            const newSpot = await dispatch(createASpot(newSpotObj)).catch(async (res) => {
                 const data = await res.json()
                 if(data && data.errors) errors.push(data.errors)
             })
@@ -115,17 +118,21 @@ function CreateASpot({ edit, spot }){
     let previewImg
     const regularImages = []
 
-    if(spot){
-        const images = spot.SpotImages
-
-        for(let image of images){
-            if(image.preview === true){
-                previewImg = image.url
-            } else {
-                regularImages.push(image.url)
+        if(spot){
+            const images = spot.SpotImages
+    
+            for(let image of images){
+                if(image.preview === true){
+                    previewImg = image.url
+                } else {
+                    regularImages.push(image.url)
+                }
             }
         }
-    }
+    
+
+    console.log('previewImg: ', previewImg)
+    console.log('regularImages: ', regularImages)
 
 
 
