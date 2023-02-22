@@ -30,7 +30,6 @@ function App() {
         <>
           <Switch>
             <Route exact path='/'>
-              <h1 style={{ textAlign: 'center' }}>Welcome To SpotsBnb!</h1>
               <SpotGallery />
             </Route>
             <Route exact path='/spots/new'>

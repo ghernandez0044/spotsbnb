@@ -47,10 +47,11 @@ function SpotGalleryCard({ spot, manage }){
                 <NavLink exact to={`/spots/${id}`}>
                     <img src={previewImage} alt='' />
                     <div className="content-container">
-                        <h4>Country: {country}</h4>
-                        <h4>Location: {city}, {state}</h4>
-                        {avgRating ? <p>Average Rating: {avgRating} stars</p> : <p>New</p>}
-                        <p>Price: ${price} /night</p>
+                        <div className='city-container'>
+                            <h4>{city}, {state}</h4>
+                            {avgRating ? <p><i className='fa-solid fa-star' /> {avgRating}</p> : <p>New</p>}
+                        </div>
+                        <p><b>${price}</b> /night</p>
                     </div>
                 </NavLink>
                 {
