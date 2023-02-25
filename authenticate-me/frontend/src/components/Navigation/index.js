@@ -21,11 +21,11 @@ function Navigation({ isLoaded }){
                 <div className='menu'>
                     {isLoaded && (
                         <>
-                            <li id='create-spot'>
+                            {sessionUser && <li id='create-spot'>
                                 <NavLink exact to ='/spots/new'>
                                     Create A Spot
                                 </NavLink>
-                            </li>
+                            </li>}
                             <li>
                                 <ProfileButton user={sessionUser} />
                             </li>

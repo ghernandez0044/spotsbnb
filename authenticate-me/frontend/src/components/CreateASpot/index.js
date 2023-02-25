@@ -25,6 +25,7 @@ function CreateASpot({ edit, spot }){
     const [ lng, setLng ] = useState('')
     const [ price, setPrice ] = useState('')
     const [ errors, setErrors ] = useState([])
+    const [ isSubmitted, setIsSubmitted ] = useState(false)
 
     const [ previewImage, setPreviewImage ] = useState('')
     const [ imageTwo, setImageTwo ] = useState('')
@@ -37,10 +38,71 @@ function CreateASpot({ edit, spot }){
     // Handle submission event
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsSubmitted(true)
 
         setErrors([])
 
         const errors = []
+
+        let countryError
+        if(country.length <= 0){
+            countryError = 'Country is required'
+            errors.push(countryError)
+        }
+
+        let addressError
+        if(address.length <= 0){
+            addressError = 'Address is required'
+            errors.push(addressError)
+        }
+
+        let cityError
+        if(city.length <= 0){
+            cityError = 'City is required'
+            errors.push(cityError)
+        }
+
+        let stateError
+        if(state.length <= 0){
+            stateError = 'State is required'
+            errors.push(stateError)
+        }
+
+        let latError
+        if(lat.length <= 0){
+            latError = 'Latitude is required'
+            errors.push(latError)
+        }
+
+        let lngError
+        if(lng.length <= 0){
+            lngError = 'Longitude is required'
+            errors.push(lngError)
+        }
+
+        let descriptionError
+        if(description.length < 30){
+            descriptionError = 'Description needs a minimum of 30 characters'
+            errors.push(descriptionError)
+        }
+
+        let nameError
+        if(name.length <= 0){
+            nameError = 'Name is required'
+            errors.push(nameError)
+        }
+
+        let priceError
+        if(price.length <= 0){
+            priceError = 'Price is required'
+            errors.push(priceError)
+        }
+
+        let previewImgError
+        if(previewImage.length <= 0){
+            previewImgError = 'Preview image is required'
+            errors.push(previewImgError)
+        }
 
         const newSpotObj = {
             name,
