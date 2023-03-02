@@ -97,8 +97,6 @@ function CreateASpot({ edit, spot }){
         }
 
         setErrors(errors)
-        console.log('useEffect errors: ', errors)
-        console.log('useEffect isSubmitted: ', isSubmitted)
     }, [ name, description, city, state, country, address, lat, lng, price, previewImage ])
 
     // Handle submission event
