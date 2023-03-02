@@ -15,23 +15,25 @@ function CreateASpot({ edit, spot }){
     const history = useHistory()
 
     // Create state variables
-    const [ name, setName ] = useState('')
-    const [ description, setDescription ] = useState('')
-    const [ city, setCity ] = useState('')
-    const [ state, setState ] = useState('')
-    const [ country, setCountry ] = useState('')
-    const [ address, setAddress ] = useState('')
-    const [ lat, setLat ] = useState('')
-    const [ lng, setLng ] = useState('')
-    const [ price, setPrice ] = useState('')
+    const [ name, setName ] = useState(spot?.name || '')
+    const [ description, setDescription ] = useState(spot?.description || '')
+    const [ city, setCity ] = useState(spot?.city || '')
+    const [ state, setState ] = useState(spot?.state || '')
+    const [ country, setCountry ] = useState(spot?.country || '')
+    const [ address, setAddress ] = useState(spot?.address || '')
+    const [ lat, setLat ] = useState(spot?.lat || '')
+    const [ lng, setLng ] = useState(spot?.lng || '')
+    const [ price, setPrice ] = useState(spot?.price || '')
     const [ errors, setErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
 
-    const [ previewImage, setPreviewImage ] = useState('')
-    const [ imageTwo, setImageTwo ] = useState('')
-    const [ imageThree, setImageThree ] = useState('')
-    const [ imageFour, setImageFour ] = useState('')
-    const [ imageFive, setImageFive ] = useState('')
+    console.log('SpotImages: ', spot.SpotImages)
+
+    const [ previewImage, setPreviewImage ] = useState(spot?.SpotImages[0].url || '')
+    const [ imageTwo, setImageTwo ] = useState(spot?.SpotImages[1].url || '')
+    const [ imageThree, setImageThree ] = useState(spot?.SpotImages[2].url || '')
+    const [ imageFour, setImageFour ] = useState(spot?.SpotImages[3].url || '')
+    const [ imageFive, setImageFive ] = useState(spot?.SpotImages[4].url || '')
 
     console.log('spot: ', spot)
     // Function to reset all fields on form
@@ -121,12 +123,17 @@ function CreateASpot({ edit, spot }){
                 const editedSpot = await dispatch(editASpot(newSpotObj, spot.id)).catch(async (res) => {
                     const data = await res.json()
                     if(data && data.errors) errors.push(data.errors)
-                })            
+                })
+                
+                const spotImages = spot.SpotImages
+                for(let image of spotImages){
+                    
+                }
     
                 setIsSubmitted(false)
                 reset()
                 setErrors(errors)
-                history.replace(`/spots/${editedSpot.id}`)
+                history.push(`/spots/${editedSpot.id}`)
             } else {
                 const newSpot = await dispatch(createASpot(newSpotObj)).catch(async (res) => {
                     const data = await res.json()
@@ -158,7 +165,7 @@ function CreateASpot({ edit, spot }){
                 setIsSubmitted(false)
                 reset()
                 setErrors(errors)
-                history.replace(`/spots/${newSpot.id}`)
+                history.push(`/spots/${newSpot.id}`)
             }
         } else {
             console.log('errors: ', errors)
@@ -200,22 +207,22 @@ function CreateASpot({ edit, spot }){
                         <p><em>Guests will only get your exact address once they have booked a reservation.</em></p>
                         <div className='location-inputs'>
                             <li>
-                                <label>Country: {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' defaultValue={!edit ? country : spot.country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' /></label>
+                                <label>Country: {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' /></label>
                             </li>
                             <li>
-                                <label>Address: {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' defaultValue={!edit ? address : spot.address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' /></label>
+                                <label>Address: {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' /></label>
                             </li>
                             <li>
-                                <label>City: {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' defaultValue={!edit ? city : spot.city} onChange={(e) => setCity(e.target.value)} placeholder='City'  /> </label>
+                                <label>City: {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City'  /> </label>
                             </li>
                             <li>
-                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' defaultValue={!edit? state : spot.state} onChange={(e) => setState(e.target.value)} placeholder='STATE' /></label>
+                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' /></label>
                             </li>
                             <li>
-                                <label>Latitude: {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' defaultValue={!edit ? lat : spot.lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude'  /></label>
+                                <label>Latitude: {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude'  /></label>
                             </li>
                             <li>
-                                <label>Longitude: {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' defaultValue={!edit ? lng : spot.lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude'  /></label>
+                                <label>Longitude: {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude'  /></label>
                             </li>
                         </div>
                     </div>
@@ -224,7 +231,7 @@ function CreateASpot({ edit, spot }){
                         {isSubmitted && errors.descriptionError && ( <p className='errors'>{errors.descriptionError}</p> )}
                         <p><em>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</em></p>
                         <li>
-                            <textarea defaultValue={!edit ? description : spot.description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters'  />
+                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters'  />
                         </li>
                     </div>
                     <div className='name-container'>
@@ -232,7 +239,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Create a title for your spot</h2>
                             <p><em>Catch guests' attention with a spot title that highlights what makes your place special.</em></p>
                             {isSubmitted && errors.nameError && ( <p className='errors'>{errors.nameError}</p> )}
-                            <input type='text' defaultValue={!edit ? name : spot.name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot'  />
+                            <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot'  />
                         </li>
                     </div>
                     <div className='price-container'>
@@ -240,7 +247,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Set a base price for your spot</h2>
                             <p><em>Competitive pricing can help your listing stand out and rank higher in search results</em></p>
                             {isSubmitted && errors.priceError && ( <p className='errors'>{errors.priceError}</p> )}
-                            <label>$ <input type='text' defaultValue={!edit ? price : spot.price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)'  /></label>
+                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)'  /></label>
                         </li>
                     </div>
                     <div className='photos-container'>
@@ -248,16 +255,16 @@ function CreateASpot({ edit, spot }){
                         <p><em>Submit a link to at least one photo to publish your spot,</em></p>
                         <div className='location-inputs'>
                             {isSubmitted && errors.previewImgError && ( <p className='errors'>{errors.previewImgError}</p> )}
-                            <input type='text' defaultValue={!edit ? previewImage : previewImg} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL'  />
-                            <input type='text' defaultValue={!edit ? imageTwo : regularImages[0] ? regularImages[0] : imageTwo} onChange={(e) => setImageTwo(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' defaultValue={!edit ? imageThree : regularImages[1] ? regularImages[1] : imageThree} onChange={(e) => setImageThree(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' defaultValue={!edit ? imageFour : regularImages[2] ? regularImages[2] : imageFour} onChange={(e) => setImageFour(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' defaultValue={!edit ? imageFive : regularImages[3] ? regularImages[3] : imageFive} onChange={(e) => setImageFive(e.target.value)} placeholder='Image URL'/>
+                            <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL'  />
+                            <input type='text' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} placeholder='Image URL'/>
+                            <input type='text' value={imageThree} onChange={(e) => setImageThree(e.target.value)} placeholder='Image URL'/>
+                            <input type='text' value={imageFour} onChange={(e) => setImageFour(e.target.value)} placeholder='Image URL'/>
+                            <input type='text' value={imageFive} onChange={(e) => setImageFive(e.target.value)} placeholder='Image URL'/>
                         </div>
                     </div>
                     <div className='button-container'>
                         <li>
-                            <button type='submit'>Create A Spot</button>
+                            {!edit ? <button type='submit'>Create A Spot</button> : <button type='submit'>Edit Spot</button>}
                         </li>
                     </div>
                 </ul>
