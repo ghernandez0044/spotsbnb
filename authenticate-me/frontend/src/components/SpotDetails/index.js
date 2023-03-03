@@ -28,7 +28,7 @@ function SpotDetails(){
 
     // Deconstruct needed properties from spot object
     const { address, city, country, description, lat, lng, name, ownerId, price, state, Owner, SpotImages } = spot.singleSpot
-    const { avgRating } = allSpotsSpot
+    const { avgRating, reviewCount } = allSpotsSpot
 
     console.log('allSpotsSpot: ', allSpotsSpot)
     console.log('spot: ', spot.singleSpot)
@@ -78,7 +78,7 @@ function SpotDetails(){
                         </div>
                         <div className='rating-container'>
                             <i className='fa-solid fa-star' />
-                            {avgRating ? <p>{avgRating} stars</p> : <p><i className='fa-solid fa-start' />New</p>}
+                            {avgRating ? <p>{avgRating} stars {reviewCount} reviews</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
                     {belongsToCurrentUser ? <p>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}

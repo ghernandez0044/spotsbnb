@@ -1,13 +1,13 @@
 .description-container {
-    border: 3px solid lime;
-    /* border-top: 2px solid lightgray;
-    border-bottom: 2px solid lightgray; */
+    /* border: 3px solid lime; */
+    min-width: 200px;
+    max-width: fit-content;
     margin: 10px auto;
     padding: 15px 20px;
 }
 
 .booking-info-container {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     display: flex;
     flex-direction: column;
     height: 120px;
@@ -58,27 +58,30 @@
 }
 
 .rating-container {
-    border: 3px solid pink;
+    /* border: 3px solid pink; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    min-width: 100px;
+    min-width: 150px;
 }
 
 .content {
-    border: 3px solid purple;
+    /* border: 3px solid purple; */
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
     display: flex;
     justify-content: space-between;
+    min-width: 650px;
 }
 
 .price-container {
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
     min-width: 100px;
 }
 
 .another-container {
-    border: 3px solid orange;
+    /* border: 3px solid orange; */
     display: flex;
     justify-content: space-around;
 }
