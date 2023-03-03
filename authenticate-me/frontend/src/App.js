@@ -8,6 +8,7 @@ import SpotGallery from './components/SpotGallery';
 import SpotDetails from './components/SpotDetails';
 import CreateASpot from './components/CreateASpot';
 import ManageSpots from './components/ManageSpots';
+import SpotProvider from './components/SpotProvider'
 
 
 function App() { 
@@ -26,21 +27,25 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-         <Switch>
-         <Route exact path='/'>
-           <h1 style={{ textAlign: 'center' }}>Welcome To SpotsBnb!</h1>
-           <SpotGallery />
-         </Route>
-         <Route exact path='/spots/new'>
-            <CreateASpot />
-         </Route>
-         <Route exact path='/spots/current'>
-            <ManageSpots />
-         </Route>
-         <Route exact path='/spots/:id'>
-            <SpotDetails />
-         </Route>
-     </Switch>
+        <>
+          <Switch>
+            <Route exact path='/'>
+              <SpotGallery />
+            </Route>
+            <Route exact path='/spots/new'>
+                <CreateASpot />
+            </Route>
+            <Route exact path='/spots/current'>
+                <ManageSpots />
+            </Route>
+            <Route exact path='/spots/:id/edit'>
+                <SpotProvider />
+            </Route>
+            <Route exact path='/spots/:id'>
+                <SpotDetails />
+            </Route>
+          </Switch>
+        </>
       )}
     </>
   );

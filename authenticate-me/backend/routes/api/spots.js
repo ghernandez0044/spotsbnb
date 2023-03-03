@@ -173,6 +173,7 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
         }
 
         spot.dataValues.previewImage = previewUrl
+        spot.dataValues.reviewCount = reviews.length ? reviews.length : 0
     }
 
     return res.status(200).json({

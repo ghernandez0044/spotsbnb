@@ -12,317 +12,327 @@ options.tableName = 'SpotImages'
 const spotImages = [
   {
     spotId: 1,
-    url: 'image.shutterstock.com/image-photo/beautiful-exterior-newly-built-luxury-260nw-529108441.jpg',
+    url: 'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg',
     preview: true
   },
   {
     spotId: 1,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 1,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 1,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 1,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 2,
-    url: 'image.shutterstock.com/image-photo/luxurious-new-construction-home-bellevue-260nw-555325381.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/00/62/13/24/1000_F_62132429_pw8W4rc1qLlCAP9SS9pPFDZyyPJZHwpw.jpg',
     preview: true
   },
   {
     spotId: 2,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 2,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
+    preview: false
+  },
+  {
+    spotId: 2,
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
+    preview: false
+  },
+  {
+    spotId: 2,
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 3,
-    url: 'www.shutterstock.com/image-photo/quiet-street-us-260nw-274752770.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/01/62/06/40/1000_F_162064034_HI2YEgV7km3HMy0rccQczKH2vvpI4OnB.jpg',
     preview: true
   },
   {
     spotId: 3,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 3,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 3,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 3,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 4,
-    url: 'image.shutterstock.com/image-photo/street-suburban-homes-260nw-629472962.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/01/57/36/74/1000_F_157367489_FSqP231EvpCB9fqD5s5PhCp8MOuEcfih.jpg',
     preview: true
   },
   {
     spotId: 4,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 4,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 4,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 4,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 5,
-    url: 'www.shutterstock.com/image-photo/view-modern-residential-houses-neighborhood-260nw-1392175103.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/05/09/62/16/1000_F_509621631_5o3hQKN5vzNVFMdOj68uyBCNUFNlxAX8.jpg',
     preview: true
   },
   {
     spotId: 5,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 5,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 5,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 5,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 6,
-    url: 'www.shutterstock.com/image-photo/living-residential-housing-neighborhood-street-260nw-1218861316.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/00/04/97/06/1000_F_4970668_G73XyO5DxFLgPxTuUk1HXYeCIuGvNiNU.jpg',
     preview: true
   },
   {
     spotId: 6,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 6,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 6,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 6,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 7,
-    url: 'www.shutterstock.com/image-photo/living-residential-housing-neighborhood-street-260nw-1218861385.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/00/07/18/66/1000_F_7186611_FQMa3C1FjlqB5UusjgTnjJ9SYxu7BMGH.jpg',
     preview: true
   },
   {
     spotId: 7,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 7,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 7,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 7,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 8,
-    url: 'image.shutterstock.com/image-photo/exterior-modern-white-villa-pool-260nw-1151072345.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/00/07/75/17/1000_F_7751763_QPouzImfvleFd1dYZ1XmQXyLs47PgGww.jpg',
     preview: true
   },
   {
     spotId: 8,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 8,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 8,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 8,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 9,
-    url: 'www.shutterstock.com/image-photo/modern-villa-pool-night-scene-260nw-147711812.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/48/04/28/1000_F_248042859_HuLjz9HRsXJCDd320BFl5nH847BueQMm.jpg',
     preview: true
   },
   {
     spotId: 9,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 9,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 9,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 9,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 10,
-    url: 'www.shutterstock.com/image-photo/modern-villa-pool-night-scene-260nw-146067944.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/01/34/40/57/1000_F_134405789_7KL1mtbvyFnyEMMzaTWoLaUrWvOLyxpw.jpg',
     preview: true
   },
   {
     spotId: 10,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 10,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 10,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 10,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 11,
-    url: 'www.shutterstock.com/image-photo/modern-villa-pool-view-garden-260nw-144461764.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/00/57/68/81/1000_F_57688175_PeIsD8zskMwobbM0NIVMIII0nRegWsal.jpg',
     preview: true
   },
   {
     spotId: 11,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 11,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 11,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 11,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 12,
-    url: 'www.shutterstock.com/image-illustration/realistic-3d-rendering-very-modern-260nw-500436808.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/00/58/37/10/1000_F_58371096_Fl4bCsCi3bVWbnCXeWjJx5keCcxRjx1p.jpg',
     preview: true
   },
   {
     spotId: 12,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 12,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 12,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 12,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
   {
     spotId: 13,
-    url: 'www.shutterstock.com/image-illustration/3d-rendering-upscale-modern-mansion-600w-1247473441.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/04/32/56/22/1000_F_432562253_0AJEmoX8idRHQiBDCCgHjdsHUBZG7ppx.jpg',
     preview: true
   },
   {
     spotId: 13,
-    url: 'image.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1489795766.jpg',
+    url: 'https://as1.ftcdn.net/v2/jpg/02/21/50/94/1000_F_221509408_ekUpElITcvwAGKDIanHpIDLuEZ5Jdfy7.jpg',
     preview: false
   },
   {
     spotId: 13,
-    url: 'www.shutterstock.com/image-photo/modern-boho-interior-living-room-260nw-1444456808.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/61/89/29/1000_F_261892957_6jyBXvEgM79iYr1eEiJKCosnVPJdvHHr.jpg',
     preview: false
   },
   {
     spotId: 13,
-    url: 'www.shutterstock.com/image-photo/stylish-scandinavian-living-room-interior-260nw-1506370985.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/38/38/35/1000_F_238383517_I7Y8UfyFT5N2GZUprYd8gUPoPWZWzZR7.jpg',
     preview: false
   },
   {
     spotId: 13,
-    url: 'www.shutterstock.com/image-photo/urban-jungle-bright-living-room-260nw-1276888387.jpg',
+    url: 'https://as2.ftcdn.net/v2/jpg/02/96/38/87/1000_F_296388747_okm1qzMnWwMsvjO9cRV76feAXnmOjBMN.jpg',
     preview: false
   },
 ]

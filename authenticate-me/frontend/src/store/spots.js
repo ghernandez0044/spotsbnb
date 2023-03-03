@@ -17,6 +17,7 @@ const LOAD_SPOT = 'spot/loadSpot'
 const CREATE_SPOT = 'spot/createSpot'
 const CURRENT_SPOTS = 'spot/getCurrentSpots'
 const DELETE_SPOT = 'spot/deleteSpot'
+const EDIT_SPOT = 'spot/editSpot'
 
 // Create action creators
     // LOAD_SPOTS
@@ -59,6 +60,14 @@ const DELETE_SPOT = 'spot/deleteSpot'
         }
     }
 
+    // EDIT_SPOT
+    export const editSpot = (spot) => {
+        return {
+            type: EDIT_SPOT,
+            spot
+        }
+    }
+
 // Create thunks
     // LOAD_SPOTS Thunk
     export const getSpots = () => async dispatch => {
@@ -76,8 +85,8 @@ const DELETE_SPOT = 'spot/deleteSpot'
 
         if(res.ok){
             const data = await res.json()
-            console.log('data: ', data)
             dispatch(loadSpot(data))
+            console.log('data: ', data)
             return data
         }
     }
@@ -131,6 +140,31 @@ const DELETE_SPOT = 'spot/deleteSpot'
         }
     }
 
+    // EDIT_SPOT Thunk
+    export const editASpot = (spot, id) => async dispatch => {
+        const { address, city, state, country, lat, lng, name, description, price } = spot
+        const res = await csrfFetch(`/api/spots/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                address,
+                city,
+                state,
+                country,
+                lat,
+                lng,
+                name,
+                description,
+                price
+            })
+        })
+
+        if(res.ok){
+            const data = await res.json()
+            dispatch(editSpot(data))
+            return data
+        }
+    }
+
 // Create reducer
 const initialState = {
     Spots: []
@@ -158,6 +192,10 @@ const spotReducer = (state = initialState, action) => {
         case DELETE_SPOT:
             newState = {...state}
             delete newState.Spots[action.id]
+            return newState
+        case EDIT_SPOT:
+            newState = {...state}
+            newState.Spots[action.spot.id] = action.spot
             return newState
         default:
             return state

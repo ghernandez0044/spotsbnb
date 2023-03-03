@@ -14,18 +14,18 @@ function Navigation({ isLoaded }){
             <div className='home'>
                 <p>SpotsBnb</p>
                     <NavLink exact to='/'>
-                        Home
+                        <i className='fa-solid fa-house' />
                     </NavLink>
             </div>
             <ul className='nav-links'>
                 <div className='menu'>
                     {isLoaded && (
                         <>
-                            <li id='create-spot'>
+                            {sessionUser && <li id='create-spot'>
                                 <NavLink exact to ='/spots/new'>
                                     Create A Spot
                                 </NavLink>
-                            </li>
+                            </li>}
                             <li>
                                 <ProfileButton user={sessionUser} />
                             </li>

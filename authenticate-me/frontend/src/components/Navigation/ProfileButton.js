@@ -57,9 +57,10 @@ function ProfileButton({ user }){
 
     return (
         <div>
-            <button onClick={openMenu}>
-                User Icon
-            </button>
+                <div className={!showMenu ? 'user-menu' : 'user-menu no-shadow'} onClick={openMenu}>
+                    <i className='fa-solid fa-user' />
+                    <i className='fa-solid fa-bars' />
+                </div>
             <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
                 {user ? (
                 <>
@@ -67,7 +68,7 @@ function ProfileButton({ user }){
                     <li className='list-item'>Username: {user.username}</li>
                     <li className='list-item'>Email: {user.email}</li>
                     <li className='list-item'>
-                        <Link exact to='/spots/current'>
+                        <Link onClick={closeMenu} exact to='/spots/current'>
                          <b>Manage Your Spots</b>
                         </Link>
                     </li>

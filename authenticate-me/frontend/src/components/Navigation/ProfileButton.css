@@ -17,3 +17,21 @@
 .hidden {
     display: none;
 }
+
+.user-menu {
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 1px 1px lightgray;
+    width: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}
+
+.user-menu:hover {
+    box-shadow: none;
+}
+
+.no-shadow {
+    display: none;
+}

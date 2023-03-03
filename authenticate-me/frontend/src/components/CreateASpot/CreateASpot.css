@@ -58,3 +58,8 @@
 input {
     margin: 10px auto;
 }
+
+.errors {
+    color: red;
+    margin: 0;
+}
