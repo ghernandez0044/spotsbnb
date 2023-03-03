@@ -65,18 +65,24 @@ function SpotDetails(){
                     ))}
                 </div>
             </div>
-            <div className='description-container'>
-                <h3>Hosted by ... {Owner.firstName}, {Owner.lastName}</h3>
-                <h4>Description</h4>
-                <p>{description}</p>
-            </div>
-            <div className='booking-info-container'>
-                <p>${price} /night</p>
-                <div className='rating-container'>
-                    <i className='fa-solid fa-star' />
-                    {avgRating ? <p>{avgRating} stars</p> : <p><i className='fa-solid fa-start' />New</p>}
+            <div className='content'>
+                <div className='description-container'>
+                    <h3>Hosted by ... {Owner.firstName}, {Owner.lastName}</h3>
+                    <h4>Description</h4>
+                    <p>{description}</p>
                 </div>
-                {belongsToCurrentUser ? <p>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
+                <div className='booking-info-container'>
+                    <div className='another-container'>
+                        <div className='price-container'>
+                            <p>${price} /night</p>
+                        </div>
+                        <div className='rating-container'>
+                            <i className='fa-solid fa-star' />
+                            {avgRating ? <p>{avgRating} stars</p> : <p><i className='fa-solid fa-start' />New</p>}
+                        </div>
+                    </div>
+                    {belongsToCurrentUser ? <p>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
+                </div>
             </div>
         </div>
     )

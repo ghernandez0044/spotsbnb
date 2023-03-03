@@ -1,14 +1,17 @@
 .description-container {
-    border-top: 2px solid lightgray;
-    border-bottom: 2px solid lightgray;
+    border: 3px solid lime;
+    /* border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray; */
     margin: 10px auto;
     padding: 15px 20px;
 }
 
 .booking-info-container {
     border: 3px solid red;
-    height: fit-content;
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    width: 400px;
     position: sticky;
     margin: 10px auto;
     padding: 15px 20px;
@@ -55,10 +58,28 @@
 }
 
 .rating-container {
-    /* border: 3px solid red; */
+    border: 3px solid pink;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    min-width: 100px;
+}
+
+.content {
+    border: 3px solid purple;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-container {
+    border: 3px solid yellow;
+    min-width: 100px;
+}
+
+.another-container {
+    border: 3px solid orange;
+    display: flex;
+    justify-content: space-around;
 }
 

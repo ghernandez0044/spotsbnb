@@ -57,7 +57,10 @@ function ProfileButton({ user }){
 
     return (
         <div>
-                <i className='fa-solid fa-user' onClick={openMenu} />
+                <div className={!showMenu ? 'user-menu' : 'user-menu no-shadow'} onClick={openMenu}>
+                    <i className='fa-solid fa-user' />
+                    <i className='fa-solid fa-bars' />
+                </div>
             <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
                 {user ? (
                 <>
