@@ -3,6 +3,7 @@ import { NavLink, useHistory, Redirect } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
 import { deleteASpot } from '../../store/spots'
+import { loadSpot } from '../../store/oneSpot'
 import { getCurrentUserSpots } from '../../store/spots'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
@@ -24,7 +25,7 @@ function SpotGalleryCard({ spot, manage }){
 
     // Function to handle yes on confirmation modal
     const onYes = () => {
-        dispatch(deleteASpot(spot.id))
+        dispatch(deleteASpot(id))
         closeModal()
         history.push('/spots/current')
     }
@@ -32,12 +33,14 @@ function SpotGalleryCard({ spot, manage }){
     // Function to handle no on confirmation modal
     const onNo = () => {
         closeModal()
-        history.replace('/spots/current')
+        history.push('/spots/current')
     }
 
     // Function to redirect user to update page
     const onClick = () => {
-       history.replace(`/spots/${spot.id}/edit`)
+        console.log('onClick dispatch firing')
+        dispatch(loadSpot(id))
+       history.push(`/spots/${id}/edit`)
     }
 
 

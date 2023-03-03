@@ -30,7 +30,6 @@ function SpotDetails(){
     const { address, city, country, description, lat, lng, name, ownerId, price, state, Owner, SpotImages } = spot.singleSpot
     const { avgRating } = allSpotsSpot
 
-
     console.log('allSpotsSpot: ', allSpotsSpot)
     console.log('spot: ', spot.singleSpot)
     console.log('images: ', SpotImages)

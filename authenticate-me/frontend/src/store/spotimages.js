@@ -67,6 +67,7 @@ const spotImageReducer = (state = initialState, action) => {
             return newState
         case DELETE_IMAGE:
             newState = {...state}
+            return newState
         default:
             return state
     }

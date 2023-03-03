@@ -6,11 +6,15 @@ import { loadSpot } from '../../store/oneSpot'
 import CreateASpot from '../CreateASpot'
 
 function SpotProvider(){
+    console.log('SpotProvider component render')
     // Create dispatch method
     const dispatch = useDispatch()
 
     // Deconstruct id from parameters object
     const { id } = useParams()
+    console.log('SpotProvider Id: ', id)
+
+    const data = useSelector(state => state.singleSpot?.singleSpot)
 
     // Load details of the spot found by the id
     useEffect(() => {
@@ -18,7 +22,10 @@ function SpotProvider(){
        dispatch(loadSpot(id))
     }, [])
 
-    const spot = useSelector(state => state.singleSpot?.singleSpot)
+
+    const spot = data.id === Number(id) ? data : null
+
+    // if(spot.id !== id) 
 
     console.log('spot from spot provider: ', spot)
 

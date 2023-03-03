@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createASpot } from '../../store/spots'
-import { createAnImage } from '../../store/spotimages'
+import { createAnImage, deleteAnImage } from '../../store/spotimages'
 import { editASpot } from '../../store/spots'
 import { useDispatch, useSelector } from 'react-redux'
 import './CreateASpot.css'
 
 function CreateASpot({ edit, spot }){
+    console.log('CreateASpot component render')
     // Create dispatch method
     const dispatch = useDispatch()
 
@@ -26,16 +27,12 @@ function CreateASpot({ edit, spot }){
     const [ price, setPrice ] = useState(spot?.price || '')
     const [ errors, setErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
-
-    console.log('SpotImages: ', spot.SpotImages)
-
     const [ previewImage, setPreviewImage ] = useState(spot?.SpotImages[0].url || '')
-    const [ imageTwo, setImageTwo ] = useState(spot?.SpotImages[1].url || '')
-    const [ imageThree, setImageThree ] = useState(spot?.SpotImages[2].url || '')
-    const [ imageFour, setImageFour ] = useState(spot?.SpotImages[3].url || '')
-    const [ imageFive, setImageFive ] = useState(spot?.SpotImages[4].url || '')
+    const [ imageTwo, setImageTwo ] = useState(spot?.SpotImages[1]?.url || '')
+    const [ imageThree, setImageThree ] = useState(spot?.SpotImages[2]?.url || '')
+    const [ imageFour, setImageFour ] = useState(spot?.SpotImages[3]?.url || '')
+    const [ imageFive, setImageFive ] = useState(spot?.SpotImages[4]?.url || '')
 
-    console.log('spot: ', spot)
     // Function to reset all fields on form
     const reset = () => {
         setName('')
@@ -54,6 +51,7 @@ function CreateASpot({ edit, spot }){
         setImageFive('')
     }
 
+    // Checking for validation errors on form inputs
     useEffect(() => {
         const errors = {}
 
@@ -101,6 +99,33 @@ function CreateASpot({ edit, spot }){
         setErrors(errors)
     }, [ name, description, city, state, country, address, lat, lng, price, previewImage ])
 
+
+    // Function to create images for a spot
+    const createImages =  async (id) => {
+        const previewImageObj = {
+            url: previewImage,
+            preview: true
+        }
+        const newPreviewImage = await dispatch(createAnImage(previewImageObj, id)).catch(async (res) => {
+            const data = await res.json()
+            if(data && data.errors) errors.push(data.errors)
+        })
+
+        let images = [imageTwo, imageThree, imageFour, imageFive]
+
+        for(let image of images){
+            if(image !== ''){
+                const imageObj = {
+                    url: image,
+                    preview: false
+                }
+                const newImage = await dispatch(createAnImage(imageObj, id))
+                if(newImage && newImage.errors) errors.push(newImage.errors)
+            }
+        }
+    }
+
+
     // Handle submission event
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -127,9 +152,10 @@ function CreateASpot({ edit, spot }){
                 
                 const spotImages = spot.SpotImages
                 for(let image of spotImages){
-                    
+                    dispatch(deleteAnImage(image.id))
                 }
-    
+
+                createImages(spot.id)
                 setIsSubmitted(false)
                 reset()
                 setErrors(errors)
@@ -140,28 +166,7 @@ function CreateASpot({ edit, spot }){
                     if(data && data.errors) errors.push(data.errors)
                 })
         
-                const previewImageObj = {
-                    url: previewImage,
-                    preview: true
-                }
-                const newPreviewImage = await dispatch(createAnImage(previewImageObj, newSpot.id)).catch(async (res) => {
-                    const data = await res.json()
-                    if(data && data.errors) errors.push(data.errors)
-                })
-        
-                let images = [imageTwo, imageThree, imageFour, imageFive]
-        
-                for(let image of images){
-                    if(image !== ''){
-                        const imageObj = {
-                            url: image,
-                            preview: false
-                        }
-                        const newImage = await dispatch(createAnImage(imageObj, newSpot.id))
-                        if(newImage && newImage.errors) errors.push(newImage.errors)
-                    }
-                }
-    
+                createImages(newSpot.id)
                 setIsSubmitted(false)
                 reset()
                 setErrors(errors)
