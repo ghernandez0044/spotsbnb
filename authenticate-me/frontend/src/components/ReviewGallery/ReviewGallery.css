@@ -1,0 +1,35 @@
+.reviews-header-container {
+    /* border: 3px solid lime; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.stars-container {
+    /* border: 3px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    min-width: 60px;
+}
+
+.rating {
+    /* border: 3px solid pink; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 50px;
+}
+
+.dot {
+    /* border: 3px solid brown; */
+    min-width: 15px;
+    text-align: center;
+}
+
+.reviews {
+    /* border: 3px solid purple; */
+    min-width: 80px;
+    text-align: center;
+}

@@ -5,6 +5,7 @@ import sessionReducer from "./session";
 import spotReducer from "./spots";
 import spotImageReducer from "./spotimages";
 import singleSpotReducer from "./oneSpot";
+import reviewsReducer from "./reviews";
 
 // Creating Root Reducer
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotReducer,
   spotImages: spotImageReducer,
-  singleSpot: singleSpotReducer
+  singleSpot: singleSpotReducer,
+  reviews: reviewsReducer
 });
 
 
