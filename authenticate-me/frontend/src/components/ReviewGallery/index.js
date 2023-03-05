@@ -16,12 +16,10 @@ function ReviewGallery({ id, reviewCount, avgRating }){
     }, [dispatch])
 
     // Create a reference to the reviews state slice
-    const reviews = useSelector(state => state.reviews?.Reviews?.Reviews)
+    const data = useSelector(state => state.reviews?.Reviews?.Reviews)
+    const reviews = data.filter(review => review.spotId === +id)
 
-    console.log('reviews: ', reviews)
-    console.log('avgRating: ', avgRating)
-
-    if(!reviews) return null
+    if(reviews.length === 0) return null
 
     return (
         <div>
@@ -29,14 +27,14 @@ function ReviewGallery({ id, reviewCount, avgRating }){
                 <div className='stars-container'>
                     <div className='rating'>
                         <i className='fa-solid fa-star' />
-                        {reviews && ( <p>{avgRating}</p> )}
+                        {reviews && reviewCount > 0 ? ( <p>{avgRating}</p> ) : ( <p>New</p> )}
                     </div>
-                    <div className='dot'>
+                    {reviews && reviewCount > 0 && (  <><div className='dot'>
                         {reviews && ( <span>&#183;</span> )}
                     </div>
                     <div className='reviews'>
                         {reviews && ( <p>{reviewCount} reviews</p> )}
-                    </div>
+                    </div></> )}
                 </div>
             </div>
             <ul>

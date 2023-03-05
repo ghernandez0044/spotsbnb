@@ -82,7 +82,7 @@ function SpotDetails(){
                             {avgRating ? <p>{avgRating} stars {reviewCount} reviews</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {belongsToCurrentUser ? <p>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
+                    {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
                 </div>
             </div>
             <div className='reviews-container'>

@@ -1,6 +1,7 @@
 // Necessary imports
 import { NavLink, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data }){
     // Destructure desired properties from passed in review
@@ -26,11 +27,11 @@ function ReviewGalleryCard({ data }){
     const monthIdx = new Date(createdAt).getMonth()
     const month = months[monthIdx]
     const day = new Date(createdAt).getDay()
-    
+
 return (
-    <div>
-        <h3>{User.firstName}</h3>
-        <h4>{month}, {day}, {year}</h4>
+    <div className='review-container'>
+        <h3 style={{ margin: '2px' }}>{User.firstName}</h3>
+        <h4 style={{ margin: '2px' }}>{month}, {day}, {year}</h4>
         <p>{review}</p>
     </div>
 )
