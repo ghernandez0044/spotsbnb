@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { normalizeData } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
+import ReviewGallery from '../ReviewGallery'
 import './SpotDetails.css'
 
 function SpotDetails(){
@@ -67,8 +68,7 @@ function SpotDetails(){
             </div>
             <div className='content'>
                 <div className='description-container'>
-                    <h3>Hosted by ... {Owner.firstName}, {Owner.lastName}</h3>
-                    <h4>Description</h4>
+                    <h3>Hosted by {Owner.firstName}, {Owner.lastName}</h3>
                     <p>{description}</p>
                 </div>
                 <div className='booking-info-container'>
@@ -81,8 +81,11 @@ function SpotDetails(){
                             {avgRating ? <p>{avgRating} stars {reviewCount} reviews</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {belongsToCurrentUser ? <p>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
+                    {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
                 </div>
+            </div>
+            <div className='reviews-container'>
+                <ReviewGallery id={id} reviewCount={reviewCount} avgRating={avgRating} />
             </div>
         </div>
     )

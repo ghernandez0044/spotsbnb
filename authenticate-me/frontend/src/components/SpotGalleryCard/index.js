@@ -46,13 +46,13 @@ function SpotGalleryCard({ spot, manage }){
 
     return (
         <li>
-            <div className="card">
+            <div className="card" title={name}>
                 <NavLink exact to={`/spots/${id}`}>
                     <img src={previewImage} alt='' />
                     <div className="content-container">
                         <div className='city-container'>
                             <h4>{city}, {state}</h4>
-                            {avgRating ? <p><i className='fa-solid fa-star' /> {avgRating}</p> : <p>New</p>}
+                            {avgRating ? <p><i className='fa-solid fa-star' /> {avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
                         </div>
                         <p><b>${price}</b> /night</p>
                     </div>

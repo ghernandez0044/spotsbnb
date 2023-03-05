@@ -1,0 +1,12 @@
+.ToolTip-Wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.ToolTip-Tip {
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
