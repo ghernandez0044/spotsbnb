@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getReviews } from '../../store/reviews'
 import ReviewGalleryCard from '../ReviewGalleryCard'
+import OpenModalButton from '../OpenModalButton'
 import './ReviewGallery.css'
 
 function ReviewGallery({ id, reviewCount, avgRating }){
@@ -13,13 +14,24 @@ function ReviewGallery({ id, reviewCount, avgRating }){
     useEffect(() => {
         console.log('dispatch')
         dispatch(getReviews(id))
-    }, [dispatch])
+    }, [])
 
     // Create a reference to the reviews state slice
     const data = useSelector(state => state.reviews?.Reviews?.Reviews)
-    const reviews = data.filter(review => review.spotId === +id)
 
-    if(reviews.length === 0) return null
+    let reviews
+    if(data){
+        reviews = data.filter(review => review.spotId === +id)
+    }
+
+    if(!reviews || reviews.length === 0) return (
+        <>
+            <div className='stars-container'>
+                <i className='fa-solid fa-star' />
+                <h2>New</h2>
+            </div>
+        </>
+    )
 
     return (
         <div>
@@ -37,6 +49,7 @@ function ReviewGallery({ id, reviewCount, avgRating }){
                     </div></> )}
                 </div>
             </div>
+            <OpenModalButton modalComponent={<h2>Create A Review</h2>} buttonText='Post Your Review' />
             <ul>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=
