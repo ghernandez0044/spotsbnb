@@ -1,7 +1,7 @@
 // Necessary imports
 import React, { useState, useEffect, useRef } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as sessionActions from '../../store/session'
 import './ProfileButton.css'
 import OpenModalMenuItem from './OpenModalMenuItem'
@@ -20,6 +20,10 @@ function ProfileButton({ user }){
 
     // Create useRef hook
     const ulRef = useRef()
+
+    // Reference to the current user
+    const currentUser = useSelector(state => state.session.user)
+    console.log('currentUser: ', currentUser)
 
     // Function to open dropdown menu
     const openMenu = () => {
@@ -57,8 +61,8 @@ function ProfileButton({ user }){
 
     return (
         <div>
-                <div className={!showMenu ? 'user-menu' : 'user-menu no-shadow'} onClick={openMenu}>
-                    <i className='fa-solid fa-user' />
+                <div className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>
+                    {currentUser && ( <i className='fa-solid fa-user' /> )}
                     <i className='fa-solid fa-bars' />
                 </div>
             <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
