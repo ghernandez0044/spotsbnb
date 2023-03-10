@@ -23,10 +23,11 @@ function ReviewGalleryCard({ data }){
         'December'
     ]
 
-    const year = new Date(createdAt).getFullYear()
-    const monthIdx = new Date(createdAt).getMonth()
+    const dateObj = new Date(createdAt)
+    const year = dateObj.getFullYear()
+    const monthIdx = dateObj.getMonth()
     const month = months[monthIdx]
-    const day = new Date(createdAt).getDay()
+    const day = dateObj.getDate()
 
 return (
     <div className='review-container'>
