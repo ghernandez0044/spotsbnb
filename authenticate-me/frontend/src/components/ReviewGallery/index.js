@@ -62,7 +62,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
                 </div>
             </div>
             <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} />
-            <ul>
+            <ul className='reviews-list'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=
                     {review} />
