@@ -1,6 +1,6 @@
 // Necessary imports
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { normalizeData } from '../../store/spots'
@@ -17,8 +17,12 @@ function SpotDetails(){
 
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
+        console.log('SpotDetails useEffect')
         dispatch(loadSpot(id))
     }, [])
+
+    // Create state variables
+    const [ render, setRender ] = useState(false)
     
     const spot = useSelector((state) => state.singleSpot)
     // Subscribe to user session slice of state
@@ -85,7 +89,7 @@ function SpotDetails(){
                 </div>
             </div>
             <div className='reviews-container'>
-                <ReviewGallery id={id} reviewCount={reviewCount} avgRating={avgRating} />
+                <ReviewGallery id={id} reviewCount={reviewCount} avgRating={avgRating} renderObj={{ render, setRender }} />
             </div>
         </div>
     )

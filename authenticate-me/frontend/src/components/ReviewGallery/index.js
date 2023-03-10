@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getReviews } from '../../store/reviews'
 import ReviewGalleryCard from '../ReviewGalleryCard'
 import OpenModalButton from '../OpenModalButton'
+import CreateReview from '../CreateReview'
 import './ReviewGallery.css'
 
-function ReviewGallery({ id, reviewCount, avgRating }){
+function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
     // Create dispatch method
     const dispatch = useDispatch()
 
@@ -33,6 +34,11 @@ function ReviewGallery({ id, reviewCount, avgRating }){
         </>
     )
 
+    const reRenderReviews = () => {
+        console.log('rerender')
+        dispatch(getReviews(id))
+    }
+
     return (
         <div>
             <div className='reviews-header-container'>
@@ -49,7 +55,7 @@ function ReviewGallery({ id, reviewCount, avgRating }){
                     </div></> )}
                 </div>
             </div>
-            <OpenModalButton modalComponent={<h2>Create A Review</h2>} buttonText='Post Your Review' />
+            <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} />
             <ul>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=

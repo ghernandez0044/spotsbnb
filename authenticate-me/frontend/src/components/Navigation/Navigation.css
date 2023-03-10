@@ -11,7 +11,7 @@
     width: 120px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -22,7 +22,9 @@ li {
 .menu {
     /* border: 3px solid lime; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 170px;
 }
 
 #create-spot {
