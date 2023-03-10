@@ -17,9 +17,23 @@
 .rating {
     /* border: 3px solid pink; */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     min-width: 50px;
+    padding: 5px;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.new-star {
+    /* border: 3px solid purple; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 80px;
 }
 
 .dot {

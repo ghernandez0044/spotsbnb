@@ -20,6 +20,11 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
     // Create a reference to the reviews state slice
     const data = useSelector(state => state.reviews?.Reviews?.Reviews)
 
+    const reRenderReviews = () => {
+        console.log('rerender')
+        dispatch(getReviews(id))
+    }
+
     let reviews
     if(data){
         reviews = data.filter(review => review.spotId === +id)
@@ -28,22 +33,23 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
     if(!reviews || reviews.length === 0) return (
         <>
             <div className='stars-container'>
-                <i className='fa-solid fa-star' />
-                <h2>New</h2>
+                <div className='rating'>
+                    <div className='new-star'>
+                        <i className='fa-solid fa-star' />
+                        <h2>New</h2>
+                    </div>
+                    <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} />
+                </div>
             </div>
         </>
     )
 
-    const reRenderReviews = () => {
-        console.log('rerender')
-        dispatch(getReviews(id))
-    }
 
     return (
         <div>
             <div className='reviews-header-container'>
                 <div className='stars-container'>
-                    <div className='rating'>
+                    <div className='rating row'>
                         <i className='fa-solid fa-star' />
                         {reviews && reviewCount > 0 ? ( <p>{avgRating}</p> ) : ( <p>New</p> )}
                     </div>
@@ -51,7 +57,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
                         {reviews && ( <span>&#183;</span> )}
                     </div>
                     <div className='reviews'>
-                        {reviews && ( <p>{reviewCount} reviews</p> )}
+                        {reviews && ( <p>{reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> )}
                     </div></> )}
                 </div>
             </div>
