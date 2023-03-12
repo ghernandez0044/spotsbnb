@@ -89,7 +89,7 @@ function SpotDetails(){
                 </div>
             </div>
             <div className='reviews-container'>
-                <ReviewGallery id={id} reviewCount={reviewCount} avgRating={avgRating} renderObj={{ render, setRender }} />
+                <ReviewGallery id={id} spot={allSpotsSpot} reviewCount={reviewCount} avgRating={avgRating} renderObj={{ render, setRender }} />
             </div>
         </div>
     )

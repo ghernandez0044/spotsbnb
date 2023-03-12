@@ -7,7 +7,7 @@ import OpenModalButton from '../OpenModalButton'
 import CreateReview from '../CreateReview'
 import './ReviewGallery.css'
 
-function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
+function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
     // Create dispatch method
     const dispatch = useDispatch()
 
@@ -19,6 +19,14 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
 
     // Create a reference to the reviews state slice
     const data = useSelector(state => state.reviews?.Reviews?.Reviews)
+
+    // Create a reference to the current user
+    const currentUser = useSelector(state => state.session.user)
+    const belongsToCurrentUser = currentUser?.id === spot?.ownerId
+    // console.log('currentUser: ', currentUser.id)
+    // console.log('spot: ', spot.ownerId)
+    // console.log('id: ', id)
+    // console.log('belongsToCurrentUser: ', belongsToCurrentUser)
 
     const reRenderReviews = () => {
         console.log('rerender')
@@ -38,7 +46,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
                         <i className='fa-solid fa-star' />
                         <h2>New</h2>
                     </div>
-                    <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} />
+                    {currentUser && !belongsToCurrentUser ? ( <><p>Be the first to post a review!</p><OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /></> ) : ( <p></p> )}
                 </div>
             </div>
         </>
@@ -61,7 +69,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj }){
                     </div></> )}
                 </div>
             </div>
-            <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} />
+            {currentUser && !belongsToCurrentUser ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
             <ul className='reviews-list'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=
