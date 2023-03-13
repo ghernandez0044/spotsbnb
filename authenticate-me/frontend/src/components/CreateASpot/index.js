@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { createASpot } from '../../store/spots'
 import { createAnImage, deleteAnImage } from '../../store/spotimages'
 import { editASpot } from '../../store/spots'
+import { loadSpot } from '../../store/spots'
 import { useDispatch, useSelector } from 'react-redux'
 import './CreateASpot.css'
 
@@ -155,7 +156,7 @@ function CreateASpot({ edit, spot }){
                     dispatch(deleteAnImage(image.id))
                 }
 
-                createImages(spot.id)
+                await createImages(spot.id)
                 setIsSubmitted(false)
                 reset()
                 setErrors(errors)
@@ -166,10 +167,11 @@ function CreateASpot({ edit, spot }){
                     if(data && data.errors) errors.push(data.errors)
                 })
         
-                createImages(newSpot.id)
+                await createImages(newSpot.id)
                 setIsSubmitted(false)
                 reset()
                 setErrors(errors)
+                dispatch(loadSpot(newSpot.id))
                 history.push(`/spots/${newSpot.id}`)
             }
         } else {
@@ -257,7 +259,7 @@ function CreateASpot({ edit, spot }){
                     </div>
                     <div className='photos-container'>
                         <h2>Liven up your spot with photos</h2>
-                        <p><em>Submit a link to at least one photo to publish your spot,</em></p>
+                        <p><em>Submit a link to at least one photo to publish your spot.</em></p>
                         <div className='location-inputs'>
                             {isSubmitted && errors.previewImgError && ( <p className='errors'>{errors.previewImgError}</p> )}
                             <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL'  />

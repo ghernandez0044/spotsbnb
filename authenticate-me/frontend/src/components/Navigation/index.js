@@ -3,6 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ProfileButton from './ProfileButton'
+import logo from '../../assets/spotsbnblogo.png'
 import './Navigation.css'
 
 function Navigation({ isLoaded }){
@@ -12,10 +13,11 @@ function Navigation({ isLoaded }){
     return (
         <nav className='navbar'>
             <div className='home'>
-                <p>SpotsBnb</p>
+                <div className='logo-div'>
                     <NavLink exact to='/'>
-                        <i className='fa-solid fa-house' />
+                        <img src={logo} alt='' style={{ height: '75px', width: '75px' }} />
                     </NavLink>
+                </div>
             </div>
             <ul className='nav-links'>
                 <div className='menu'>

@@ -28,6 +28,10 @@
     padding: 3px;
 }
 
+.no-user{
+    width: 20px;
+}
+
 .user-menu:hover {
     box-shadow: none;
 }

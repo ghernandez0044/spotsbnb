@@ -1,6 +1,6 @@
 // Necessary imports
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { normalizeData } from '../../store/spots'
@@ -17,8 +17,12 @@ function SpotDetails(){
 
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
+        console.log('SpotDetails useEffect')
         dispatch(loadSpot(id))
     }, [])
+
+    // Create state variables
+    const [ render, setRender ] = useState(false)
     
     const spot = useSelector((state) => state.singleSpot)
     // Subscribe to user session slice of state
@@ -78,14 +82,14 @@ function SpotDetails(){
                         </div>
                         <div className='rating-container'>
                             <i className='fa-solid fa-star' />
-                            {avgRating ? <p>{avgRating} stars {reviewCount} reviews</p> : <p><i className='fa-solid fa-start' />New</p>}
+                            {avgRating ? <p>{avgRating} stars {reviewCount} {reviewCount && ( <span>&#183;</span> )} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
                     {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
                 </div>
             </div>
             <div className='reviews-container'>
-                <ReviewGallery id={id} reviewCount={reviewCount} avgRating={avgRating} />
+                <ReviewGallery id={id} spot={allSpotsSpot} reviewCount={reviewCount} avgRating={avgRating} renderObj={{ render, setRender }} />
             </div>
         </div>
     )

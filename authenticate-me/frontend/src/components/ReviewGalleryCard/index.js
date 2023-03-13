@@ -5,7 +5,11 @@ import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data }){
     // Destructure desired properties from passed in review
+    console.log('data: ', data)
     const { id, spotId, userId, review, stars, ReviewImages, User, createdAt } = data
+    
+
+    if(!data) return null
 
 
     const months = [
@@ -23,10 +27,11 @@ function ReviewGalleryCard({ data }){
         'December'
     ]
 
-    const year = new Date(createdAt).getFullYear()
-    const monthIdx = new Date(createdAt).getMonth()
+    const dateObj = new Date(createdAt)
+    const year = dateObj.getFullYear()
+    const monthIdx = dateObj.getMonth()
     const month = months[monthIdx]
-    const day = new Date(createdAt).getDay()
+    const day = dateObj.getDate()
 
 return (
     <div className='review-container'>
