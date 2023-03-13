@@ -6,6 +6,7 @@ import { normalizeData } from "./spots";
 const LOAD_REVIEWS = 'review/loadReviews'
 const CREATE_REVIEW = 'review/createReview'
 const DELETE_REVIEW = 'review/deleteReview'
+const LOAD_CURRENT_REVIEWS = 'review/loadCurrentReviews'
 
 // Create action creators
     // LOAD_REVIEWS
@@ -29,6 +30,14 @@ const DELETE_REVIEW = 'review/deleteReview'
         return {
             type: DELETE_REVIEW,
             review
+        }
+    }
+
+    // LOAD_CURRENT_REVIEWS
+    export const loadCurrentReviews = (reviews) => {
+        return {
+            type: LOAD_CURRENT_REVIEWS,
+            reviews
         }
     }
 
@@ -74,6 +83,17 @@ const DELETE_REVIEW = 'review/deleteReview'
         }
     }
 
+    // LOAD_CURRENT_REVIEWS Thunk
+    export const getCurrentUserReviews = () => async dispatch => {
+        const res = await csrfFetch('/api/reviews/current')
+
+        if(res.ok){
+            const reviews = await res.json()
+            console.log('thunk reviews: ', reviews)
+            dispatch(loadCurrentReviews(reviews))
+        }
+    }
+
 // Create Reducer
 const initialState = {}
 
@@ -92,6 +112,11 @@ const reviewsReducer = (state = initialState, action) => {
         case DELETE_REVIEW:
             newState = {...state}
             delete newState.spotReviews[action.review.id]
+            return newState
+        case LOAD_CURRENT_REVIEWS:
+            newState = {...state}
+            console.log('reducer: ', action.reviews)
+            newState.userReviews = normalizeData(action.reviews.Reviews)
             return newState
         default:
             return state

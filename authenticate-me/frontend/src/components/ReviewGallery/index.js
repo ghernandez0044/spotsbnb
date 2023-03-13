@@ -31,7 +31,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
 
     const reRenderReviews = () => {
         console.log('rerender')
-        dispatch(getReviews(id))
+        // dispatch(getReviews(id))
     }
 
     let reviews

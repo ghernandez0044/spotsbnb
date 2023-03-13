@@ -35,17 +35,25 @@ router.get('/current', requireAuth, async (req, res, next) => {
             "statusCode": 400
         })
     } else {
-        let payload = reviews[0].toJSON()
-        delete payload.Spot.createdAt
-        delete payload.Spot.updatedAt
-        let url = payload.Spot.SpotImages[0] ? payload.Spot.SpotImages[0].url : null
-    
-        payload.Spot.previewImage = url
-    
-        delete payload.Spot.SpotImages
+        // let payload = reviews
+        // console.log('payload: ', payload)
+        const reviewArray = []
+        for(let review of reviews){
+            let payload = review.toJSON()
+            console.log('payload: ', payload)
+            delete payload.Spot.createdAt
+            delete payload.Spot.updatedAt
+            delete payload.Spot.description
+            let url = payload.Spot.SpotImages[0] ? payload.Spot.SpotImages[0].url : null
+        
+            payload.Spot.previewImage = url
+        
+            delete payload.Spot.SpotImages
+            reviewArray.push(payload)
+        }
     
         return res.status(200).json({
-            Reviews: payload
+            Reviews: reviewArray
         })
     }
 
