@@ -2,6 +2,10 @@
 import { NavLink, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal'
+import { deleteAReview } from '../../store/reviews'
+import { loadSpot } from '../../store/oneSpot'
+import { getReviews } from '../../store/reviews'
+import { getSpots } from '../../store/spots'
 import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
 import './ReviewGalleryCard.css'
@@ -10,6 +14,13 @@ function ReviewGalleryCard({ data }){
     // Destructure desired properties from passed in review
     console.log('data: ', data)
     const { id, spotId, userId, review, stars, ReviewImages, User, createdAt } = data
+    console.log('id: ', id)
+
+    // Create dispatch instance
+    const dispatch = useDispatch()
+
+    // Create history insstance
+    const history = useHistory()
     
     // Create reference to current user
     const currentUser = useSelector(state => state.session.user)
@@ -22,7 +33,12 @@ function ReviewGalleryCard({ data }){
 
     // onYes function
     const yes = () => {
-        alert('yes')
+        dispatch(deleteAReview(data))
+        dispatch(getSpots())
+        dispatch(loadSpot(spotId))
+        dispatch(getReviews(spotId))
+        closeModal()
+        history.push(`/spots/${spotId}`)
     }
 
     // onNo function

@@ -5,6 +5,7 @@ import { normalizeData } from "./spots";
 // Create type strings
 const LOAD_REVIEWS = 'review/loadReviews'
 const CREATE_REVIEW = 'review/createReview'
+const DELETE_REVIEW = 'review/deleteReview'
 
 // Create action creators
     // LOAD_REVIEWS
@@ -19,6 +20,14 @@ const CREATE_REVIEW = 'review/createReview'
     export const createReview = (review) => {
         return {
             type: CREATE_REVIEW,
+            review
+        }
+    }
+
+    // DELETE_REVIEW
+    export const deleteReview = (review) => {
+        return {
+            type: DELETE_REVIEW,
             review
         }
     }
@@ -53,6 +62,18 @@ const CREATE_REVIEW = 'review/createReview'
         }
     }
 
+    // DELETE_REVIEW Thunk
+    export const deleteAReview = (review) => async dispatch => {
+        const res = await csrfFetch(`/api/reviews/${review.id}`, {
+            method: 'DELETE'
+        })
+
+        if(res.ok){
+            const data = await res.json()
+            dispatch(deleteReview(review))
+        }
+    }
+
 // Create Reducer
 const initialState = {}
 
@@ -67,6 +88,10 @@ const reviewsReducer = (state = initialState, action) => {
         case CREATE_REVIEW:
             newState = {...state}
             newState.spotReviews[action.review.id] = action.review
+            return newState
+        case DELETE_REVIEW:
+            newState = {...state}
+            delete newState.spotReviews[action.review.id]
             return newState
         default:
             return state
