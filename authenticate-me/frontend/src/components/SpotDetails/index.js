@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { normalizeData } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
+import { getSpot } from '../../store/spots'
 import ReviewGallery from '../ReviewGallery'
 import './SpotDetails.css'
 
@@ -18,25 +19,26 @@ function SpotDetails(){
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
         console.log('SpotDetails useEffect')
-        dispatch(loadSpot(id))
+        dispatch(getSpot(id))
     }, [])
 
     // Create state variables
     const [ render, setRender ] = useState(false)
     
-    const spot = useSelector((state) => state.singleSpot)
+    const spot = useSelector((state) => state.spots.singleSpot)
+    console.log('spot: ', spot)
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)
     const allSpotsSpot = useSelector((state) => state.spots.Spots)[id]
 
-    if(Object.keys(spot).length === 0) return ( <h2>No Spot</h2> )
+    if(!spot) return null
 
     // Deconstruct needed properties from spot object
-    const { address, city, country, description, lat, lng, name, ownerId, price, state, Owner, SpotImages } = spot.singleSpot
+    const { address, city, country, description, lat, lng, name, ownerId, price, state, Owner, SpotImages } = spot
     const { avgRating, reviewCount } = allSpotsSpot
 
     console.log('allSpotsSpot: ', allSpotsSpot)
-    console.log('spot: ', spot.singleSpot)
+    console.log('spot: ', spot)
     console.log('images: ', SpotImages)
     
     const previewImage = SpotImages.find(image => image.review = true)
