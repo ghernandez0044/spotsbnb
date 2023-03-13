@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotReducer,
   spotImages: spotImageReducer,
-  singleSpot: singleSpotReducer,
+  // singleSpot: singleSpotReducer,
   reviews: reviewsReducer
 });
 

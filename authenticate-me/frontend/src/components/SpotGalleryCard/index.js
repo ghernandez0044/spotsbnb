@@ -4,6 +4,7 @@ import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
 import { deleteASpot } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
+import { getSpot } from '../../store/spots'
 import { getReviews } from '../../store/reviews'
 import { getCurrentUserSpots } from '../../store/spots'
 import { useDispatch } from 'react-redux'
@@ -40,14 +41,14 @@ function SpotGalleryCard({ spot, manage }){
     // Function to redirect user to update page
     const onClick = () => {
         console.log('onClick dispatch firing')
-        dispatch(loadSpot(id))
+        dispatch(getSpot(id))
        history.push(`/spots/${id}/edit`)
     }
 
     // Function to load spot details and reviews upon click
     const load = () => {
         console.log('load')
-        dispatch(loadSpot(id))
+        dispatch(getSpot(id))
         dispatch(getReviews(id))
         console.log('end load')
     }

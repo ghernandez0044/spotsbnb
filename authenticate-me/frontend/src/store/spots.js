@@ -180,7 +180,7 @@ const spotReducer = (state = initialState, action) => {
             return newState
         case LOAD_SPOT:
             newState = {...state}
-            newState.Spots[action.spot.id] = action.spot
+            newState.singleSpot = action.spot
             return newState
         case CREATE_SPOT:
             newState = {...state}
