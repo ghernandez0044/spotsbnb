@@ -5,7 +5,11 @@ import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data }){
     // Destructure desired properties from passed in review
+    console.log('data: ', data)
     const { id, spotId, userId, review, stars, ReviewImages, User, createdAt } = data
+    
+
+    if(!data) return null
 
 
     const months = [

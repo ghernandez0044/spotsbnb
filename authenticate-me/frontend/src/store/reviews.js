@@ -54,20 +54,19 @@ const CREATE_REVIEW = 'review/createReview'
     }
 
 // Create Reducer
-const initialState = {
-    Reviews: []
-}
+const initialState = {}
 
 const reviewsReducer = (state = initialState, action) => {
     let newState
     switch(action.type){
         case LOAD_REVIEWS:
             newState = {...state}
-            newState.Reviews = action.reviews
+            console.log('newState: ', newState)
+            newState.spotReviews = normalizeData(action.reviews.Reviews)
             return newState
         case CREATE_REVIEW:
             newState = {...state}
-            newState.Reviews[action.review.id] = action.review
+            newState.spotReviews[action.review.id] = action.review
             return newState
         default:
             return state

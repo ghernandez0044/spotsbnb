@@ -4,6 +4,7 @@ import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
 import { deleteASpot } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
+import { getReviews } from '../../store/reviews'
 import { getCurrentUserSpots } from '../../store/spots'
 import { useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
@@ -43,11 +44,19 @@ function SpotGalleryCard({ spot, manage }){
        history.push(`/spots/${id}/edit`)
     }
 
+    // Function to load spot details and reviews upon click
+    const load = () => {
+        console.log('load')
+        dispatch(loadSpot(id))
+        dispatch(getReviews(id))
+        console.log('end load')
+    }
+
 
     return (
         <li>
             <div className="card" title={name}>
-                <NavLink exact to={`/spots/${id}`}>
+                <NavLink exact to={`/spots/${id}`} onClick={load}>
                     <img src={previewImage} alt='' />
                     <div className="content-container">
                         <div className='city-container'>

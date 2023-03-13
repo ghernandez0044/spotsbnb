@@ -46,8 +46,10 @@ function CreateReview({ id, renderObj }){
 
     // Handle submission event
     const handleSubmit = async (e) => {
+        console.log('submit')
         e.preventDefault()
         setIsSubmitted(true)
+        setErrors({})
         const errorsObj = {}
 
         if(Object.keys(errors).length === 0){
@@ -63,12 +65,14 @@ function CreateReview({ id, renderObj }){
                 if(data && data.message){
                     errorsObj.databaseErrors = data.message
                     console.log("database errors: ", data.message)
+                    setErrors(errorsObj)
                 }
             })
 
+            if(!newReview) return
+
             console.log('newReview: ', newReview)
 
-            setErrors(errorsObj)
             setIsSubmitted(false)
             reset()
             reRenderReviews()
@@ -83,8 +87,8 @@ function CreateReview({ id, renderObj }){
     return (
         <div className='main-container'>
             <h2 style={{ textAlign: 'center' }}>How was your stay?</h2>
-            {errors.databaseErrors && ( 
-                <p>{errors.databaseErrors}</p>
+            {isSubmitted && errors.databaseErrors && ( 
+                <p>{`${errors.databaseErrors.split(': ')[1]}`}</p>
              )}
             <form onSubmit={handleSubmit} className='create-review-form'>
                 <div className='review-content-container'>
@@ -117,7 +121,7 @@ function CreateReview({ id, renderObj }){
                     }  />
                     <label htmlFor="star1" title="1 star">1 star</label>
                 </div>
-                <button disabled={review.length < 10}>Submit Your Review</button>
+                <button disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
             </form>
         </div>
     )

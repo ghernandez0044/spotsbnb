@@ -23,7 +23,7 @@ function SpotProvider(){
     }, [])
 
 
-    const spot = data.id === Number(id) ? data : null
+    const spot = data?.id === Number(id) ? data : null
 
     // if(spot.id !== id) 
 

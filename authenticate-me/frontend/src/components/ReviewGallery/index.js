@@ -13,12 +13,13 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
 
     // Load reviews into state on component render
     useEffect(() => {
-        console.log('dispatch')
+        console.log('review gallery dispatch')
         dispatch(getReviews(id))
     }, [])
 
     // Create a reference to the reviews state slice
-    const data = useSelector(state => state.reviews?.Reviews?.Reviews)
+    const data = useSelector(state => state.reviews.spotReviews)
+    console.log('data: ', data)
 
     // Create a reference to the current user
     const currentUser = useSelector(state => state.session.user)
@@ -35,10 +36,13 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
 
     let reviews
     if(data){
-        reviews = data.filter(review => review.spotId === +id)
+        // reviews = data.filter(review => review.spotId === +id)
+        reviews = Object.values(data).filter(object => object.spotId === Number(id)) 
+        console.log('id: ', Number(id))
+        console.log('reviews: ', reviews)
     }
 
-    if(!reviews || reviews.length === 0) return (
+    if(!data || !reviews || reviews.length === 0) return (
         <>
             <div className='stars-container'>
                 <div className='rating'>
@@ -51,6 +55,10 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
             </div>
         </>
     )
+
+    // Check to see if current user has already posted a review
+    const posted = reviews.find(review => review.userId === currentUser?.id) ? true : false
+    console.log('posted: ', posted)
 
 
     return (
@@ -69,7 +77,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
                     </div></> )}
                 </div>
             </div>
-            {currentUser && !belongsToCurrentUser ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
+            {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
             <ul className='reviews-list'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=
