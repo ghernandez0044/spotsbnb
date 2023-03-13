@@ -116,7 +116,7 @@ const reviewsReducer = (state = initialState, action) => {
         case LOAD_CURRENT_REVIEWS:
             newState = {...state}
             console.log('reducer: ', action.reviews)
-            newState.userReviews = action.reviews
+            newState.userReviews = normalizeData(action.reviews.Reviews)
             return newState
         default:
             return state

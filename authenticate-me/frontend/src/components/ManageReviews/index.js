@@ -14,13 +14,24 @@ function ManageReviews(){
     }, [dispatch])
 
     // Reference current user reviews
-    const reviews = useSelector(state => state.reviews.userReviews)
-    console.log('currentUserReviews: ', reviews)
+    const data = useSelector(state => state.reviews.userReviews)
+    
+    let reviews
+    if(data){
+        reviews = Object.values(data)
+    }
 
-    if(!reviews) return null
+    if(!data || Object.keys(data).length === 0 || !reviews) return null
 
     return (
-        null
+        <div>
+            <h1>Manage Your Reviews</h1>
+            <ul className='review-card-container'>
+                {reviews.map(review => (
+                    <ReviewGalleryCard key={review.id} data={review} manage={true} />
+                ))}
+            </ul>
+        </div>
     )
 }
 
