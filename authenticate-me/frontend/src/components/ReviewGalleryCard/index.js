@@ -72,7 +72,7 @@ return (
         <h3 style={{ margin: '2px' }}>{User.firstName}</h3>
         <h4 style={{ margin: '2px' }}>{month}, {day}, {year}</h4>
         <p>{review}</p>
-        {currentUser.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} onNo={no} />} buttonText='Delete' /></div> )}
+        {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} onNo={no} />} buttonText='Delete' /></div> )}
     </div>
 )
 }

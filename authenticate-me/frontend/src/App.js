@@ -8,6 +8,7 @@ import SpotGallery from './components/SpotGallery';
 import SpotDetails from './components/SpotDetails';
 import CreateASpot from './components/CreateASpot';
 import ManageSpots from './components/ManageSpots';
+import ManageReviews from './components/ManageReviews'
 import SpotProvider from './components/SpotProvider'
 
 
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <Route exact path='/spots/:id'>
                 <SpotDetails />
+            </Route>
+            <Route exact path='/reviews/current'>
+                <ManageReviews />
             </Route>
           </Switch>
         </>

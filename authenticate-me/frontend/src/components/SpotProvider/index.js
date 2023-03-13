@@ -14,7 +14,7 @@ function SpotProvider(){
     const { id } = useParams()
     console.log('SpotProvider Id: ', id)
 
-    const data = useSelector(state => state.singleSpot?.singleSpot)
+    const data = useSelector(state => state.spots.singleSpot)
 
     // Load details of the spot found by the id
     useEffect(() => {
