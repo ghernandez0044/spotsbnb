@@ -1,0 +1,32 @@
+.rating-input {
+    display: flex;
+    margin-right: 4px;
+  }
+  
+  .review-item {
+    display: flex;
+  }
+  
+  .rating-input .filled {
+    color: saddlebrown;
+  }
+  
+  .rating-input .empty {
+    color: burlywood;
+  }
+  
+  .sort {
+    display: flex;
+    list-style: none;
+  }
+  
+  .sort li {
+    cursor: pointer;
+    margin: 0 4px;
+  }
+  
+  .sort li.active {
+    font-weight: bold;
+    text-decoration: underline;
+    pointer-events: none;
+  }

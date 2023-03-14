@@ -6,8 +6,10 @@ import { deleteAReview } from '../../store/reviews'
 import { loadSpot } from '../../store/oneSpot'
 import { getReviews } from '../../store/reviews'
 import { getSpots } from '../../store/spots'
+import { getCurrentUserReviews } from '../../store/reviews'
 import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
+import CreateReview from '../CreateReview'
 import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data, manage }){
@@ -26,6 +28,9 @@ function ReviewGalleryCard({ data, manage }){
     const currentUser = useSelector(state => state.session.user)
     console.log('currentUser: ', currentUser)
 
+    // Create reference to reviews state slice
+    const reviewState = useSelector(state => state.reviews.userReviews)
+
     // Consume Modal Context for desired function
     const { closeModal } = useModal()
 
@@ -37,8 +42,8 @@ function ReviewGalleryCard({ data, manage }){
         dispatch(getSpots())
         dispatch(loadSpot(spotId))
         dispatch(getReviews(spotId))
+        dispatch(getCurrentUserReviews())
         closeModal()
-        history.push(`/spots/${spotId}`)
     }
 
     // onNo function
@@ -56,8 +61,8 @@ function ReviewGalleryCard({ data, manage }){
         'July',
         'August',
         'September',
-        'Octorber',
-        'Novemeber',
+        'October',
+        'November',
         'December'
     ]
 
@@ -69,13 +74,13 @@ function ReviewGalleryCard({ data, manage }){
 
 return (
     <div className='review-container'>
-        {manage && ( <h2>{Spot.name}</h2> )}
-        <h3 style={{ margin: '2px' }}>{User.firstName}</h3>
+        {manage && data && ( <h2>{Spot?.name}</h2> )}
+        <h3 style={{ margin: '2px' }}>{User?.firstName}</h3>
         <h4 style={{ margin: '2px' }}>{month}, {day}, {year}</h4>
         <p>{review}</p>
         <div className='review-buttons'>
             {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} onNo={no} />} buttonText='Delete' /></div> )}
-            {currentUser?.id === userId && ( <div><button>Update</button></div> )}
+            {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<CreateReview data={data} id={spotId} edit={true} />} buttonText='Update' /></div> )}
         </div>
     </div>
 )

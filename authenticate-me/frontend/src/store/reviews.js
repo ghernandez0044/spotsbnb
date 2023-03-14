@@ -7,6 +7,7 @@ const LOAD_REVIEWS = 'review/loadReviews'
 const CREATE_REVIEW = 'review/createReview'
 const DELETE_REVIEW = 'review/deleteReview'
 const LOAD_CURRENT_REVIEWS = 'review/loadCurrentReviews'
+const EDIT_REVIEW = 'review/editReview'
 
 // Create action creators
     // LOAD_REVIEWS
@@ -41,9 +42,18 @@ const LOAD_CURRENT_REVIEWS = 'review/loadCurrentReviews'
         }
     }
 
+    // EDIT_REVIEW
+    export const editReview = (review) => {
+        return {
+            type: EDIT_REVIEW,
+            review
+        }
+    }
+
 // Create Thunks
     // LOAD_REVIEWS Thunk
     export const getReviews = (id) => async dispatch => {
+        console.log('getReviews Thunk running')
         const res = await csrfFetch(`/api/spots/${id}/reviews`)
 
         if(res.ok){
@@ -55,6 +65,7 @@ const LOAD_CURRENT_REVIEWS = 'review/loadCurrentReviews'
 
     // CREATE_REVIEW Thunk
     export const createAReview = (reviewObj, spotId) => async dispatch => {
+        console.log('createAReview Thunk running')
         const { review, stars } = reviewObj
         const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: 'POST',
@@ -73,6 +84,7 @@ const LOAD_CURRENT_REVIEWS = 'review/loadCurrentReviews'
 
     // DELETE_REVIEW Thunk
     export const deleteAReview = (review) => async dispatch => {
+        console.log('deleteAReview Thunk running')
         const res = await csrfFetch(`/api/reviews/${review.id}`, {
             method: 'DELETE'
         })
@@ -85,12 +97,27 @@ const LOAD_CURRENT_REVIEWS = 'review/loadCurrentReviews'
 
     // LOAD_CURRENT_REVIEWS Thunk
     export const getCurrentUserReviews = () => async dispatch => {
+        console.log('getCurrentUserReviews Thunk running')
         const res = await csrfFetch('/api/reviews/current')
 
         if(res.ok){
             const reviews = await res.json()
             console.log('thunk reviews: ', reviews)
             dispatch(loadCurrentReviews(reviews))
+        }
+    }
+
+    // EDIT_REVIEW Thunk
+    export const editAReview = (reviewObj, id) => async dispatch => {
+        console.log('editAReview Thunk running')
+        const res = await csrfFetch(`/api/reviews/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(reviewObj)
+        })
+
+        if(res.ok){
+            const editedReview = await res.json()
+            dispatch(editReview(editedReview))
         }
     }
 
@@ -112,11 +139,17 @@ const reviewsReducer = (state = initialState, action) => {
         case DELETE_REVIEW:
             newState = {...state}
             delete newState.spotReviews[action.review.id]
+            delete newState.userReviews[action.review.id]
             return newState
         case LOAD_CURRENT_REVIEWS:
             newState = {...state}
             console.log('reducer: ', action.reviews)
             newState.userReviews = normalizeData(action.reviews.Reviews)
+            return newState
+        case EDIT_REVIEW:
+            newState = {...state}
+            // newState.spotReviews[action.review.id] = action.review
+            newState.userReviews[action.review.id] = action.review
             return newState
         default:
             return state
