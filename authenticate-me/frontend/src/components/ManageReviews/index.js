@@ -15,6 +15,9 @@ function ManageReviews(){
 
     // Reference current user reviews
     const data = useSelector(state => state.reviews.userReviews)
+
+    // Reference reviews state slice
+    const reviewsState = useSelector(state => state.reviews)
     
     let reviews
     if(data){

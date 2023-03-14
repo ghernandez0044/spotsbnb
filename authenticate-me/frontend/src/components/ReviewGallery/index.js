@@ -21,6 +21,9 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
     const data = useSelector(state => state.reviews.spotReviews)
     console.log('data: ', data)
 
+    // Create a reference to current user reviews state slice
+    const currentUserReviews = useSelector(state => state.reviews.userReviews)
+
     // Create a reference to the current user
     const currentUser = useSelector(state => state.session.user)
     const belongsToCurrentUser = currentUser?.id === spot?.ownerId

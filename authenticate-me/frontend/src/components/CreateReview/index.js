@@ -1,26 +1,27 @@
 // Necessary imports
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createAReview } from '../../store/reviews'
+import { createAReview, getCurrentUserReviews } from '../../store/reviews'
 import { useModal } from '../../context/Modal'
 import { getReviews } from '../../store/reviews'
 import { loadSpot } from '../../store/oneSpot'
 import { getSpots } from '../../store/spots'
+import { editAReview } from '../../store/reviews'
 import './CreateReview.css'
 
-function CreateReview({ id, renderObj }){
+function CreateReview({ id, renderObj, edit, data }){
     // Create dispatch method
     const dispatch = useDispatch()
 
     // Destructure desired properties from renderObj
-    const { render, setRender } = renderObj
+    // const { render, setRender } = renderObj
 
     // Consume ModalContext
     const { closeModal } = useModal()
 
     // Create state variables
-    const [ review, setReview ] = useState('')
-    const [ stars, setStars ] = useState(0)
+    const [ review, setReview ] = useState(data?.review || '')
+    const [ stars, setStars ] = useState(data?.stars || 0)
     const [ errors, setErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
 
@@ -59,6 +60,17 @@ function CreateReview({ id, renderObj }){
             }
 
             console.log('createdReview: ', newReviewObj)
+
+            if(edit && data){
+                const editedReview = await dispatch(editAReview(newReviewObj, data.id)).catch(async (res) => {
+                    console.log('res: ', res)
+                    const data = await res.json()
+                    if(data && data.errors) errorsObj.databaseErrors = data.errors
+                })
+                reset()
+                dispatch(getCurrentUserReviews())
+                closeModal()
+            }
 
             const newReview = await dispatch(createAReview(newReviewObj, id)).catch(async (res) => {
                 const data = await res.json()
