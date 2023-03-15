@@ -8,8 +8,9 @@ a:visited {
 }
 
 .card {
-    /* border: 3px solid lime; */
-    height: 400px;
+    /* border: 3px solid red; */
+    min-height: 350px;
+    height: fit-content;
     width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -17,6 +18,7 @@ a:visited {
     margin: 15px;
     display: flex;
     flex-direction: column;
+    max-height: fit-content;
 }
 
 .card:hover {
@@ -24,17 +26,28 @@ a:visited {
 }
 
 .content-container {
-    /* border: 3px solid red; */
+    /* border: 3px solid purple; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 2px 8px;
 }
+
 .city-container {
     /* border: 3px solid yellow; */
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.price-info-container {
+    /* border: 3px solid orange; */
+    height: 35px;
+    margin: 0;
+
 }
 
 img {
@@ -49,10 +62,19 @@ img {
 .manage-buttons-container {
     /* border: 3px solid lime; */
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    padding: 6px;
 }
 
 .manage-button {
-    margin: 0 5px;
+        /* border: 3px solid blue; */
+        background-color: var(--dark-color);
+        color: white;
+        height: 30px;
+        /* width: 200px; */
+        width: fit-content;
+        min-width: 100px;
+        margin-top: 5px;
+        padding: 5px;
 }
 

@@ -64,7 +64,9 @@ function SpotGalleryCard({ spot, manage }){
                             <h4>{city}, {state}</h4>
                             {avgRating ? <p><i className='fa-solid fa-star' /> {avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
                         </div>
-                        <p><b>${price}</b> /night</p>
+                        <div className='price-info-container'>
+                            <p><b>${price}</b> /night</p>
+                        </div>
                     </div>
                 </NavLink>
                 {
