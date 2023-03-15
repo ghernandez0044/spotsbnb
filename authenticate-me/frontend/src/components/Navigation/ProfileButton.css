@@ -20,11 +20,13 @@
 
 .user-menu {
     border: 2px solid lightgray;
-    border-radius: 5px;
+    border-radius: 30%;
     box-shadow: 1px 1px lightgray;
-    width: 40px;
+    width: 60px;
+    height: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     padding: 3px;
 }
 

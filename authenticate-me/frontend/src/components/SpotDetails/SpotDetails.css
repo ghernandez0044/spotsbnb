@@ -1,3 +1,18 @@
+:root {
+    --main-color: #FF5A5F;
+    --accent-color: #00A699;
+    --alternate-color: #FC642D;
+    --dark-color: #484848;
+    --light-color: #767676;
+    --main-header-font: 'Lobster Two';
+    --sub-header-font: 'Signika Negative';
+    --content-font: 'Rubik'
+}
+
+.title-header-container {
+    /* border: 3px solid black; */
+}
+
 .description-container {
     /* border: 3px solid lime; */
     min-width: 200px;
@@ -10,7 +25,10 @@
     /* border: 3px solid red; */
     display: flex;
     flex-direction: column;
-    height: 120px;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 160px;
+    max-height: fit-content;
     width: 400px;
     position: sticky;
     margin: 10px auto;
@@ -20,13 +38,25 @@
 
 .images-container {
     /* border: 3px solid lime; */
-    height: 412px;
+    height: 452px;
+    width: 450px;
+    min-width: 200px;
+    max-width: 460px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     flex: 1;
+    gap: 8px;
     padding: 0px;
     overflow: auto;
+}
+
+.grid-container {
+    /* border: 3px solid peru; */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-template-rows: repeat(2, minmax(100px, 1fr));
+    gap: 8px;
 }
 
 .preview-image-container {
@@ -34,7 +64,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 410px;
+    height: 455px;
+    width: 550px;
 }
 
 .preview-image {
@@ -42,19 +73,37 @@
     position: relative;
     left: -0.1%;
     top: -.1%;
-    height: 412px;
-    width: 400px;
+    height: 455px;
+    width: 545px;
+    min-width: 100px;
 }
 
 .all-images-container {
     /* border: 3px solid red; */
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
     justify-content: center;
-    height: 425px;
-    min-width: 660px;
+    align-items: center;
+    min-height: 525px;
+    min-width: 760px;
     max-width: 1200px;
+    max-height: fit-content;
     padding-left: 7%;
+    margin: 0 auto;
+}
+
+.photo-cluster {
+    /* border: 3px solid orchid; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-width: 480px;
+    width: 500px;
 }
 
 .rating-container {
@@ -85,4 +134,20 @@
     display: flex;
     justify-content: space-around;
 }
+
+.reserve-button {
+    /* border: 3px solid blue; */
+    background-color: var(--main-color);
+    color: white;
+    height: 100px;
+    width: 300px;
+    min-width: 100px;
+    margin-top: 5px;
+}
+
+/* @media (max-width: 1100px) {
+    .grid-container {
+        border: 3px solid pink;
+    }
+} */
 

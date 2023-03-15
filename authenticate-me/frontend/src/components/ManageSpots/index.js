@@ -21,7 +21,7 @@ function ManageSpots(){
 
     return spots && (
         <>
-            <h1>Manage Your Spots</h1>
+            <h1 style={{ textAlign: 'center' }}>Manage Your Spots</h1>
             <ul className='spot-card-container'>
                 {spots.map(spot => (
                     <SpotGalleryCard key={spot.id} spot={spot} manage={true} />

@@ -1,3 +1,11 @@
+.main-page-container {
+    border: 3px solid salmon;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .create-a-spot-form {
     display: flex;
     flex-direction: row;

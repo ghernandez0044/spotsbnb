@@ -1,4 +1,32 @@
 /* TODO Add site wide styles */
+
+/* font-family: 'Lobster Two', cursive;
+font-family: 'Rubik', sans-serif;
+font-family: 'Signika Negative', sans-serif; */
+
+:root {
+    --main-color: #110916;
+    --accent-color: #99D5C9;
+    --alternate-color: #33658A;
+    --dark-color: #8E3B46;
+    --light-color: #E9AFA3;
+    --main-header-font: 'Lobster Two';
+    --sub-header-font: 'Signika Negative';
+    --content-font: 'Rubik'
+}
+
 html {
     background-color: #FFFFFF;
+}
+
+h1 {
+    font-family: var(--main-header-font), sans-serif;
+}
+
+h2 {
+    font-family: var(--sub-header-font), sans-serif;
+}
+
+p {
+    font-family: var(--content-font), sans-serif;
 }

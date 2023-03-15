@@ -205,7 +205,7 @@ function CreateASpot({ edit, spot }){
 
 
     return (
-        <>
+        <div className='main-page-container'>
             {!edit ? <h1 style={{ textAlign: 'center' }}>Create A Spot</h1> : <h1 style={{ textAlign: 'center' }}>Edit A Spot</h1>}
             <form onSubmit={handleSubmit} className='create-a-spot-form'>
                 <ul>
@@ -276,7 +276,7 @@ function CreateASpot({ edit, spot }){
                     </div>
                 </ul>
             </form>
-        </>
+        </div>
     )
 }
 

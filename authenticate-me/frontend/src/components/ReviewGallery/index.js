@@ -79,8 +79,8 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
                         {reviews && ( <p>{reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> )}
                     </div></> )}
                 </div>
+                {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
             </div>
-            {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
             <ul className='reviews-list'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=

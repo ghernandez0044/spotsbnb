@@ -60,16 +60,20 @@ function SpotDetails(){
 
     return (
         <div>
-            <h2 style={{ textAlign: 'left' }}>{name}</h2>
-            <p><em>{city}, {state}, {country}</em></p>
+            <div className='title-header-container'>
+                <h2 style={{ textAlign: 'left', marginLeft: '15px' }}>{name}</h2>
+                <p style={{ marginLeft: '15px' }}><em>{city}, {state}, {country}</em></p>
+            </div>
             <div className='all-images-container'>
-                <div className='preview-image-container'>
-                    <img className='preview-image' src={previewImage.url} alt='' />
-                </div>
-                <div className='images-container'>
-                    {regularImages.map(image => (
-                        <img key={image.id} src={image.url} alt='' style={{ height: '205px', width: '205px' }} />
-                    ))}
+                <div className='photo-cluster'>
+                    <div className='preview-image-container'>
+                        <img className='preview-image' src={previewImage.url} alt='' />
+                    </div>
+                    <div className='images-container'>
+                        {regularImages.map(image => (
+                            <img key={image.id} src={image.url} alt='' style={{ height: '220px', width: '220px' }} />
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className='content'>
@@ -84,10 +88,10 @@ function SpotDetails(){
                         </div>
                         <div className='rating-container'>
                             <i className='fa-solid fa-star' />
-                            {avgRating ? <p>{avgRating} stars {reviewCount} {reviewCount && ( <span>&#183;</span> )} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
+                            {avgRating ? <p>{avgRating} stars  {reviewCount && ( <span>&#183;</span> )} {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
+                    {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve} className='reserve-button'>Reserve</button>}
                 </div>
             </div>
             <div className='reviews-container'>
