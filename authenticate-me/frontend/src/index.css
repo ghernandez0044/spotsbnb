@@ -23,7 +23,7 @@ h1 {
     font-family: var(--main-header-font), sans-serif;
 }
 
-h2 {
+h2, h3 {
     font-family: var(--sub-header-font), sans-serif;
 }
 
