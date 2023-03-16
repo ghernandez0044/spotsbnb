@@ -78,6 +78,11 @@
     min-width: 100px;
 }
 
+.booking-price-container {
+    padding: 15px;
+    margin: 10px;
+}
+
 .all-images-container {
     /* border: 3px solid red; */
     display: flex;

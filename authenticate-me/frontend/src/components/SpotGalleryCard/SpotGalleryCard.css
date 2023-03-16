@@ -11,7 +11,7 @@ a:visited {
     /* border: 3px solid red; */
     min-height: 350px;
     height: fit-content;
-    width: 300px;
+    width: 320px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
     transition: 0.3s;
@@ -47,12 +47,14 @@ a:visited {
     /* border: 3px solid orange; */
     height: 35px;
     margin: 0;
-
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 img {
-    height: 250px;
-    width: 300px;
+    height: 300px;
+    width: 320px;
     /* position: relative;
     left: 5%; */
     /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3); */

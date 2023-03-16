@@ -40,15 +40,16 @@ function SpotDetails(){
     console.log('allSpotsSpot: ', allSpotsSpot)
     console.log('spot: ', spot)
     console.log('images: ', SpotImages)
-    
-    const previewImage = SpotImages.find(image => image.review = true)
-    
-    const regularImages = SpotImages.filter(image => image.preview === false)
+
+    let previewImage
+    let regularImages
+    if(SpotImages && SpotImages.length > 0){
+        previewImage = SpotImages.find(image => image.review = true)
+        regularImages = SpotImages.filter(image => image.preview === false)
+    }
     
     console.log('preview image: ', previewImage)
     console.log('regularImages: ', regularImages)
-
-
     
     // Check to see if current user owns this spot or not
     const belongsToCurrentUser = currentUser?.id === ownerId
@@ -67,10 +68,10 @@ function SpotDetails(){
             <div className='all-images-container'>
                 <div className='photo-cluster'>
                     <div className='preview-image-container'>
-                        <img className='preview-image' src={previewImage.url} alt='' />
+                        <img className='preview-image' src={previewImage?.url} alt='' />
                     </div>
                     <div className='images-container'>
-                        {regularImages.map(image => (
+                        {regularImages?.map(image => (
                             <img key={image.id} src={image.url} alt='' style={{ height: '220px', width: '220px' }} />
                         ))}
                     </div>
@@ -78,12 +79,12 @@ function SpotDetails(){
             </div>
             <div className='content'>
                 <div className='description-container'>
-                    <h3>Hosted by {Owner.firstName}, {Owner.lastName}</h3>
+                    <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
                 <div className='booking-info-container'>
                     <div className='another-container'>
-                        <div className='price-container'>
+                        <div className='booking-price-container'>
                             <p>${price} /night</p>
                         </div>
                         <div className='rating-container'>
