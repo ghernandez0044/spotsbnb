@@ -260,13 +260,13 @@ function CreateASpot({ edit, spot }){
                     <div className='photos-container'>
                         <h2>Liven up your spot with photos</h2>
                         <p><em>Submit a link to at least one photo to publish your spot.</em></p>
-                        <div className='location-inputs'>
+                        <div className='photo-inputs'>
                             {isSubmitted && errors.previewImgError && ( <p className='errors'>{errors.previewImgError}</p> )}
-                            <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL'  />
-                            <input type='text' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' value={imageThree} onChange={(e) => setImageThree(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' value={imageFour} onChange={(e) => setImageFour(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' value={imageFive} onChange={(e) => setImageFive(e.target.value)} placeholder='Image URL'/>
+                            <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL' style={{ width: '450px' }}  />
+                            <input type='text' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
+                            <input type='text' value={imageThree} onChange={(e) => setImageThree(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
+                            <input type='text' value={imageFour} onChange={(e) => setImageFour(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
+                            <input type='text' value={imageFive} onChange={(e) => setImageFive(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
                         </div>
                     </div>
                     <div className='button-container'>

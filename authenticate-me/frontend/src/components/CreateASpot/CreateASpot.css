@@ -39,7 +39,8 @@
 }
 
 .price-container {
-    /* border: 3px solid brown; */
+    border: 3px solid brown;
+    width: 500px;
     padding: 15px;
     margin: 10px;
     border-bottom: 2px solid lightgray;
@@ -103,6 +104,13 @@
     border-bottom: 2px solid lightgray;
 }
 
+.photo-inputs {
+    border: 3px solid yellow;
+    display: flex;
+    flex-direction: column;
+    
+}
+
 input {
     margin: 10px auto;
 }
@@ -110,4 +118,9 @@ input {
 .errors {
     color: red;
     margin: 0;
+}
+
+.photos-container {
+    border: 3px solid maroon;
+    width: 500px;
 }
