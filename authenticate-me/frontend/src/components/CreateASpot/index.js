@@ -271,7 +271,7 @@ function CreateASpot({ edit, spot }){
                     </div>
                     <div className='button-container'>
                         <li>
-                            {!edit ? <button type='submit'>Create A Spot</button> : <button type='submit'>Edit Spot</button>}
+                            {!edit ? <button className='spot-form-button' type='submit'>Create A Spot</button> : <button className='spot-form-button' type='submit'>Edit Spot</button>}
                         </li>
                     </div>
                 </ul>

@@ -1,5 +1,6 @@
 .main-page-container {
-    border: 3px solid salmon;
+    /* border: 3px solid salmon; */
+    min-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,40 +8,42 @@
 }
 
 .create-a-spot-form {
-    border: 3px solid lime;
+    /* border: 3px solid lime; */
+    min-width: 650px;
     width: 650px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 .location-container {
-    border: 3px solid blue;
-    width: 500px;
+    /* border: 3px solid blue; */
+    min-width: 500px;
     padding: 15px;
     margin: 10px;
     border-bottom: 2px solid lightgray;
 }
 
 .description-container-create-spot {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     padding: 15px;
     margin: 10px;
-    width: 500px;
+    min-width: 500px;
     border-bottom: 2px solid lightgray;
 }
 
 .name-container {
-    border: 3px solid yellow;
-    width: 500px;
+    /* border: 3px solid yellow; */
+    min-width: 500px;
     padding: 15px;
     margin: 10px;
     border-bottom: 2px solid lightgray;
 }
 
 .price-container {
-    border: 3px solid brown;
-    width: 500px;
+    /* border: 3px solid brown; */
+    min-width: 500px;
     padding: 15px;
     margin: 10px;
     border-bottom: 2px solid lightgray;
@@ -48,8 +51,7 @@
 
 .button-container {
     /* border: 3px solid black; */
-    position: relative;
-    left: 35%;
+    text-align: center;
     padding: 15px;
     margin: 10px;
 }
@@ -68,32 +70,32 @@
 }
 
 #country {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: 1 / 1 / 2 / 6;
 }
 
 #address {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: 2 / 1 / 3 / 6;
 }
 
 #city {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: 3 / 1 / 4 / 4;
 }
 
 #state {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: 3 / 4 / 4 / 5;
 }
 
 #lat {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: 4 / 1 / 5 / 3;
 }
 
 #lng {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: 4 / 3 / 5 / 5;
 }
 
@@ -105,10 +107,10 @@
 }
 
 .photo-inputs {
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
     display: flex;
     flex-direction: column;
-    
+
 }
 
 input {
@@ -121,6 +123,23 @@ input {
 }
 
 .photos-container {
-    border: 3px solid maroon;
-    width: 500px;
+    /* border: 3px solid maroon; */
+    min-width: 500px;
+}
+
+.spot-form-button {
+    /* border: 3px solid blue; */
+    background-color: var(--main-color);
+    color: white;
+    height: 35px;
+    width: 100px;
+    min-width: 100px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    border: 2px solid black;
+    box-shadow: 5px 5px black;
+}
+
+.spot-form-button:hover {
+    box-shadow: none;
 }
