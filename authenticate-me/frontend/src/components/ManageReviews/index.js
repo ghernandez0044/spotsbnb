@@ -24,7 +24,12 @@ function ManageReviews(){
         reviews = Object.values(data)
     }
 
-    if(!data || Object.keys(data).length === 0 || !reviews) return null
+    if(!data || Object.keys(data).length === 0 || !reviews) return ( 
+        <div>
+            <h1 style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Reviews</h1>
+            <h2 style={{ textAlign: 'center' }}>No Reviews Posted Yet!</h2>
+        </div>
+     ) 
 
     return (
         <div>
