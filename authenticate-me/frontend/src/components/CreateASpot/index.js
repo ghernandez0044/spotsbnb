@@ -213,23 +213,23 @@ function CreateASpot({ edit, spot }){
                         <h2>Where is your place located?</h2>
                         <p><em>Guests will only get your exact address once they have booked a reservation.</em></p>
                         <div className='location-inputs'>
-                            <li>
-                                <label>Country: {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' /></label>
+                            <li id='country'>
+                                <label>Country: <br></br>  {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' style={{ width: '400px' }} /></label>
                             </li>
-                            <li>
-                                <label>Address: {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' /></label>
+                            <li id='address'>
+                                <label>Address: <br></br>  {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' style={{ width: '400px' }} /></label>
                             </li>
-                            <li>
-                                <label>City: {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City'  /> </label>
+                            <li id='city'>
+                                <label>City: <br></br> {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City' style={{ width: '200px' }}  /> </label>
                             </li>
-                            <li>
-                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' /></label>
+                            <li id='state'>
+                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' style={{ width: '100px' }} /></label>
                             </li>
-                            <li>
-                                <label>Latitude: {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude'  /></label>
+                            <li id='lat'>
+                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude' style={{ width: '200px' }}  /></label>
                             </li>
-                            <li>
-                                <label>Longitude: {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude'  /></label>
+                            <li id='lng'>
+                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude' style={{ width: '200px' }}  /></label>
                             </li>
                         </div>
                     </div>
