@@ -31,6 +31,8 @@ function SpotDetails(){
     const currentUser = useSelector((state) => state.session.user)
     const allSpotsSpot = useSelector((state) => state.spots.Spots)[id]
 
+    console.log('currentUser: ', currentUser)
+
     if(!spot) return null
 
     // Deconstruct needed properties from spot object
@@ -92,7 +94,7 @@ function SpotDetails(){
                             {avgRating ? <p>{avgRating} stars  {reviewCount && ( <span>&#183;</span> )} {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve} className='reserve-button'><p style={{ fontSize: '16px' }}>Reserve</p></button>}
+                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? <button onClick={reserve} className='reserve-button'><p style={{ fontSize: '16px' }}>Reserve</p></button> : <p></p>}
                 </div>
             </div>
             <div className='reviews-container'>

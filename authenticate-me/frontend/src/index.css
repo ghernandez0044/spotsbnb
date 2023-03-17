@@ -15,6 +15,10 @@ font-family: 'Signika Negative', sans-serif; */
     --content-font: 'Rubik'
 }
 
+::placeholder {
+    color: gray;
+}
+
 html {
     background-color: #FFFFFF;
 }
@@ -29,6 +33,11 @@ h2, h3 {
 
 p {
     font-family: var(--content-font), sans-serif;
+}
+
+input, textarea {
+    background-color: rgba(0, 156, 153, 0.15);
+    border: 2px solid black;
 }
 
 .links {

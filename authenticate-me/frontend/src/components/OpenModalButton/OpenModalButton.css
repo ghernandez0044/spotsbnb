@@ -12,6 +12,7 @@
 .modal-button {
     /* border: 3px solid blue; */
     background-color: var(--dark-color);
+    box-shadow: 3px 3px black;
     color: white;
     height: 30px;
     /* width: 200px; */
@@ -19,4 +20,8 @@
     min-width: 100px;
     margin-top: 5px;
     padding: 5px;
+}
+
+.modal-button:hover {
+    box-shadow: none;
 }

@@ -150,7 +150,13 @@
     min-width: 100px;
     margin-top: 5px;
     margin-bottom: 25px;
-    box-shadow: 5px 5px black ;
+    border: 2px solid black;
+    box-shadow: 5px 5px black;
+}
+
+.reserve-button:hover {
+    /* box-shadow: 5px 5px black; */
+    box-shadow: none;
 }
 
 /* @media (max-width: 1100px) {

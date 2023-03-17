@@ -55,8 +55,7 @@
 .user-menu {
     border: 2px solid lightgray;
     position: relative;
-    border-radius: 30%;
-    box-shadow: 1px 1px lightgray;
+    border-radius: 10px;
     width: 60px;
     height: 30px;
     display: flex;
@@ -70,7 +69,7 @@
 }
 
 .user-menu:hover {
-    box-shadow: none;
+    box-shadow: 0 0 5px lightgray;
 }
 
 .no-shadow {
@@ -81,13 +80,18 @@
     /* border: 3px solid blue; */
     background-color: var(--dark-color);
     color: white;
-    height: 30px;
+    height: 35px;
     /* width: 200px; */
     width: fit-content;
     min-width: 100px;
     margin-top: 5px;
     padding: 5px;
-    border-radius: 35%;
+    border-radius: 15px;
+    box-shadow: 3px 3px black;
+}
+
+.logout-button:hover {
+    box-shadow: none;
 }
 
 .border-shadows {
@@ -97,4 +101,25 @@
 
 .border-shadows:hover {
     background-color: rgba(0, 0, 0, .025);
+}
+
+.user-menu-items {
+    /* border: 3px solid lime; */
+    position: absolute;
+    min-height: 100px;
+    height: fit-content;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    right: 15%;
+}
+
+.user-menu-item {
+    /* border: 2px solid red; */
+}
+
+.bold {
+    font-weight: bold;
 }

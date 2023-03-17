@@ -79,7 +79,7 @@ return (
         <p className='gray-text' style={{ margin: '2px' }}>{month} {day}, {year}</p>
         <p>{review}</p>
         <div className='review-buttons'>
-            {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} onNo={no} />} buttonText='Delete' /></div> )}
+            {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} yesLabel='Delete Review' onNo={no} noLabel='Keep Review' />} buttonText='Delete' /></div> )}
             {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<CreateReview data={data} id={spotId} edit={true} />} buttonText='Update' /></div> )}
         </div>
     </div>

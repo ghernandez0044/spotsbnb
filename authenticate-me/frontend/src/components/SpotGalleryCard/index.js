@@ -73,7 +73,7 @@ function SpotGalleryCard({ spot, manage }){
                     manage && (
                         <div className='manage-buttons-container'>
                                 <button onClick={onClick} className='manage-button'>Update</button>
-                            <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to remove this spot from the listings?' onYes={onYes} onNo={onNo} />} buttonText='Delete' />
+                            <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to remove this spot from the listings?' onYes={onYes} yesLabel='Delete Spot' onNo={onNo} noLabel='Keep Spot' />} buttonText='Delete' />
                         </div>
                     )
                 }

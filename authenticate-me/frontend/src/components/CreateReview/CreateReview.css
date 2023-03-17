@@ -1,3 +1,14 @@
+:root {
+    --main-color: #FF5A5F;
+    --accent-color: #00A699;
+    --alternate-color: #FC642D;
+    --dark-color: #484848;
+    --light-color: #767676;
+    --main-header-font: 'Lobster Two';
+    --sub-header-font: 'Signika Negative';
+    --content-font: 'Rubik'
+}
+
 .review-content-container {
     /* border: 3px solid red; */
     min-width: 300px;
@@ -18,51 +29,34 @@ form > div {
 
 .main-container {
     /* border: 3px solid blue; */
+    height: fit-content;
+    width: 500px;
     display: flex;
     flex-direction: column;
 }
 
+.rating-input-container {
+    /* border: 3px solid black; */
+    padding: 4px;
+}
 
+.review-button {
+    /* border: 3px solid blue; */
+    background-color: var(--main-color);
+    color: white;
+    height: 60px;
+    width: 300px;
+    min-width: 100px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    border: 2px solid black;
+    box-shadow: 5px 5px black ;
+}
 
+.review-button:hover {
+    box-shadow: none;
+}
 
-
-.rate {
-    /* border: 3px solid lime; */
-    display: flex;
-    justify-content: center;
-    flex-direction: row-reverse;
-    /* flex-direction: column; */
-    /* float: left; */
-    height: 46px;
-    padding: 0 10px;
-}
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
-}
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.rate > input:checked ~ label {
-    color: #ffc700;    
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+.review-button:disabled {
+    background-color: var(--light-color);
 }

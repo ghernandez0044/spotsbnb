@@ -15,7 +15,7 @@ function OpenModalMenuItem({ modalComponent, itemText, onItemClick, onModalClose
 
 
     return (
-        <li onClick={onClick}>{itemText}</li>
+        <li onClick={onClick}><p>{itemText}</p></li>
     )
 }
 

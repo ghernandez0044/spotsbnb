@@ -1,3 +1,14 @@
+:root {
+  --main-color: #FF5A5F;
+  --accent-color: #00A699;
+  --alternate-color: #FC642D;
+  --dark-color: #484848;
+  --light-color: #767676;
+  --main-header-font: 'Lobster Two';
+  --sub-header-font: 'Signika Negative';
+  --content-font: 'Rubik'
+}
+
 .rating-input {
     display: flex;
     margin-right: 4px;
@@ -8,11 +19,11 @@
   }
   
   .rating-input .filled {
-    color: saddlebrown;
+    color: gold;
   }
   
   .rating-input .empty {
-    color: burlywood;
+    color: lightgray;
   }
   
   .sort {
