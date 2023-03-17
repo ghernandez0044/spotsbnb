@@ -246,7 +246,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Create a title for your spot</h2>
                             <p><em>Catch guests' attention with a spot title that highlights what makes your place special.</em></p>
                             {isSubmitted && errors.nameError && ( <p className='errors'>{errors.nameError}</p> )}
-                            <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot'  />
+                            <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot' style={{ width: '450px' }}  />
                         </li>
                     </div>
                     <div className='price-container'>
@@ -254,7 +254,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Set a base price for your spot</h2>
                             <p><em>Competitive pricing can help your listing stand out and rank higher in search results</em></p>
                             {isSubmitted && errors.priceError && ( <p className='errors'>{errors.priceError}</p> )}
-                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)'  /></label>
+                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)' style={{ width: '450px' }}  /></label>
                         </li>
                     </div>
                     <div className='photos-container'>
