@@ -238,7 +238,7 @@ function CreateASpot({ edit, spot }){
                         {isSubmitted && errors.descriptionError && ( <p className='errors'>{errors.descriptionError}</p> )}
                         <p><em>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</em></p>
                         <li>
-                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters'  />
+                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters' style={{ width: '450px', height: '140px' }}  />
                         </li>
                     </div>
                     <div className='name-container'>
