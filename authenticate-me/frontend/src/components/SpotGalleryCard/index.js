@@ -65,7 +65,7 @@ function SpotGalleryCard({ spot, manage }){
                             {avgRating ? <p><i className='fa-solid fa-star' /> {avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
                         </div>
                         <div className='price-info-container'>
-                            <p><b>${price}</b> /night</p>
+                            <p><b>${Number(price).toFixed(2)}</b> /night</p>
                         </div>
                     </div>
                 </NavLink>

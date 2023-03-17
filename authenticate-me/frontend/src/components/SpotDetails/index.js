@@ -87,7 +87,7 @@ function SpotDetails(){
                 <div className='booking-info-container'>
                     <div className='another-container'>
                         <div className='booking-price-container'>
-                            <p>${price} /night</p>
+                            <p>${Number(price).toFixed(2)} /night</p>
                         </div>
                         <div className='rating-container'>
                             <i className='fa-solid fa-star' />
