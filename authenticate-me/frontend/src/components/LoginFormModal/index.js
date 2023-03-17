@@ -57,11 +57,11 @@ function LoginFormModal(){
                     <li className='login-element'>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required style={{ width: '290px', height: '30px' }} />
                     </li>
-                    <li className='login-element'>
-                        <button type='submit' className='login-button' style={{ width: '290px', height: '30px' }}  disabled={credential.length < 4 || password.length < 6}>Log In</button>
+                    <li className='login-element large'>
+                        <button type='submit' className='login-button'  disabled={credential.length < 4 || password.length < 6}>Log In</button>
                     </li>
                     <li className='login-element'>
-                        <p className='login-button links' onClick={demoSubmit}>Demo User</p>
+                        <p className='links' onClick={demoSubmit}>Demo User</p>
                     </li>
                 </ul>
             </form>
