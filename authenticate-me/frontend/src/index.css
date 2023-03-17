@@ -17,6 +17,7 @@ font-family: 'Signika Negative', sans-serif; */
 
 ::placeholder {
     color: gray;
+    font-family: var(--content-font);
 }
 
 html {
