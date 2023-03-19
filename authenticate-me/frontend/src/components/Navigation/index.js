@@ -9,6 +9,7 @@ import './Navigation.css'
 function Navigation({ isLoaded }){
     // Grab reference to current user in state
     const sessionUser = useSelector((state) => state.session.user)
+    console.log('sessionUser: ', sessionUser)
 
     return (
         <nav className='navbar'>
@@ -20,7 +21,7 @@ function Navigation({ isLoaded }){
                 </div>
             </div>
             <ul className='nav-links'>
-                <div className='menu'>
+                <div className={sessionUser ? 'menu' : 'menu right'}>
                     {isLoaded && (
                         <>
                             {sessionUser && <li id='create-spot'>

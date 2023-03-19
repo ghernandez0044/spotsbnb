@@ -220,16 +220,16 @@ function CreateASpot({ edit, spot }){
                                 <label>Address: <br></br>  {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' style={{ width: '400px' }} /></label>
                             </li>
                             <li id='city'>
-                                <label>City: <br></br> {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City' style={{ width: '200px' }}  /> </label>
+                                <label>City: <br></br> {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City' style={{ width: '245px' }}  /> </label>
                             </li>
                             <li id='state'>
-                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' style={{ width: '100px' }} /></label>
+                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' style={{ width: '110px' }} /></label>
                             </li>
                             <li id='lat'>
-                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude' style={{ width: '200px' }}  /></label>
+                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude' style={{ width: '245px' }}  /></label>
                             </li>
                             <li id='lng'>
-                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude' style={{ width: '200px' }}  /></label>
+                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude' style={{ width: '245px' }}  /></label>
                             </li>
                         </div>
                     </div>
@@ -254,7 +254,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Set a base price for your spot</h2>
                             <p><em>Competitive pricing can help your listing stand out and rank higher in search results</em></p>
                             {isSubmitted && errors.priceError && ( <p className='errors'>{errors.priceError}</p> )}
-                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)' style={{ width: '450px' }}  /></label>
+                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)' style={{ width: '435px' }}  /></label>
                         </li>
                     </div>
                     <div className='photos-container'>

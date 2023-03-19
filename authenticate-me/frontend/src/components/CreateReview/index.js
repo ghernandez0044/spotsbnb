@@ -113,7 +113,7 @@ function CreateReview({ id, renderObj, edit, data }){
              )}
             <form onSubmit={handleSubmit} className='create-review-form'>
                 <div className='review-content-container'>
-                    <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Just a quick review' value={review} onChange={(e) => setReview(e.target.value)} />
+                    <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Quick review' value={review} onChange={(e) => setReview(e.target.value)} />
                 </div>
                 <div className='rating-input-container'>
                     {<RatingInput rating={stars} onChange={onChange} />}
