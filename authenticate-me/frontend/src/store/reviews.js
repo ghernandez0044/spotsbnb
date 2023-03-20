@@ -53,7 +53,6 @@ const EDIT_REVIEW = 'review/editReview'
 // Create Thunks
     // LOAD_REVIEWS Thunk
     export const getReviews = (id) => async dispatch => {
-        console.log('getReviews Thunk running')
         const res = await csrfFetch(`/api/spots/${id}/reviews`)
 
         if(res.ok){
@@ -65,7 +64,6 @@ const EDIT_REVIEW = 'review/editReview'
 
     // CREATE_REVIEW Thunk
     export const createAReview = (reviewObj, spotId) => async dispatch => {
-        console.log('createAReview Thunk running')
         const { review, stars } = reviewObj
         const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: 'POST',
@@ -84,7 +82,6 @@ const EDIT_REVIEW = 'review/editReview'
 
     // DELETE_REVIEW Thunk
     export const deleteAReview = (review) => async dispatch => {
-        console.log('deleteAReview Thunk running')
         const res = await csrfFetch(`/api/reviews/${review.id}`, {
             method: 'DELETE'
         })
@@ -97,7 +94,6 @@ const EDIT_REVIEW = 'review/editReview'
 
     // LOAD_CURRENT_REVIEWS Thunk
     export const getCurrentUserReviews = () => async dispatch => {
-        console.log('getCurrentUserReviews Thunk running')
         const res = await csrfFetch('/api/reviews/current')
 
         if(res.ok){
@@ -108,7 +104,6 @@ const EDIT_REVIEW = 'review/editReview'
 
     // EDIT_REVIEW Thunk
     export const editAReview = (reviewObj, id) => async dispatch => {
-        console.log('editAReview Thunk running')
         const res = await csrfFetch(`/api/reviews/${id}`, {
             method: 'PUT',
             body: JSON.stringify(reviewObj)
