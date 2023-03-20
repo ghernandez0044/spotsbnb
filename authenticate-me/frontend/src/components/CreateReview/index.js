@@ -17,7 +17,6 @@ function CreateReview({ id, renderObj, edit, data }){
     // Destructure desired properties from renderObj
     // const { render, setRender } = renderObj
     const spot = useSelector(state => state.spots.Spots[id])
-    // console.log('review spot: ', spot)
 
     // Consume ModalContext
     const { closeModal } = useModal()
@@ -67,8 +66,6 @@ function CreateReview({ id, renderObj, edit, data }){
                 stars
             }
 
-            // console.log('createdReview: ', newReviewObj)
-
             if(edit && data){
                 const editedReview = await dispatch(editAReview(newReviewObj, data.id)).catch(async (res) => {
                     console.log('res: ', res)
@@ -89,8 +86,6 @@ function CreateReview({ id, renderObj, edit, data }){
                 })
                 
                 if(!newReview) return
-    
-                // console.log('newReview: ', newReview)
             }
 
 
@@ -99,8 +94,6 @@ function CreateReview({ id, renderObj, edit, data }){
             reRenderReviews()
             closeModal()
         } else {
-            // console.log('errors: ', errors)
-            // console.log('isSubmitted: ', isSubmitted)
             return
         }
     }

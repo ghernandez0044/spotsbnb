@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import './CreateASpot.css'
 
 function CreateASpot({ edit, spot }){
-    console.log('CreateASpot component render')
     // Create dispatch method
     const dispatch = useDispatch()
 
@@ -175,8 +174,6 @@ function CreateASpot({ edit, spot }){
                 history.push(`/spots/${newSpot.id}`)
             }
         } else {
-            // console.log('errors: ', errors)
-            // console.log('isSubmitted: ', isSubmitted)
             return
         }
     }
@@ -199,12 +196,6 @@ function CreateASpot({ edit, spot }){
             }
         }
     
-
-    // console.log('previewImg: ', previewImg)
-    // console.log('regularImages: ', regularImages)
-
-
-
     return (
         <div className='main-page-container'>
             {!edit ? <h1 style={{ textAlign: 'center' }}>Create A Spot</h1> : <h1 style={{ textAlign: 'center' }}>Edit A Spot</h1>}

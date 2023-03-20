@@ -12,7 +12,7 @@ if(process.env.NODE_ENV === 'production'){
 options.tableName = 'Reviews'
 
 const reviews = [
-  { spotId: 1, userId: 1, review: "Amazing views and cozy accommodations! We loved our stay here and can't wait to come back. Highly recommend!", stars: 1 },
+  { spotId: 1, userId: 4, review: "Amazing views and cozy accommodations! We loved our stay here and can't wait to come back. Highly recommend!", stars: 1 },
   { spotId: 1, userId: 2, review: "This rental exceeded our expectations. The amenities were top-notch and the location was perfect for exploring the area.", stars: 2 },
   { spotId: 1, userId: 3, review: "A truly unforgettable stay. The house was spacious, clean, and beautifully decorated. We didn't want to leave!", stars: 3 },
   { spotId: 1, userId: 6, review: "Perfect for a family getaway. The kids loved the pool and game room, while the adults enjoyed the peaceful surroundings.", stars: 4 },
@@ -24,7 +24,7 @@ const reviews = [
   },
   {
     spotId: 2,
-    userId: 2,
+    userId: 1,
     review: "If you're looking for a luxurious and relaxing vacation, this is the place to be. We couldn't have asked for more!",
     stars: 2
   },
@@ -42,7 +42,7 @@ const reviews = [
   },
   {
     spotId: 3,
-    userId: 3,
+    userId: 7,
     review: "From the moment we arrived, we knew we were in for a special stay. The house was impeccable and the views were breathtaking.",
     stars: 2
   },
@@ -66,7 +66,7 @@ const reviews = [
   },
   {
     spotId: 4,
-    userId: 4,
+    userId: 1,
     review: 'This rental was the perfect escape from the city. The location was serene and peaceful. The house was spotless and had all the amenities we needed. A+ experience!',
     stars: 4
   },

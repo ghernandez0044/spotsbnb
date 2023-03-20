@@ -12,22 +12,15 @@ function SpotProvider(){
 
     // Deconstruct id from parameters object
     const { id } = useParams()
-    // console.log('SpotProvider Id: ', id)
 
     const data = useSelector(state => state.spots.singleSpot)
 
     // Load details of the spot found by the id
     useEffect(() => {
-        // console.log('dispatch')
        dispatch(loadSpot(id))
     }, [])
 
-
     const spot = data?.id === Number(id) ? data : null
-
-    // if(spot.id !== id) 
-
-    // console.log('spot from spot provider: ', spot)
 
     if(!spot || Object.keys(spot).length === 0) return <h2>No Spot Found</h2>
 

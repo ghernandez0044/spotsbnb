@@ -55,10 +55,6 @@ function ProfileButton({ user }){
         return () => document.removeEventListener('click', closeMenu)
     }, [showMenu])
 
-    // Create class name for unordered list
-    // const ulClassName = 'profile-dropdown' + (showMenu ? '' : 'hidden')
-
-
     return (
         <div>
                 <div id='user-menu' className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>

@@ -18,20 +18,18 @@ function SpotDetails(){
 
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
-        // console.log('SpotDetails useEffect')
         dispatch(getSpot(id))
     }, [])
 
     // Create state variables
     const [ render, setRender ] = useState(false)
     
+    const store = useSelector(state => state)
     const spot = useSelector((state) => state.spots.singleSpot)
-    // console.log('spot: ', spot)
+  
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)
     const allSpotsSpot = useSelector((state) => state.spots.Spots)[id]
-
-    // console.log('currentUser: ', currentUser)
 
     if(!spot) return null
 
@@ -39,19 +37,12 @@ function SpotDetails(){
     const { address, city, country, description, lat, lng, name, ownerId, price, state, Owner, SpotImages } = spot
     const { avgRating, reviewCount } = allSpotsSpot
 
-    // console.log('allSpotsSpot: ', allSpotsSpot)
-    // console.log('spot: ', spot)
-    // console.log('images: ', SpotImages)
-
     let previewImage
     let regularImages
     if(SpotImages && SpotImages.length > 0){
         previewImage = SpotImages.find(image => image.review = true)
         regularImages = SpotImages.filter(image => image.preview === false)
     }
-    
-    // console.log('preview image: ', previewImage)
-    // console.log('regularImages: ', regularImages)
     
     // Check to see if current user owns this spot or not
     const belongsToCurrentUser = currentUser?.id === ownerId

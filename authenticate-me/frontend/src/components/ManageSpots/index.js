@@ -19,8 +19,6 @@ function ManageSpots(){
    }, [])
 
     const spots = useSelector((state) => state.spots?.currentUserSpots?.Spots)
-
-    // console.log('spots: ', spots)
     
     // if(spots.length === 0 || !spots) return ( <h2>You Currently Have No Spots</h2> )
 
@@ -28,7 +26,6 @@ function ManageSpots(){
     const onClick = () => {
         history.push('/spots/new')
     }
-
 
     return spots && (
         <div className='manage-spot-container'>
