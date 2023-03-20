@@ -40,7 +40,6 @@ function CreateReview({ id, renderObj, edit, data }){
 
     // Function to re-render reviews upon review submission
     const reRenderReviews = () => {
-        console.log('rerender')
         dispatch(getSpots())
         dispatch(loadSpot(id))
         // setRender(!render)
@@ -54,7 +53,6 @@ function CreateReview({ id, renderObj, edit, data }){
 
     // Handle submission event
     const handleSubmit = async (e) => {
-        console.log('submit')
         e.preventDefault()
         setIsSubmitted(true)
         setErrors({})
@@ -80,7 +78,6 @@ function CreateReview({ id, renderObj, edit, data }){
                     const data = await res.json()
                     if(data && data.message){
                         errorsObj.databaseErrors = data.message
-                        console.log("database errors: ", data.message)
                         setErrors(errorsObj)
                     }
                 })
