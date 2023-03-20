@@ -175,8 +175,9 @@ function CreateASpot({ edit, spot }){
                 history.push(`/spots/${newSpot.id}`)
             }
         } else {
-            console.log('errors: ', errors)
-            console.log('isSubmitted: ', isSubmitted)
+            // console.log('errors: ', errors)
+            // console.log('isSubmitted: ', isSubmitted)
+            return
         }
     }
 
@@ -199,8 +200,8 @@ function CreateASpot({ edit, spot }){
         }
     
 
-    console.log('previewImg: ', previewImg)
-    console.log('regularImages: ', regularImages)
+    // console.log('previewImg: ', previewImg)
+    // console.log('regularImages: ', regularImages)
 
 
 

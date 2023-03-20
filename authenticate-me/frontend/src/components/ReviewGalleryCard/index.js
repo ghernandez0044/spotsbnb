@@ -14,9 +14,9 @@ import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data, manage }){
     // Destructure desired properties from passed in review
-    console.log('data: ', data)
+    // console.log('data: ', data)
     const { id, spotId, userId, review, stars, ReviewImages, User, createdAt, Spot } = data
-    console.log('id: ', id)
+    // console.log('id: ', id)
 
     // Create dispatch instance
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ function ReviewGalleryCard({ data, manage }){
     
     // Create reference to current user
     const currentUser = useSelector(state => state.session.user)
-    console.log('currentUser: ', currentUser)
+    // console.log('currentUser: ', currentUser)
 
     // Create reference to reviews state slice
     const reviewState = useSelector(state => state.reviews.userReviews)
