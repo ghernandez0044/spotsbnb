@@ -102,7 +102,6 @@ const EDIT_REVIEW = 'review/editReview'
 
         if(res.ok){
             const reviews = await res.json()
-            console.log('thunk reviews: ', reviews)
             dispatch(loadCurrentReviews(reviews))
         }
     }
@@ -129,7 +128,6 @@ const reviewsReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_REVIEWS:
             newState = {...state}
-            console.log('newState: ', newState)
             newState.spotReviews = normalizeData(action.reviews.Reviews)
             return newState
         case CREATE_REVIEW:
@@ -143,7 +141,6 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
         case LOAD_CURRENT_REVIEWS:
             newState = {...state}
-            console.log('reducer: ', action.reviews)
             newState.userReviews = normalizeData(action.reviews.Reviews)
             return newState
         case EDIT_REVIEW:

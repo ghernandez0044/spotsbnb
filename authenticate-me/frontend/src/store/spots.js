@@ -87,7 +87,6 @@ const EDIT_SPOT = 'spot/editSpot'
         if(res.ok){
             const data = await res.json()
             dispatch(loadSpot(data))
-            console.log('data: ', data)
             return data
         }
     }

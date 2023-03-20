@@ -9,7 +9,6 @@ import './Navigation.css'
 function Navigation({ isLoaded }){
     // Grab reference to current user in state
     const sessionUser = useSelector((state) => state.session.user)
-    // console.log('sessionUser: ', sessionUser)
 
     return (
         <nav className='navbar'>

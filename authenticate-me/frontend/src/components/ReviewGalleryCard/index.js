@@ -14,9 +14,7 @@ import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data, manage }){
     // Destructure desired properties from passed in review
-    // console.log('data: ', data)
     const { id, spotId, userId, review, stars, ReviewImages, User, createdAt, Spot } = data
-    // console.log('id: ', id)
 
     // Create dispatch instance
     const dispatch = useDispatch()

@@ -47,10 +47,8 @@ function SpotGalleryCard({ spot, manage }){
 
     // Function to load spot details and reviews upon click
     const load = () => {
-        // console.log('load')
         dispatch(getSpot(id))
         dispatch(getReviews(id))
-        // console.log('end load')
     }
 
 
