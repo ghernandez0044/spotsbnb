@@ -139,7 +139,7 @@ const spots = [
     lat: 79.8057,
     lng: 16.5164,
     name: 'Downtown Abu Dhabi near the palace',
-    description: 'Stunning desert home with panoramic views of the landscape and private pool. Modern and sleek interior with plenty of natural light and stylish furnishings. Spacious and comfortable bedrooms offer plush bedding and stunning views. National parks and relaxation by the pool await.',
+    description: 'Stunning desert home with panoramic views of the landscape and private pool. Modern and sleek interior with plenty of natural light and stylish furnishings.',
     price: 218.75
   },
   {
