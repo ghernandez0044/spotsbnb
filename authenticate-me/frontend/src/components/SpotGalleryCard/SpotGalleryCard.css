@@ -1,3 +1,14 @@
+:root {
+    --main-color: #FF5A5F;
+    --accent-color: #00A699;
+    --alternate-color: #FC642D;
+    --dark-color: #484848;
+    --light-color: #767676;
+    --main-header-font: 'Lobster Two';
+    --sub-header-font: 'Signika Negative';
+    --content-font: 'Rubik'
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -8,51 +19,82 @@ a:visited {
 }
 
 .card {
-    /* border: 3px solid lime; */
-    height: 400px;
-    width: 300px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 5px;
+    /* border: 3px solid red; */
+    min-height: 350px;
+    height: fit-content;
+    width: 320px;
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+    border-radius: 10px;
     transition: 0.3s;
     margin: 15px;
     display: flex;
     flex-direction: column;
+    max-height: fit-content;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
 }
 
 .content-container {
-    /* border: 3px solid red; */
+    /* border: 3px solid purple; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 2px 8px;
 }
+
 .city-container {
     /* border: 3px solid yellow; */
+    height: 40px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.price-info-container {
+    /* border: 3px solid orange; */
+    height: 35px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
 img {
-    height: 250px;
-    width: 300px;
+    height: 300px;
+    width: 320px;
     /* position: relative;
     left: 5%; */
     /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3); */
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .manage-buttons-container {
     /* border: 3px solid lime; */
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    padding: 6px;
+    margin-bottom: 5px;
 }
 
 .manage-button {
-    margin: 0 5px;
+        /* border: 3px solid blue; */
+        background-color: var(--dark-color);
+        font-family: var(--content-font);
+        box-shadow: 3px 3px black;
+        color: white;
+        height: 30px;
+        /* width: 200px; */
+        width: fit-content;
+        min-width: 100px;
+        margin-top: 5px;
+        padding: 5px;
+}
+
+.manage-button:hover {
+    box-shadow: none;
 }
 

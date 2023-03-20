@@ -19,7 +19,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
 
     // Create a reference to the reviews state slice
     const data = useSelector(state => state.reviews.spotReviews)
-    console.log('data: ', data)
+    // console.log('data: ', data)
 
     // Create a reference to current user reviews state slice
     const currentUserReviews = useSelector(state => state.reviews.userReviews)
@@ -33,7 +33,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
     // console.log('belongsToCurrentUser: ', belongsToCurrentUser)
 
     const reRenderReviews = () => {
-        console.log('rerender')
+        // console.log('rerender')
         // dispatch(getReviews(id))
     }
 
@@ -61,7 +61,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
 
     // Check to see if current user has already posted a review
     const posted = reviews.find(review => review.userId === currentUser?.id) ? true : false
-    console.log('posted: ', posted)
+    // console.log('posted: ', posted)
 
 
     return (
@@ -79,8 +79,8 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
                         {reviews && ( <p>{reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> )}
                     </div></> )}
                 </div>
+                {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
             </div>
-            {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' onModalClose={reRenderReviews} /> ) : ( <p></p> )}
             <ul className='reviews-list'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=

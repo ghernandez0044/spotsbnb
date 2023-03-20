@@ -16,6 +16,8 @@ function CreateReview({ id, renderObj, edit, data }){
 
     // Destructure desired properties from renderObj
     // const { render, setRender } = renderObj
+    const spot = useSelector(state => state.spots.Spots[id])
+    // console.log('review spot: ', spot)
 
     // Consume ModalContext
     const { closeModal } = useModal()
@@ -65,7 +67,7 @@ function CreateReview({ id, renderObj, edit, data }){
                 stars
             }
 
-            console.log('createdReview: ', newReviewObj)
+            // console.log('createdReview: ', newReviewObj)
 
             if(edit && data){
                 const editedReview = await dispatch(editAReview(newReviewObj, data.id)).catch(async (res) => {
@@ -88,7 +90,7 @@ function CreateReview({ id, renderObj, edit, data }){
                 
                 if(!newReview) return
     
-                console.log('newReview: ', newReview)
+                // console.log('newReview: ', newReview)
             }
 
 
@@ -97,51 +99,27 @@ function CreateReview({ id, renderObj, edit, data }){
             reRenderReviews()
             closeModal()
         } else {
-            console.log('errors: ', errors)
-            console.log('isSubmitted: ', isSubmitted)
+            // console.log('errors: ', errors)
+            // console.log('isSubmitted: ', isSubmitted)
+            return
         }
     }
 
 
     return (
         <div className='main-container'>
-            <h2 style={{ textAlign: 'center' }}>How was your stay?</h2>
+            <h2 style={{ textAlign: 'center' }}>How was your stay at {spot.name}?</h2>
             {isSubmitted && errors.databaseErrors && ( 
                 <p>{`${errors.databaseErrors.split(': ')[1]}`}</p>
              )}
             <form onSubmit={handleSubmit} className='create-review-form'>
                 <div className='review-content-container'>
-                    <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Just a quick review' value={review} onChange={(e) => setReview(e.target.value)} />
+                    <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Quick review' value={review} onChange={(e) => setReview(e.target.value)} />
                 </div>
-                {<RatingInput rating={stars} onChange={onChange} />}
-                {/* <div className="rate">
-                    <input type="radio" id="star5" name="rate" value="5" onChange={(e) => {
-                        let num = Number(e.target.value)
-                        setStars(num)}
-                    }  />
-                    <label htmlFor="star5" title="5 stars">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value='4' onChange={(e) => {
-                        let num = Number(e.target.value)
-                        setStars(num)}
-                    }  />
-                    <label htmlFor="star4" title="4 stars">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" onChange={(e) => {
-                        let num = Number(e.target.value)
-                        setStars(num)}
-                    }  />
-                    <label htmlFor="star3" title="3 stars">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" onChange={(e) => {
-                        let num = Number(e.target.value)
-                        setStars(num)}
-                    }  />
-                    <label htmlFor="star2" title="2 stars">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" onChange={(e) => {
-                        let num = Number(e.target.value)
-                        setStars(num)}
-                    }  />
-                    <label htmlFor="star1" title="1 star">1 star</label>
-                </div> */}
-                <button disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
+                <div className='rating-input-container'>
+                    {<RatingInput rating={stars} onChange={onChange} />}
+                </div>
+                <button className='review-button' disabled={review.length < 10 || stars < 1}><p>{!edit ? 'Submit Your Review' : 'Update Your Review' }</p></button>
             </form>
         </div>
     )

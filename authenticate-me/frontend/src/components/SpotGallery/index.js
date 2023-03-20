@@ -21,7 +21,7 @@ function SpotGallery(){
 
     return (
         <div>
-            <h2 style={{ textAlign: 'center' }}>Spot Gallery</h2>
+            <h1 style={{ textAlign: 'center' }}>Spot Gallery</h1>
             <ul className='spot-card-container'>
                 {spots.map(spot => (
                         <SpotGalleryCard key={spot.id} spot={spot} />

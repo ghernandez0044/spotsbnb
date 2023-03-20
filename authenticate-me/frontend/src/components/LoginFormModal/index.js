@@ -44,28 +44,28 @@ function LoginFormModal(){
 
 
     return (
-        <>
+        <div className='login-container'>
             <h1 className='form-header'>Log In</h1>
             <form onSubmit={handleSubmit} className="login-form-container">
                 <ul>
-                    {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    {errors.map((error, i) => <li key={error}>{error}</li>)}
                 </ul>
                 <ul className='ul-container'>
                     <li className='login-element'>
-                            <input type="text" value={credential} onChange={(e) => setCredential(e.target.value)} placeholder='Username or Email' required />
+                            <input type="text" value={credential} onChange={(e) => setCredential(e.target.value)} placeholder='Username or Email' required style={{ width: '290px', height: '30px' }} />
                     </li>
                     <li className='login-element'>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required />
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required style={{ width: '290px', height: '30px' }} />
+                    </li>
+                    <li className='login-element large'>
+                        <button type='submit' className='login-button'  disabled={credential.length < 4 || password.length < 6}>Log In</button>
                     </li>
                     <li className='login-element'>
-                        <button type='submit' className='login-button' disabled={credential.length < 4 || password.length < 6}>Log In</button>
-                    </li>
-                    <li className='login-element'>
-                        <button type='submit' className='login-button' onClick={demoSubmit}>Demo User</button>
+                        <p className='links' onClick={demoSubmit}>Demo User</p>
                     </li>
                 </ul>
             </form>
-        </>
+        </div>
     )
 }
 

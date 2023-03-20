@@ -1,6 +1,7 @@
 // Necessary imports
 import React from 'react'
 import { useModal } from "../../context/Modal"
+import './OpenModalButton.css'
 
 function OpenModalButton({ modalComponent, buttonText, onButtonClick, onModalClose }){
     // Consuming ModelContext
@@ -15,7 +16,7 @@ function OpenModalButton({ modalComponent, buttonText, onButtonClick, onModalClo
 
 
     return (
-        <button onClick={onClick}>{buttonText}</button>
+        <button className='modal-button' style={{ fontFamily: 'Rubik' }} onClick={onClick}>{buttonText}</button>
     )
 }
 

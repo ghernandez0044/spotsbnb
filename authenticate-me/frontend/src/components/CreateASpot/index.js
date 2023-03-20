@@ -175,8 +175,9 @@ function CreateASpot({ edit, spot }){
                 history.push(`/spots/${newSpot.id}`)
             }
         } else {
-            console.log('errors: ', errors)
-            console.log('isSubmitted: ', isSubmitted)
+            // console.log('errors: ', errors)
+            // console.log('isSubmitted: ', isSubmitted)
+            return
         }
     }
 
@@ -199,13 +200,13 @@ function CreateASpot({ edit, spot }){
         }
     
 
-    console.log('previewImg: ', previewImg)
-    console.log('regularImages: ', regularImages)
+    // console.log('previewImg: ', previewImg)
+    // console.log('regularImages: ', regularImages)
 
 
 
     return (
-        <>
+        <div className='main-page-container'>
             {!edit ? <h1 style={{ textAlign: 'center' }}>Create A Spot</h1> : <h1 style={{ textAlign: 'center' }}>Edit A Spot</h1>}
             <form onSubmit={handleSubmit} className='create-a-spot-form'>
                 <ul>
@@ -213,23 +214,23 @@ function CreateASpot({ edit, spot }){
                         <h2>Where is your place located?</h2>
                         <p><em>Guests will only get your exact address once they have booked a reservation.</em></p>
                         <div className='location-inputs'>
-                            <li>
-                                <label>Country: {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' /></label>
+                            <li id='country'>
+                                <label>Country: <br></br>  {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' style={{ width: '400px' }} /></label>
                             </li>
-                            <li>
-                                <label>Address: {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' /></label>
+                            <li id='address'>
+                                <label>Address: <br></br>  {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' style={{ width: '400px' }} /></label>
                             </li>
-                            <li>
-                                <label>City: {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City'  /> </label>
+                            <li id='city'>
+                                <label>City: <br></br> {isSubmitted && errors.cityError && ( <p className='errors'>{errors.cityError}</p> )} <input type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City' style={{ width: '245px' }}  /> </label>
                             </li>
-                            <li>
-                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' /></label>
+                            <li id='state'>
+                                <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' style={{ width: '110px' }} /></label>
                             </li>
-                            <li>
-                                <label>Latitude: {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude'  /></label>
+                            <li id='lat'>
+                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude' style={{ width: '245px' }}  /></label>
                             </li>
-                            <li>
-                                <label>Longitude: {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude'  /></label>
+                            <li id='lng'>
+                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude' style={{ width: '245px' }}  /></label>
                             </li>
                         </div>
                     </div>
@@ -238,7 +239,7 @@ function CreateASpot({ edit, spot }){
                         {isSubmitted && errors.descriptionError && ( <p className='errors'>{errors.descriptionError}</p> )}
                         <p><em>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</em></p>
                         <li>
-                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters'  />
+                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters' style={{ width: '450px', height: '140px' }}  />
                         </li>
                     </div>
                     <div className='name-container'>
@@ -246,7 +247,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Create a title for your spot</h2>
                             <p><em>Catch guests' attention with a spot title that highlights what makes your place special.</em></p>
                             {isSubmitted && errors.nameError && ( <p className='errors'>{errors.nameError}</p> )}
-                            <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot'  />
+                            <input type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot' style={{ width: '450px' }}  />
                         </li>
                     </div>
                     <div className='price-container'>
@@ -254,29 +255,29 @@ function CreateASpot({ edit, spot }){
                             <h2>Set a base price for your spot</h2>
                             <p><em>Competitive pricing can help your listing stand out and rank higher in search results</em></p>
                             {isSubmitted && errors.priceError && ( <p className='errors'>{errors.priceError}</p> )}
-                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)'  /></label>
+                            <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)' style={{ width: '435px' }}  /></label>
                         </li>
                     </div>
                     <div className='photos-container'>
                         <h2>Liven up your spot with photos</h2>
                         <p><em>Submit a link to at least one photo to publish your spot.</em></p>
-                        <div className='location-inputs'>
+                        <div className='photo-inputs'>
                             {isSubmitted && errors.previewImgError && ( <p className='errors'>{errors.previewImgError}</p> )}
-                            <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL'  />
-                            <input type='text' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' value={imageThree} onChange={(e) => setImageThree(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' value={imageFour} onChange={(e) => setImageFour(e.target.value)} placeholder='Image URL'/>
-                            <input type='text' value={imageFive} onChange={(e) => setImageFive(e.target.value)} placeholder='Image URL'/>
+                            <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)} placeholder='Preview Image URL' style={{ width: '450px' }}  />
+                            <input type='text' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
+                            <input type='text' value={imageThree} onChange={(e) => setImageThree(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
+                            <input type='text' value={imageFour} onChange={(e) => setImageFour(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
+                            <input type='text' value={imageFive} onChange={(e) => setImageFive(e.target.value)} placeholder='Image URL' style={{ width: '450px' }}/>
                         </div>
                     </div>
                     <div className='button-container'>
                         <li>
-                            {!edit ? <button type='submit'>Create A Spot</button> : <button type='submit'>Edit Spot</button>}
+                            {!edit ? <button className='spot-form-button' type='submit'>Create A Spot</button> : <button className='spot-form-button' type='submit'>Edit Spot</button>}
                         </li>
                     </div>
                 </ul>
             </form>
-        </>
+        </div>
     )
 }
 

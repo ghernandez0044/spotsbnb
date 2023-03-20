@@ -18,7 +18,7 @@ function SpotDetails(){
 
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
-        console.log('SpotDetails useEffect')
+        // console.log('SpotDetails useEffect')
         dispatch(getSpot(id))
     }, [])
 
@@ -26,10 +26,12 @@ function SpotDetails(){
     const [ render, setRender ] = useState(false)
     
     const spot = useSelector((state) => state.spots.singleSpot)
-    console.log('spot: ', spot)
+    // console.log('spot: ', spot)
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)
     const allSpotsSpot = useSelector((state) => state.spots.Spots)[id]
+
+    // console.log('currentUser: ', currentUser)
 
     if(!spot) return null
 
@@ -37,18 +39,19 @@ function SpotDetails(){
     const { address, city, country, description, lat, lng, name, ownerId, price, state, Owner, SpotImages } = spot
     const { avgRating, reviewCount } = allSpotsSpot
 
-    console.log('allSpotsSpot: ', allSpotsSpot)
-    console.log('spot: ', spot)
-    console.log('images: ', SpotImages)
-    
-    const previewImage = SpotImages.find(image => image.review = true)
-    
-    const regularImages = SpotImages.filter(image => image.preview === false)
-    
-    console.log('preview image: ', previewImage)
-    console.log('regularImages: ', regularImages)
+    // console.log('allSpotsSpot: ', allSpotsSpot)
+    // console.log('spot: ', spot)
+    // console.log('images: ', SpotImages)
 
-
+    let previewImage
+    let regularImages
+    if(SpotImages && SpotImages.length > 0){
+        previewImage = SpotImages.find(image => image.review = true)
+        regularImages = SpotImages.filter(image => image.preview === false)
+    }
+    
+    // console.log('preview image: ', previewImage)
+    // console.log('regularImages: ', regularImages)
     
     // Check to see if current user owns this spot or not
     const belongsToCurrentUser = currentUser?.id === ownerId
@@ -60,34 +63,38 @@ function SpotDetails(){
 
     return (
         <div>
-            <h2 style={{ textAlign: 'left' }}>{name}</h2>
-            <p><em>{city}, {state}, {country}</em></p>
+            <div className='title-header-container'>
+                <h2 style={{ textAlign: 'left', marginLeft: '15px' }}>{name}</h2>
+                <p style={{ marginLeft: '15px' }}><em>{city}, {state}, {country}</em></p>
+            </div>
             <div className='all-images-container'>
-                <div className='preview-image-container'>
-                    <img className='preview-image' src={previewImage.url} alt='' />
-                </div>
-                <div className='images-container'>
-                    {regularImages.map(image => (
-                        <img key={image.id} src={image.url} alt='' style={{ height: '205px', width: '205px' }} />
-                    ))}
+                <div className='photo-cluster'>
+                    <div className='preview-image-container'>
+                        <img className='preview-image' src={previewImage?.url} alt='' />
+                    </div>
+                    <div className='images-container'>
+                        {regularImages?.map(image => (
+                            <img key={image.id} src={image.url} alt='' style={{ height: '220px', width: '220px' }} />
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className='content'>
                 <div className='description-container'>
-                    <h3>Hosted by {Owner.firstName}, {Owner.lastName}</h3>
+                    <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
                 <div className='booking-info-container'>
                     <div className='another-container'>
-                        <div className='price-container'>
-                            <p>${price} /night</p>
+                        <div className='booking-price-container'>
+                            <p>${Number(price).toFixed(2)} /night</p>
                         </div>
                         <div className='rating-container'>
                             <i className='fa-solid fa-star' />
-                            {avgRating ? <p>{avgRating} stars {reviewCount} {reviewCount && ( <span>&#183;</span> )} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
+                            {avgRating ? <p>{avgRating} stars  {reviewCount && ( <span>&#183;</span> )} {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : <button onClick={reserve}>Reserve</button>}
+                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? <button onClick={reserve} className='reserve-button'><p style={{ fontSize: '16px' }}>Reserve</p></button> : <p></p>}
                 </div>
             </div>
             <div className='reviews-container'>

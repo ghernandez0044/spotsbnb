@@ -14,9 +14,9 @@ import './ReviewGalleryCard.css'
 
 function ReviewGalleryCard({ data, manage }){
     // Destructure desired properties from passed in review
-    console.log('data: ', data)
+    // console.log('data: ', data)
     const { id, spotId, userId, review, stars, ReviewImages, User, createdAt, Spot } = data
-    console.log('id: ', id)
+    // console.log('id: ', id)
 
     // Create dispatch instance
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ function ReviewGalleryCard({ data, manage }){
     
     // Create reference to current user
     const currentUser = useSelector(state => state.session.user)
-    console.log('currentUser: ', currentUser)
+    // console.log('currentUser: ', currentUser)
 
     // Create reference to reviews state slice
     const reviewState = useSelector(state => state.reviews.userReviews)
@@ -76,10 +76,10 @@ return (
     <div className='review-container'>
         {manage && data && ( <h2>{Spot?.name}</h2> )}
         <h3 style={{ margin: '2px' }}>{User?.firstName}</h3>
-        <h4 style={{ margin: '2px' }}>{month}, {day}, {year}</h4>
+        <p className='gray-text' style={{ margin: '2px' }}>{month} {day}, {year}</p>
         <p>{review}</p>
         <div className='review-buttons'>
-            {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} onNo={no} />} buttonText='Delete' /></div> )}
+            {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} yesLabel='Delete Review' onNo={no} noLabel='Keep Review' />} buttonText='Delete' /></div> )}
             {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<CreateReview data={data} id={spotId} edit={true} />} buttonText='Update' /></div> )}
         </div>
     </div>

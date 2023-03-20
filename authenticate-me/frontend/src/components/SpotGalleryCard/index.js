@@ -40,17 +40,17 @@ function SpotGalleryCard({ spot, manage }){
 
     // Function to redirect user to update page
     const onClick = () => {
-        console.log('onClick dispatch firing')
+        // console.log('onClick dispatch firing')
         dispatch(getSpot(id))
        history.push(`/spots/${id}/edit`)
     }
 
     // Function to load spot details and reviews upon click
     const load = () => {
-        console.log('load')
+        // console.log('load')
         dispatch(getSpot(id))
         dispatch(getReviews(id))
-        console.log('end load')
+        // console.log('end load')
     }
 
 
@@ -64,14 +64,16 @@ function SpotGalleryCard({ spot, manage }){
                             <h4>{city}, {state}</h4>
                             {avgRating ? <p><i className='fa-solid fa-star' /> {avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
                         </div>
-                        <p><b>${price}</b> /night</p>
+                        <div className='price-info-container'>
+                            <p><b>${Number(price).toFixed(2)}</b> /night</p>
+                        </div>
                     </div>
                 </NavLink>
                 {
                     manage && (
                         <div className='manage-buttons-container'>
                                 <button onClick={onClick} className='manage-button'>Update</button>
-                            <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to remove this spot from the listings?' onYes={onYes} onNo={onNo} />} buttonText='Delete' />
+                            <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to remove this spot from the listings?' onYes={onYes} yesLabel='Delete Spot' onNo={onNo} noLabel='Keep Spot' />} buttonText='Delete' />
                         </div>
                     )
                 }

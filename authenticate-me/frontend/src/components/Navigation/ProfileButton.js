@@ -61,45 +61,49 @@ function ProfileButton({ user }){
 
     return (
         <div>
-                <div className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>
+                <div id='user-menu' className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>
                     {currentUser && ( <i className='fa-solid fa-user' /> )}
                     <i className='fa-solid fa-bars' />
+                    <ul className={showMenu ? 'profile-dropdown' : 'hidden'} ref={ulRef}>
+                        {user ? (
+                        <>
+                            <li className='list-item'><p>Hello, {user.firstName} {user.lastName}.</p></li>
+                            <li className='list-item'><p>Username: {user.username}</p></li>
+                            <li className='list-item'><p>Email: {user.email}</p></li>
+                            <li className='list-item border-shadows'>
+                                <Link onClick={closeMenu} exact to='/spots/current'>
+                                <p><b>Manage Your Spots</b></p>
+                                </Link>
+                            </li>
+                            <li className='list-item border-shadows'>
+                                <Link onClick={closeMenu} exact to='/reviews/current'>
+                                <p><b>Manage Your Reviews</b></p>
+                                </Link>
+                            </li>
+                            <li className='list-item'>
+                            <button className='logout-button' onClick={logout}>Log Out</button>
+                            </li>
+                        </>
+                        ) : (
+                        <div className='user-menu-items'>
+                            <div className='user-menu-item links'>
+                                <OpenModalMenuItem
+                                    itemText="Log In"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<LoginFormModal />}
+                                />
+                            </div>
+                            <div className='user-menu-item links bold'>
+                                <OpenModalMenuItem
+                                    itemText="Sign Up"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<SignupFormModal />}
+                                />
+                            </div>
+                        </div>
+                        )}
+                    </ul>
                 </div>
-            <ul className={showMenu ? '' : 'hidden'} ref={ulRef}>
-                {user ? (
-                <>
-                    <li className='list-item'>Hello, {user.firstName} {user.lastName}</li>
-                    <li className='list-item'>Username: {user.username}</li>
-                    <li className='list-item'>Email: {user.email}</li>
-                    <li className='list-item'>
-                        <Link onClick={closeMenu} exact to='/spots/current'>
-                         <b>Manage Your Spots</b>
-                        </Link>
-                    </li>
-                    <li className='list-item'>
-                        <Link onClick={closeMenu} exact to='/reviews/current'>
-                         <b>Manage Your Reviews</b>
-                        </Link>
-                    </li>
-                    <li className='list-item'>
-                    <button onClick={logout}>Log Out</button>
-                    </li>
-                </>
-                ) : (
-                <>
-                    <OpenModalMenuItem
-                        itemText="Log In"
-                        onItemClick={closeMenu}
-                        modalComponent={<LoginFormModal />}
-                    />
-                    <OpenModalMenuItem
-                        itemText="Sign Up"
-                        onItemClick={closeMenu}
-                        modalComponent={<SignupFormModal />}
-                    />
-                </>
-                )}
-            </ul>
         </div>
     )
 }
