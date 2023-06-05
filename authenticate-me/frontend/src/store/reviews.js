@@ -105,7 +105,7 @@ const EDIT_REVIEW = 'review/editReview'
     // EDIT_REVIEW Thunk
     export const editAReview = (reviewObj, id) => async dispatch => {
         const res = await csrfFetch(`/api/reviews/${id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             body: JSON.stringify(reviewObj)
         })
 

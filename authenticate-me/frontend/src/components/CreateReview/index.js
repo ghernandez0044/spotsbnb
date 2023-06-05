@@ -67,7 +67,7 @@ function CreateReview({ id, renderObj, edit, data }){
             if(edit && data){
                 const editedReview = await dispatch(editAReview(newReviewObj, data.id)).catch(async (res) => {
                     console.log('res: ', res)
-                    const data = await res.json()
+                    const data = res
                     if(data && data.errors) errorsObj.databaseErrors = data.errors
                 })
                 reset()
