@@ -102,7 +102,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
 
 // Edit a Review - require authentication - require authorization
-router.put('/:reviewId', requireAuth, async (req, res, next) => {
+router.patch('/:reviewId', requireAuth, async (req, res, next) => {
     const currentReview = await Review.findByPk(req.params.reviewId)
 
     if(!currentReview){
