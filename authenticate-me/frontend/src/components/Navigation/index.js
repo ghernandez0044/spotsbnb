@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ProfileButton from './ProfileButton'
 import logo from '../../assets/spotsbnblogo.png'
+import SearchBar from '../SearchBar'
 import './Navigation.css'
 
 function Navigation({ isLoaded }){
@@ -19,9 +20,7 @@ function Navigation({ isLoaded }){
                     </NavLink>
                 </div>
             </div>
-            <div className='search-bar-container'>
-                <div>Search Bar Here</div>
-            </div>
+            <SearchBar />
             <ul className='nav-links'>
                 <div className={sessionUser ? 'menu' : 'menu right'}>
                     {isLoaded && (
