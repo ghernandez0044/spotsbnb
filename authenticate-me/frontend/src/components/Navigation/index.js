@@ -19,6 +19,9 @@ function Navigation({ isLoaded }){
                     </NavLink>
                 </div>
             </div>
+            <div className='search-bar-container'>
+                <div>Search Bar Here</div>
+            </div>
             <ul className='nav-links'>
                 <div className={sessionUser ? 'menu' : 'menu right'}>
                     {isLoaded && (
