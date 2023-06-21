@@ -1,7 +1,9 @@
 .navbar {
-    /* border: 3px solid lime; */
+    border: 3px solid lime;
+    height: 50px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
     border-bottom: 2px solid lightgray;
 }
