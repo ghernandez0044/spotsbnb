@@ -13,6 +13,7 @@ export const normalizeData = (array, object = {}) => {
 
 // Create type strings
 const LOAD_SPOTS = 'spot/loadSpots'
+const LOAD_SEARCHED_SPOTS = 'spot/loadSearchedSpots'
 const LOAD_SPOT = 'spot/loadSpot'
 const CREATE_SPOT = 'spot/createSpot'
 const CURRENT_SPOTS = 'spot/getCurrentSpots'
@@ -24,6 +25,14 @@ const EDIT_SPOT = 'spot/editSpot'
     export const loadSpots = (spots) => {
         return {
             type: LOAD_SPOTS,
+            spots
+        }
+    }
+
+    // LOAD_SEARCHED_SPOTS
+    export const loadSearchedSpots = (spots) => {
+        return {
+            type: LOAD_SEARCHED_SPOTS,
             spots
         }
     }
@@ -76,6 +85,20 @@ const EDIT_SPOT = 'spot/editSpot'
         if(res.ok){
             const data = await res.json()
             dispatch(loadSpots(data.Spots))
+            return data
+        }
+    }
+
+    // LOAD__SEARCHED_SPOTS Thunk
+    export const getSearchedSpots = (searchQuery) => async dispatch => {
+        const res = await csrfFetch('/api/spots/search', {
+            method: 'POST',
+            body: JSON.stringify(searchQuery)
+        })
+
+        if(res.ok){
+            const data = await res.json()
+            dispatch(loadSearchedSpots(data.Spots))
             return data
         }
     }
@@ -167,7 +190,8 @@ const EDIT_SPOT = 'spot/editSpot'
 
 // Create reducer
 const initialState = {
-    Spots: []
+    Spots: [],
+    searchedSpots: {}
 }
 
 const spotReducer = (state = initialState, action) => {
@@ -176,6 +200,11 @@ const spotReducer = (state = initialState, action) => {
         case LOAD_SPOTS:
             newState = {...state, Spots: action.spots}
             newState.Spots = normalizeData(newState.Spots)
+            return newState
+        case LOAD_SEARCHED_SPOTS:
+            newState = {...state}
+            const spots = normalizeData(action.spots)
+            newState.searchedSpots = {...spots}
             return newState
         case LOAD_SPOT:
             newState = {...state}

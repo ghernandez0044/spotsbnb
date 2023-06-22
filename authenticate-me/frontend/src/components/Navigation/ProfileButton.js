@@ -23,7 +23,6 @@ function ProfileButton({ user }){
 
     // Reference to the current user
     const currentUser = useSelector(state => state.session.user)
-    console.log('currentUser: ', currentUser)
 
     // Function to open dropdown menu
     const openMenu = () => {
