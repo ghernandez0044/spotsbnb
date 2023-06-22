@@ -1,0 +1,27 @@
+.search-bar-container{
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    border-radius: 15px;
+}
+
+.search-bar-container > div{
+    margin: auto 3%;
+    /* border: 2px solid purple; */
+}
+
+.search-bar-container > input{
+    width: 90%;
+    border: none;
+    background-color: white;
+}
+
+.search-bar-container:hover > input{
+    background-color: #f3f3f3;
+}
+
+.search-bar-container:hover{
+    background-color: #f3f3f3;
+}
