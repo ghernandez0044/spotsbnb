@@ -8,8 +8,14 @@
 }
 
 .search-bar-container > div{
-    margin: auto 3%;
+    /* margin: auto 25px; */
+    margin-right: 10px;
+    margin-left: 5px;
     /* border: 2px solid purple; */
+    padding: 10px;
+    border-radius: 25px;
+    background-color: var(--main-color);
+    color: white;
 }
 
 .search-bar-container > input{
@@ -24,4 +30,15 @@
 
 .search-bar-container:hover{
     background-color: #f3f3f3;
+    box-shadow: 0 2px 2px #000000;
 }
+
+.testing-class{
+    background-color: #f3f3f3;
+    box-shadow: 0 2px 2px #000000;
+}
+
+.testing-class > input{
+    background-color: #f3f3f3;
+}
+
