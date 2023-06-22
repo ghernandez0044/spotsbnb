@@ -10,6 +10,7 @@ import CreateASpot from './components/CreateASpot';
 import ManageSpots from './components/ManageSpots';
 import ManageReviews from './components/ManageReviews'
 import SpotProvider from './components/SpotProvider'
+import SpotSearchResults from './components/SpotSearchResults';
 
 
 function App() { 
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route exact path='/spots/current'>
                 <ManageSpots />
+            </Route>
+            <Route exact path='/spots/results/:searchQuery'>
+                <SpotSearchResults />
             </Route>
             <Route exact path='/spots/:id/edit'>
                 <SpotProvider />
