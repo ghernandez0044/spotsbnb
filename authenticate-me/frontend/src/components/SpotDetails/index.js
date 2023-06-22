@@ -7,6 +7,7 @@ import { normalizeData } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
 import { getSpot } from '../../store/spots'
 import ReviewGallery from '../ReviewGallery'
+import CalendarComponent from '../CalendarComponent'
 import './SpotDetails.css'
 
 function SpotDetails(){
@@ -85,7 +86,14 @@ function SpotDetails(){
                             {avgRating ? <p>{avgRating} stars  {reviewCount && ( <span>&#183;</span> )} {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? <button onClick={reserve} className='reserve-button'><p style={{ fontSize: '16px' }}>Reserve</p></button> : <p></p>}
+                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? (
+                        <div className='reservation-container'>
+                            <div className='calendar-testing-container'>
+                                <CalendarComponent />
+                            </div>
+                            <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
+                        </div>
+                    ) : <p></p>}
                 </div>
             </div>
             <div className='reviews-container'>
