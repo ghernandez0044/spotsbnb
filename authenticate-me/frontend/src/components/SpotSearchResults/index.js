@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import SpotGalleryCard from "../SpotGalleryCard"
 
 
 function SpotSearchResults(){
@@ -7,7 +8,7 @@ function SpotSearchResults(){
     const { searchQuery } = useParams()
 
     // Subscribe to searched spots slice of state
-    const searchedSpots = useSelector(state => state.spots.searchedSpots)
+    const searchedSpots = useSelector(state => Object.values(state.spots.searchedSpots))
 
     console.log('searchedSpots: ', searchedSpots)
 
@@ -15,8 +16,11 @@ function SpotSearchResults(){
 
     return (
         <div className="spot-search-results-container">
-            <div>Results</div>
-            {searchQuery}
+            <ul className="spot-card-container">
+                {searchedSpots.map(spot => (
+                    <SpotGalleryCard key={spot.id} spot={spot} />
+                ))}
+            </ul>
         </div>
     )
 }
