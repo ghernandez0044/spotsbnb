@@ -58,8 +58,8 @@ function ProfileButton({ user }){
     return (
         <div>
                 <div id='user-menu' className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>
-                    {currentUser && ( <i className='fa-solid fa-circle-user size-icon' /> )}
-                    <i className='fa-solid fa-bars' />
+                    {currentUser && ( <i className='fa-solid fa-circle-user user-icon' /> )}
+                    <i className='fa-solid fa-bars hamburger-icon' />
                     <ul className={showMenu ? 'profile-dropdown' : 'hidden'} ref={ulRef}>
                         {user ? (
                         <>
