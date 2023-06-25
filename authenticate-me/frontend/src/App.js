@@ -12,6 +12,7 @@ import ManageReviews from './components/ManageReviews'
 import ManageBookings from './components/ManageBookings';
 import SpotProvider from './components/SpotProvider'
 import SpotSearchResults from './components/SpotSearchResults';
+import Footer from './components/Footer';
 
 
 function App() { 
@@ -57,6 +58,7 @@ function App() {
                 <ManageBookings />
             </Route>
           </Switch>
+          <Footer />
         </>
       )}
     </>
