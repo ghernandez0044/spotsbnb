@@ -9,6 +9,7 @@ import SpotDetails from './components/SpotDetails';
 import CreateASpot from './components/CreateASpot';
 import ManageSpots from './components/ManageSpots';
 import ManageReviews from './components/ManageReviews'
+import ManageBookings from './components/ManageBookings';
 import SpotProvider from './components/SpotProvider'
 import SpotSearchResults from './components/SpotSearchResults';
 
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route exact path='/reviews/current'>
                 <ManageReviews />
+            </Route>
+            <Route exact path='/bookings/current'>
+                <ManageBookings />
             </Route>
           </Switch>
         </>

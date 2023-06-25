@@ -1,0 +1,21 @@
+.booking-gallery-card{
+    /* border: 3px solid pink; */
+    border-radius: 15px;
+    min-width: 350px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.time-content-container{
+    /* border: 3px solid blue; */
+    height: fit-content;
+    width: 100%;
+}
+
+.booking-gallery-card:hover{
+    box-shadow: 0 0 25px black;
+}

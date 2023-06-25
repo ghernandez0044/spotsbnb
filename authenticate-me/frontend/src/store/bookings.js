@@ -102,7 +102,7 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
         let newState = {...state}
         switch(action.type){
             case LOAD_BOOKINGS:
-                const userBookings = normalizeData(action.bookings)
+                const userBookings = normalizeData(action.bookings.Bookings)
                 newState.userBookings = {...userBookings}
                 return newState
             case LOAD_BOOKING:

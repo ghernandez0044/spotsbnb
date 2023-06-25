@@ -175,3 +175,7 @@
     box-shadow: none;
 }
 
+.card-content{
+    font-family: var(--content-font);
+}
+
