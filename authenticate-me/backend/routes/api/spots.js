@@ -9,9 +9,6 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking, sequelize} = requir
 
 // Get all Spots
 router.get('/', handleValidationErrors, async (req, res, next) => {
-
-    console.log('inside of get all spots route')
-
     const where = {}
 
     const size = req.query.size ? req.query.size : 20
@@ -670,8 +667,6 @@ router.post('/:spotId/reviews', requireAuth, handleValidationErrors, async (req,
             userId: req.user.id
         }
     })
-
-    console.log(potentialReview)
 
     if(potentialReview){
         const err = new Error('User already has a review for this spot')
