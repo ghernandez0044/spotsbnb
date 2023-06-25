@@ -24,8 +24,8 @@ function BookingGalleryCard({ booking, manage }){
 
     return (
         <li className='booking-gallery-card'>
-                <NavLink exact to={`/spots/${booking.Spot.id}`}>
-                    <img style={{ width: '100%' }} src={booking.Spot.previewImage} alt='' />
+                <NavLink exact to={`/spots/${booking?.Spot?.id}`}>
+                    <img style={{ width: '100%' }} src={booking?.Spot?.previewImage} alt='' />
                     <div className="content-container">
                         <div className='city-container'>
                             <h4>{booking.Spot.city}, {booking.Spot.state}</h4>

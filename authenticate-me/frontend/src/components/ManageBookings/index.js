@@ -22,9 +22,6 @@ function ManageBookings(){
 
     // if(!userBookings || Object.values(userBookings).length === 0) return null
 
-    console.log('userBookings: ', userBookings)
-
-
     return (
         <div className='manage-bookings-container'>
             <div className='header-container'>

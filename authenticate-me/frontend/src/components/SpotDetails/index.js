@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { normalizeData } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
 import { getSpot } from '../../store/spots'
+import { createABooking } from '../../store/bookings'
 import ReviewGallery from '../ReviewGallery'
 import CalendarComponent from '../CalendarComponent'
 import './SpotDetails.css'
@@ -24,6 +25,7 @@ function SpotDetails(){
 
     // Create state variables
     const [ render, setRender ] = useState(false)
+    const [ bookingDateRange, setBookingDateRange ] = useState([])
     
     const store = useSelector(state => state)
     const spot = useSelector((state) => state.spots.singleSpot)
@@ -51,6 +53,20 @@ function SpotDetails(){
     // Function to reserve spot
     const reserve = () => {
         alert('reserve booking coming soon!')
+
+        const bookingStartDate = bookingDateRange[0].toISOString().split('T')[0]
+        const bookingEndDate = bookingDateRange[1].toISOString().split('T')[0]
+
+        console.log('spotId: ', spot.id)
+
+        const createdBooking = {
+            startDate: bookingStartDate,
+            endDate: bookingEndDate
+        }
+
+        dispatch(createABooking(createdBooking, spot.id)).catch(error => console.log(error))
+
+
     }
 
     return (
@@ -89,7 +105,7 @@ function SpotDetails(){
                     {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? (
                         <div className='reservation-container'>
                             <div className='calendar-testing-container'>
-                                <CalendarComponent />
+                                <CalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
                             </div>
                             <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
                         </div>

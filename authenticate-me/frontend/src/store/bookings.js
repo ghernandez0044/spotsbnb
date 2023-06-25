@@ -65,8 +65,8 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
     }
 
     // CREATE_BOOKING Thunk
-    export const createABooking = (booking) => async dispatch => {
-        const res = await csrfFetch('/api/bookings', {
+    export const createABooking = (booking, spotId) => async dispatch => {
+        const res = await csrfFetch(`/api/spots/${spotId}/bookings`, {
             method: 'POST',
             body: JSON.stringify(booking)
         })
@@ -108,7 +108,7 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
             case LOAD_BOOKING:
                 return {...state, singleBooking: {...action.booking}}
             case CREATE_BOOKING:
-                return {...state, allBookings: {...state.allBookings, [action.booking.id]: action.booking}}
+                return {...state, userBookings: {...state.userBookings, [action.booking.id]: action.booking}}
             default:
                 return state
         }

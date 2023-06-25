@@ -2,14 +2,16 @@ import { useState } from 'react'
 import Calendar from 'react-calendar'
 import './CalendarComponent.css'
 
-function CalendarComponent(){
+function CalendarComponent({ setBookingDateRange, bookingDateRange }){
     // Create state variables
     const [ date, setDate ] = useState(new Date())
+
+    console.log('dateRange: ', bookingDateRange)
 
     return (
         <div className="calendar-component-container">
             <div className='react-calendar-container'>
-                <Calendar value={date} onChange={setDate} />
+                <Calendar value={date} minDate={new Date()} selectRange={true} onChange={setBookingDateRange} />
             </div>
         </div>
     )
