@@ -80,14 +80,15 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
     }
 
     // DELETE_BOOKING Thunk
-    export const deleteABooking = (id) => async dispatch => {
-        const res = await csrfFetch(`/api/bookings/${id}`, {
+    export const deleteABooking = (bookingId) => async dispatch => {
+        const res = await csrfFetch(`/api/bookings/${bookingId}`, {
             method: 'DELETE'
         })
         if(res.ok){
             const data = await res.json()
-            await dispatch(deleteABooking(id))
-            await dispatch(getUserBookings())
+            // await dispatch(deleteABooking(bookingId))
+            // await dispatch(getUserBookings())
+            dispatch(actionDeleteBooking(bookingId))
         }
         return res
     }
@@ -110,6 +111,9 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
                 return {...state, singleBooking: {...action.booking}}
             case CREATE_BOOKING:
                 return {...state, userBookings: {...state.userBookings, [action.booking.id]: action.booking}}
+            case DELETE_BOOKING:
+                delete newState.userBookings[action.id]
+                return newState
             default:
                 return state
         }
