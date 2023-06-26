@@ -24,17 +24,30 @@ function BookingGalleryCard({ booking, manage }){
     const localEndingTime = new Date(booking.endDate).toLocaleString(navigator.language, options)
     const localCreatedAtTime = new Date(booking.createdAt).toLocaleString(navigator.language, options)
 
+    // Consume Modal Context for desired function
+    const { closeModal } = useModal()
+
+    // Function to handle yes on confirmation modal
+    const onYes = () => {
+        console.log('yes')
+    }
+
+    // Function to handle no on confirmation modal
+    const onNo = () => {
+        console.log('no')
+    }
+
     return (
         <li className='booking-gallery-card'>
                 <NavLink exact to={`/spots/${booking?.Spot?.id}`}>
                     <img style={{ width: '100%' }} src={spot.previewImage} alt='' />
                     <div className="content-container">
                         <div className='city-container'>
-                            <h4>{booking.Spot.city}, {booking.Spot.state}</h4>
-                            {booking.Spot.avgRating ? <p><i className='fa-solid fa-star' /> {booking.Spot.avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
+                            <h4>{booking?.Spot?.city}, {booking?.Spot?.state}</h4>
+                            {booking?.Spot?.avgRating ? <p><i className='fa-solid fa-star' /> {booking?.Spot?.avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
                         </div>
                         <div className='price-info-container'>
-                            <p><b>${Number(booking.Spot.price).toFixed(2)}</b> /night</p>
+                            <p><b>${Number(booking?.Spot?.price).toFixed(2)}</b> /night</p>
                         </div>
                     </div>
                 </NavLink>
@@ -45,6 +58,10 @@ function BookingGalleryCard({ booking, manage }){
                         <div className='card-content'>{localEndingTime}</div>
                         <h3>Created At:</h3>
                         <div className='card-content'>{localCreatedAtTime}</div>
+                </div>
+                <div className='manage-buttons-container'>    
+                        <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to remove this spot from the listings?' onYes={onYes} yesLabel='Delete Spot' onNo={onNo} noLabel='Keep Spot' />} buttonText='Delete' />
+                        <OpenModalButton className='manage-button' modalComponent={<h1>Hello</h1>} buttonText='Update' />
                 </div>
         </li>
     )
