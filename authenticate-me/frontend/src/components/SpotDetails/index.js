@@ -41,8 +41,12 @@ function SpotDetails(){
 
     // Check to see if current user has a booking for this spot
     const userHasBooking = useSelector(state => Object.values(state.bookings.userBookings))
+
+    const bookingBoolean = userHasBooking.find(booking => booking.spotId === Number(id)) ? true : false
+
     console.log('userHasBooking: ', userHasBooking.find(booking => booking.spotId === Number(id)))
     console.log('spot id: ', id)
+    console.log('bookingBoolean: ', bookingBoolean)
 
     if(!spot) return null
 
@@ -117,7 +121,7 @@ function SpotDetails(){
                             {avgRating ? <p>{avgRating} stars  {reviewCount && ( <span>&#183;</span> )} {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser && !userHasBooking ? (
+                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser && !bookingBoolean ? (
                         <div className='reservation-container'>
                             <div className='calendar-testing-container'>
                                 {isSubmitted && backendErrors.backendError && (
