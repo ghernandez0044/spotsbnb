@@ -34,6 +34,8 @@ function SpotDetails(){
     
     const store = useSelector(state => state)
     const spot = useSelector((state) => state.spots.singleSpot)
+
+    console.log('spot: ', spot)
   
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)

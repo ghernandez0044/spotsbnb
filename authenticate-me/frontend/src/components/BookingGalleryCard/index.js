@@ -3,11 +3,13 @@ import { NavLink, useHistory, Redirect } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
 import { getBooking } from '../../store/bookings'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import './BookingGalleryCard.css'
 
 function BookingGalleryCard({ booking, manage }){
+
+    const spot = useSelector(state => state.spots.Spots[booking.spotId])
 
     const options = {
         weekday: 'long',
@@ -25,7 +27,7 @@ function BookingGalleryCard({ booking, manage }){
     return (
         <li className='booking-gallery-card'>
                 <NavLink exact to={`/spots/${booking?.Spot?.id}`}>
-                    <img style={{ width: '100%' }} src={booking?.Spot?.previewImage} alt='' />
+                    <img style={{ width: '100%' }} src={spot.previewImage} alt='' />
                     <div className="content-container">
                         <div className='city-container'>
                             <h4>{booking.Spot.city}, {booking.Spot.state}</h4>

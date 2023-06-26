@@ -41,14 +41,13 @@ function SpotGalleryCard({ spot, manage }){
     // Function to redirect user to update page
     const onClick = () => {
         // console.log('onClick dispatch firing')
-        dispatch(getSpot(id))
-       history.push(`/spots/${id}/edit`)
+        dispatch(getSpot(id)).then(res => history.push(`/spots/${id}/edit`))
+       
     }
 
     // Function to load spot details and reviews upon click
     const load = () => {
-        dispatch(getSpot(id))
-        dispatch(getReviews(id))
+        dispatch(getSpot(id)).then(res => dispatch(getReviews(id)))
     }
 
 
