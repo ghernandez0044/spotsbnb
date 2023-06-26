@@ -60,7 +60,7 @@ function BookingGalleryCard({ booking, manage }){
     return (
         <li className='booking-gallery-card'>
                 <NavLink exact to={`/spots/${booking?.Spot?.id}`}>
-                    <img style={{ width: '100%' }} src={spot.previewImage} alt='' />
+                    <img style={{ width: '100%' }} src={spot?.previewImage} alt='' />
                     <div className="content-container">
                         <div className='city-container'>
                             <h4>{booking?.Spot?.city}, {booking?.Spot?.state}</h4>
@@ -81,7 +81,7 @@ function BookingGalleryCard({ booking, manage }){
                 </div>
                 <div className='manage-buttons-container'>    
                         <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Cancellation' message='Are you sure you want to cancel your booking?' onYes={onYes} yesLabel='Cancel Booking' onNo={onNo} noLabel='Keep Booking' />} buttonText='Cancel Booking' />
-                        <OpenModalButton className='manage-button' modalComponent={<UpdateBooking startDate={booking.startDate} endDate={booking.endDate} />} buttonText='Update' />
+                        <OpenModalButton className='manage-button' modalComponent={<UpdateBooking startDate={booking.startDate} endDate={booking.endDate} booking={booking} />} buttonText='Update' />
                 </div>
         </li>
     )

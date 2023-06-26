@@ -7,6 +7,7 @@ const LOAD_BOOKINGS = 'bookings/loadBookings'
 const LOAD_BOOKING = 'bookings/loadBooking'
 const CREATE_BOOKING = 'bookings/createBooking'
 const DELETE_BOOKING = 'bookings/deleteBooking'
+const UPDATE_BOOKING = 'bookings/updateBooking'
 
 // Create Action Creators
     // LOAD_BOOKINGS
@@ -38,6 +39,14 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
         return {
             type: DELETE_BOOKING,
             id
+        }
+    }
+
+    // UPDATE_BOOKING
+    export const actionUpdateBooking = (booking) => {
+        return {
+            type: UPDATE_BOOKING,
+            booking
         }
     }
 
@@ -93,6 +102,21 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
         return res
     }
 
+    // UPDATE_BOOKING Thunk
+    export const updateABooking = (updatedBooking, bookingId) => async dispatch => {
+        const res = await csrfFetch(`/api/bookings/${bookingId}`, {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedBooking)
+        })
+        if(res.ok){
+            const updatedBooking = res.json()
+            dispatch(actionUpdateBooking(updatedBooking))
+            return updatedBooking
+        }
+        return res
+    }
+
     // Initial State
     const initialState = {
         userBookings: {},
@@ -114,6 +138,8 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
             case DELETE_BOOKING:
                 delete newState.userBookings[action.id]
                 return newState
+            case UPDATE_BOOKING:
+                return {...state, userBookings: {...state.userBookings, [action.booking.id]: action.booking}}
             default:
                 return state
         }

@@ -78,6 +78,7 @@ function SpotDetails(){
             endDate: bookingEndDate
         }
 
+
         dispatch(createABooking(createdBooking, spot.id)).then(res => {
             setIsSubmitted(false)
             history.push(`/bookings/current`)
