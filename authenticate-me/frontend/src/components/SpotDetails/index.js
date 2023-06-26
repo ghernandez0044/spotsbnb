@@ -1,5 +1,5 @@
 // Necessary imports
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -18,6 +18,9 @@ function SpotDetails(){
     // Create dispatch method
     const dispatch = useDispatch()
 
+    // Create history method
+    const history = useHistory()
+
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
         dispatch(getSpot(id))
@@ -26,6 +29,8 @@ function SpotDetails(){
     // Create state variables
     const [ render, setRender ] = useState(false)
     const [ bookingDateRange, setBookingDateRange ] = useState([])
+    const [ backendErrors, setBackendErrors ] = useState({})
+    const [ isSubmitted, setIsSubmitted ] = useState(false)
     
     const store = useSelector(state => state)
     const spot = useSelector((state) => state.spots.singleSpot)
@@ -51,21 +56,26 @@ function SpotDetails(){
     const belongsToCurrentUser = currentUser?.id === ownerId
 
     // Function to reserve spot
-    const reserve = () => {
-        alert('reserve booking coming soon!')
+    const reserve = async () => {
+        setIsSubmitted(true)
 
-        const bookingStartDate = bookingDateRange[0].toISOString().split('T')[0]
-        const bookingEndDate = bookingDateRange[1].toISOString().split('T')[0]
-
-        console.log('spotId: ', spot.id)
+        const bookingStartDate = bookingDateRange[0]?.toISOString().split('T')[0]
+        const bookingEndDate = bookingDateRange[1]?.toISOString().split('T')[0]
 
         const createdBooking = {
             startDate: bookingStartDate,
             endDate: bookingEndDate
         }
 
-        dispatch(createABooking(createdBooking, spot.id)).catch(error => console.log(error))
-
+        dispatch(createABooking(createdBooking, spot.id)).then(res => {
+            setIsSubmitted(false)
+            history.push(`/bookings/current`)
+        }).catch(async error => {
+            const errObj = {}
+            const formattedError = await error.json()
+            errObj.backendError = formattedError.message
+            setBackendErrors(errObj)
+        })
 
     }
 
@@ -105,6 +115,9 @@ function SpotDetails(){
                     {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? (
                         <div className='reservation-container'>
                             <div className='calendar-testing-container'>
+                                {isSubmitted && backendErrors.backendError && (
+                                    <div className='error-decoration'>{backendErrors.backendError}</div>
+                                )}
                                 <CalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
                             </div>
                             <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>

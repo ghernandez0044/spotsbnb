@@ -13,6 +13,17 @@
     /* border: 3px solid black; */
 }
 
+.error-decoration{
+    font-family: var(--content-font);
+    color: red;
+    text-transform: uppercase;
+    /* border: 3px solid lime; */
+    margin: 15px auto;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .description-container {
     /* border: 3px solid lime; */
     min-width: 200px;

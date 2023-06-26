@@ -11,7 +11,7 @@ function CalendarComponent({ setBookingDateRange, bookingDateRange }){
     return (
         <div className="calendar-component-container">
             <div className='react-calendar-container'>
-                <Calendar value={date} minDate={new Date()} selectRange={true} onChange={setBookingDateRange} />
+                <Calendar minDate={new Date()} selectRange={true} onChange={setBookingDateRange} />
             </div>
         </div>
     )

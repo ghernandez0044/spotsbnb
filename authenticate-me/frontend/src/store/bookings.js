@@ -74,8 +74,9 @@ const DELETE_BOOKING = 'bookings/deleteBooking'
             const createdBooking = await res.json()
             dispatch(actionCreateBooking(createdBooking))
             return createABooking
+        } else {
+            return res
         }
-        return res
     }
 
     // DELETE_BOOKING Thunk
