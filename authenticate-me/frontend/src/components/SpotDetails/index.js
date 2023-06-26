@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { normalizeData } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
 import { getSpot } from '../../store/spots'
-import { createABooking } from '../../store/bookings'
+import { createABooking, getUserBookings } from '../../store/bookings'
 import ReviewGallery from '../ReviewGallery'
 import CalendarComponent from '../CalendarComponent'
 import './SpotDetails.css'
@@ -23,7 +23,7 @@ function SpotDetails(){
 
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
-        dispatch(getSpot(id))
+        dispatch(getSpot(id)).then(res => getUserBookings())
     }, [])
 
     // Create state variables
@@ -38,6 +38,10 @@ function SpotDetails(){
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)
     const allSpotsSpot = useSelector((state) => state.spots.Spots)[id]
+
+    // Check to see if current user has a booking for this spot
+    const userHasBooking = useSelector(state => Object.values(state.bookings.userBookings))
+    console.log('userHasBooking: ', userHasBooking)
 
     if(!spot) return null
 
