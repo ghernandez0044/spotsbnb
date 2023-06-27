@@ -139,7 +139,8 @@ const UPDATE_BOOKING = 'bookings/updateBooking'
                 delete newState.userBookings[action.id]
                 return newState
             case UPDATE_BOOKING:
-                return {...state, userBookings: {...state.userBookings, [action.booking.id]: action.booking}}
+                // return {...state, userBookings: {...state.userBookings, [action.booking.id]: action.booking}}
+                return newState
             default:
                 return state
         }

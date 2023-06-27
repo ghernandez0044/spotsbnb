@@ -3,35 +3,20 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal"
 import Calendar from "react-calendar"
-import { updateABooking } from "../../store/bookings"
+import { DateRange } from "react-date-range"
+import { updateABooking, getUserBookings } from "../../store/bookings"
 import '../CalendarComponent/CalendarComponent.css'
 
 
 function UpdateBooking({ startDate, endDate, booking }){
-
-    const startDateArray = startDate.split('-')
-    console.log('UpdateBooking startDateArray: ', startDateArray)
-    const startYear = Number(startDateArray[0])
-    const startMonth = Number(startDateArray[1]) - 1
-    const startDay = startDateArray[2].split('T')[0]
-
-    const endDateArray = booking.endDate.split('-')
-    console.log('UpdateBooking endDateArray: ', endDateArray)
-
-    const endYear = Number(endDateArray[0])
-    const endMonth = Number(endDateArray[1]) - 1
-    const endDay = endDateArray[2].split('T')[0]
-
     // Create state variables
-    const [ startDateObject, setStartDateObject ] = useState(startDate)
-    const [ endDateObject, setEndDateObject ] = useState(endDate)
-    const [ defaultDate, setDefaultDate ] = useState([new Date(startYear, startMonth, startDay), new Date(endYear, endMonth, endDay)])
-    const [bookingDateRange, setBookingDateRange ] = useState([])
+    const [ bookingDateRange, setBookingDateRange ] = useState([{
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        key: 'selection'
+    }])
     const [ backendErrors, setBackendErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
-
-    console.log('UpdateBooking startDateObject: ', new Date(startYear, startMonth, startDay))
-    console.log('UpdateBooking endDateObject: ', new Date(endYear, endMonth, endDay))
 
     // Create dispatch method
     const dispatch = useDispatch()
@@ -44,19 +29,17 @@ function UpdateBooking({ startDate, endDate, booking }){
 
     // Create function to update booking
     const updateBooking = () => {
-        console.log('updateBooking')
-
         setIsSubmitted(true)
+        console.log('UpdateBooking dateRange: ', bookingDateRange)
 
-        const bookingStartDate = bookingDateRange[0]?.toISOString().split('T')[0]
-        const bookingEndDate = bookingDateRange[1]?.toISOString().split('T')[0]
-
-        const createdUpdateBooking = {
-            startDate: bookingStartDate,
-            endDate: bookingEndDate
+        const objectCreatedUpdateBooking = {
+            startDate: bookingDateRange[0].startDate,
+            endDate: bookingDateRange[0].endDate
         }
 
-        dispatch(updateABooking(createdUpdateBooking, booking.id)).then(res => {
+        dispatch(updateABooking(objectCreatedUpdateBooking, booking.id)).then(res => {
+            dispatch(getUserBookings())
+        }).then(res => {
             setIsSubmitted(false)
             closeModal()
         }).catch(async error => {
@@ -65,10 +48,8 @@ function UpdateBooking({ startDate, endDate, booking }){
             errObj.backendError = formattedError.message
             setBackendErrors(errObj)
         })
-
+        
     }
-
-    console.log('UpdateBooking dateRange: ', bookingDateRange)
 
     return (
         <div className="overall-container">
@@ -79,7 +60,10 @@ function UpdateBooking({ startDate, endDate, booking }){
                 <div className='error-decoration'>{backendErrors.backendError}</div>
             )}
             <div className="message-container">
-                <Calendar minDate={new Date()} defaultValue={defaultDate} selectRange={true} onChange={setBookingDateRange} />
+                <DateRange rangeColors={['#FF5A5F', '#3ecf8e', '#fed14c']} editableDateInputs={true}
+                    onChange={item => setBookingDateRange([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={bookingDateRange} />
             </div>
             <button onClick={updateBooking} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Update</p></button>
         </div>
