@@ -1,8 +1,8 @@
 // Necessary imports
-import { NavLink, useHistory, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
-import { getBooking, deleteABooking } from '../../store/bookings'
+import { deleteABooking } from '../../store/bookings'
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import UpdateBooking from '../UpdateBooking'

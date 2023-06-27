@@ -4,13 +4,8 @@ import SpotGalleryCard from "../SpotGalleryCard"
 
 
 function SpotSearchResults(){
-    // Consume desired properties from params object
-    const { searchQuery } = useParams()
-
     // Subscribe to searched spots slice of state
     const searchedSpots = useSelector(state => Object.values(state.spots.searchedSpots))
-
-    console.log('searchedSpots: ', searchedSpots)
 
     if(!searchedSpots || searchedSpots.length === 0) return null
 

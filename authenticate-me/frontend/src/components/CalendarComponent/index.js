@@ -6,8 +6,6 @@ function CalendarComponent({ setBookingDateRange, bookingDateRange }){
     // Create state variables
     const [ date, setDate ] = useState(new Date())
 
-    console.log('dateRange: ', bookingDateRange)
-
     return (
         <div className="calendar-component-container">
             <div className='react-calendar-container'>

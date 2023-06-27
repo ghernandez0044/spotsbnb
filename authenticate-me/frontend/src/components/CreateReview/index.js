@@ -10,12 +10,10 @@ import { editAReview } from '../../store/reviews'
 import RatingInput from '../RatingInput'
 import './CreateReview.css'
 
-function CreateReview({ id, renderObj, edit, data }){
+function CreateReview({ id, edit, data }){
     // Create dispatch method
     const dispatch = useDispatch()
 
-    // Destructure desired properties from renderObj
-    // const { render, setRender } = renderObj
     const spot = useSelector(state => state.spots.Spots[id])
 
     // Consume ModalContext
@@ -42,7 +40,6 @@ function CreateReview({ id, renderObj, edit, data }){
     const reRenderReviews = () => {
         dispatch(getSpots())
         dispatch(loadSpot(id))
-        // setRender(!render)
         dispatch(getReviews(id))
     }
 
@@ -84,7 +81,6 @@ function CreateReview({ id, renderObj, edit, data }){
                 
                 if(!newReview) return
             }
-
 
             setIsSubmitted(false)
             reset()

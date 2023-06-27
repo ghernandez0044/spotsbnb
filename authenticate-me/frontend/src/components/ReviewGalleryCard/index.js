@@ -1,5 +1,5 @@
 // Necessary imports
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import { deleteAReview } from '../../store/reviews'
@@ -24,7 +24,6 @@ function ReviewGalleryCard({ data, manage }){
     
     // Create reference to current user
     const currentUser = useSelector(state => state.session.user)
-    // console.log('currentUser: ', currentUser)
 
     // Create reference to reviews state slice
     const reviewState = useSelector(state => state.reviews.userReviews)

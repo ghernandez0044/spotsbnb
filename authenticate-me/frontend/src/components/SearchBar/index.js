@@ -1,5 +1,5 @@
 // Necessary imports
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getSearchedSpots } from "../../store/spots";
@@ -15,7 +15,6 @@ function SearchBar(){
 
     // Create history method
     const history = useHistory()
-
 
     return (
         <div className='search-bar-container'>
