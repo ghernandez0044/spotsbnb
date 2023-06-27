@@ -1,12 +1,13 @@
 // Necessary imports
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { normalizeData } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
 import { getSpot } from '../../store/spots'
+import { createABooking, getUserBookings } from '../../store/bookings'
 import ReviewGallery from '../ReviewGallery'
+import NewCalendarComponent from '../NewCalendarComponent'
 import './SpotDetails.css'
 
 function SpotDetails(){
@@ -16,20 +17,33 @@ function SpotDetails(){
     // Create dispatch method
     const dispatch = useDispatch()
 
+    // Create history method
+    const history = useHistory()
+
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
-        dispatch(getSpot(id))
+        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => getUserBookings())
     }, [])
 
     // Create state variables
-    const [ render, setRender ] = useState(false)
+    const [ bookingDateRange, setBookingDateRange ] = useState([{
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection'
+    }])
+    const [ backendErrors, setBackendErrors ] = useState({})
+    const [ isSubmitted, setIsSubmitted ] = useState(false)
     
-    const store = useSelector(state => state)
     const spot = useSelector((state) => state.spots.singleSpot)
-  
+
     // Subscribe to user session slice of state
     const currentUser = useSelector((state) => state.session.user)
     const allSpotsSpot = useSelector((state) => state.spots.Spots)[id]
+
+    // Check to see if current user has a booking for this spot
+    const userHasBooking = useSelector(state => Object.values(state.bookings.userBookings))
+
+    const bookingBoolean = userHasBooking.find(booking => booking.spotId === Number(id)) ? true : false
 
     if(!spot) return null
 
@@ -48,8 +62,24 @@ function SpotDetails(){
     const belongsToCurrentUser = currentUser?.id === ownerId
 
     // Function to reserve spot
-    const reserve = () => {
-        alert('reserve booking coming soon!')
+    const reserve = async () => {
+        setIsSubmitted(true)
+
+        const objectCreatedBooking = {
+            startDate: bookingDateRange[0].startDate,
+            endDate: bookingDateRange[0].endDate
+        }
+
+        dispatch(createABooking(objectCreatedBooking, spot.id)).then(res => {
+            setIsSubmitted(false)
+            history.push(`/bookings/current`)
+        }).catch(async error => {
+            const errObj = {}
+            const formattedError = await error.json()
+            errObj.backendError = formattedError.message
+            setBackendErrors(errObj)
+        })
+
     }
 
     return (
@@ -85,11 +115,21 @@ function SpotDetails(){
                             {avgRating ? <p>{avgRating} stars  {reviewCount && ( <span>&#183;</span> )} {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> : <p><i className='fa-solid fa-start' />New</p>}
                         </div>
                     </div>
-                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser ? <button onClick={reserve} className='reserve-button'><p style={{ fontSize: '16px' }}>Reserve</p></button> : <p></p>}
+                    {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser && !bookingBoolean ? (
+                        <div className='reservation-container'>
+                            <div className='calendar-testing-container'>
+                                {isSubmitted && backendErrors.backendError && (
+                                    <div className='error-decoration'>{backendErrors.backendError}</div>
+                                )}
+                                <NewCalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
+                            </div>
+                            <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto', cursor: 'pointer' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
+                        </div>
+                    ) : <p></p>}
                 </div>
             </div>
             <div className='reviews-container'>
-                <ReviewGallery id={id} spot={allSpotsSpot} reviewCount={reviewCount} avgRating={avgRating} renderObj={{ render, setRender }} />
+                <ReviewGallery id={id} spot={allSpotsSpot} reviewCount={reviewCount} avgRating={avgRating} />
             </div>
         </div>
     )

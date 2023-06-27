@@ -10,12 +10,10 @@ import { editAReview } from '../../store/reviews'
 import RatingInput from '../RatingInput'
 import './CreateReview.css'
 
-function CreateReview({ id, renderObj, edit, data }){
+function CreateReview({ id, edit, data }){
     // Create dispatch method
     const dispatch = useDispatch()
 
-    // Destructure desired properties from renderObj
-    // const { render, setRender } = renderObj
     const spot = useSelector(state => state.spots.Spots[id])
 
     // Consume ModalContext
@@ -42,7 +40,6 @@ function CreateReview({ id, renderObj, edit, data }){
     const reRenderReviews = () => {
         dispatch(getSpots())
         dispatch(loadSpot(id))
-        // setRender(!render)
         dispatch(getReviews(id))
     }
 
@@ -66,7 +63,6 @@ function CreateReview({ id, renderObj, edit, data }){
 
             if(edit && data){
                 const editedReview = await dispatch(editAReview(newReviewObj, data.id)).catch(async (res) => {
-                    console.log('res: ', res)
                     const data = res
                     if(data && data.errors) errorsObj.databaseErrors = data.errors
                 })
@@ -84,7 +80,6 @@ function CreateReview({ id, renderObj, edit, data }){
                 
                 if(!newReview) return
             }
-
 
             setIsSubmitted(false)
             reset()
@@ -107,7 +102,7 @@ function CreateReview({ id, renderObj, edit, data }){
                     <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Quick review' value={review} onChange={(e) => setReview(e.target.value)} />
                 </div>
                 <div className='rating-input-container'>
-                    {<RatingInput rating={stars} onChange={onChange} />}
+                    <RatingInput rating={stars} onChange={onChange} />
                 </div>
                 <button className='review-button' disabled={review.length < 10 || stars < 1}><p>{!edit ? 'Submit Your Review' : 'Update Your Review' }</p></button>
             </form>

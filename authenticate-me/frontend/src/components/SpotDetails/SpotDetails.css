@@ -13,6 +13,17 @@
     /* border: 3px solid black; */
 }
 
+.error-decoration{
+    font-family: var(--content-font);
+    color: red;
+    text-transform: uppercase;
+    /* border: 3px solid lime; */
+    margin: 15px auto;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
 .description-container {
     /* border: 3px solid lime; */
     min-width: 200px;
@@ -28,7 +39,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 160px;
+    min-height: 160px;
+    height: fit-content;
     max-height: fit-content;
     width: 400px;
     position: sticky;
@@ -79,6 +91,14 @@
     min-width: 100px;
 }
 
+.reservation-container{
+    /* border: 3px solid purple; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .booking-price-container {
     /* border: 3px solid lime; */
     display: flex;
@@ -127,12 +147,13 @@
 }
 
 .content {
-    /* border: 3px solid purple; */
+    /* border: 3px solid red; */
     /* border-top: 2px solid lightgray; */
     border-bottom: 1px solid lightgray;
     display: flex;
     justify-content: space-between;
     min-width: 650px;
+    height: fit-content;
 }
 
 .price-container {
@@ -163,5 +184,9 @@
 .reserve-button:hover {
     /* box-shadow: 5px 5px black; */
     box-shadow: none;
+}
+
+.card-content{
+    font-family: var(--content-font);
 }
 

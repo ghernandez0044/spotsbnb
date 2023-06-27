@@ -23,6 +23,26 @@ router.get('/current', requireAuth, async (req, res, next) => {
         const url = bookingObj.Spot.SpotImages[0] ? bookingObj.Spot.SpotImages[0].url : null
         delete bookingObj.Spot.SpotImages
         bookingObj.Spot.previewImage = url
+
+        const spot = bookingObj.Spot
+
+        const reviews = await Review.findAll({
+            where: {
+               spotId: spot.id 
+            }
+        })
+    
+        let totalStars = 0
+    
+        for(let review of reviews){
+            const rating = review.stars
+            totalStars += rating
+        }
+    
+        const avgRating = Number(Number(totalStars / reviews.length).toFixed(1))
+    
+        spot.avgRating = avgRating ? avgRating : 0
+
         payload.push(bookingObj)
     }
 

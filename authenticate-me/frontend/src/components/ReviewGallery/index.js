@@ -7,7 +7,7 @@ import OpenModalButton from '../OpenModalButton'
 import CreateReview from '../CreateReview'
 import './ReviewGallery.css'
 
-function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
+function ReviewGallery({ id, reviewCount, avgRating, spot }){
     // Create dispatch method
     const dispatch = useDispatch()
 
@@ -40,7 +40,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
                         <i className='fa-solid fa-star' />
                         <h2>New</h2>
                     </div>
-                    {currentUser && !belongsToCurrentUser ? ( <><p>Be the first to post a review!</p><OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' /></> ) : ( <p></p> )}
+                    {currentUser && !belongsToCurrentUser ? ( <><p>Be the first to post a review!</p><OpenModalButton modalComponent={<CreateReview id={id} />} buttonText='Post Your Review' /></> ) : ( <p></p> )}
                 </div>
             </div>
         </>
@@ -65,7 +65,7 @@ function ReviewGallery({ id, reviewCount, avgRating, renderObj, spot }){
                         {reviews && ( <p>{reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> )}
                     </div></> )}
                 </div>
-                {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} renderObj={renderObj} />} buttonText='Post Your Review' /> ) : ( <p></p> )}
+                {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} />} buttonText='Post Your Review' /> ) : ( <p></p> )}
             </div>
             <ul className='reviews-list'>
                 {reviews.map(review => (

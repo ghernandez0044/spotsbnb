@@ -9,7 +9,6 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking, sequelize} = requir
 
 // Get all Spots
 router.get('/', handleValidationErrors, async (req, res, next) => {
-
     const where = {}
 
     const size = req.query.size ? req.query.size : 20
@@ -146,7 +145,188 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
 
         for(let review of reviews){
             const rating = review.stars
-            console.log('Rating', rating)
+            totalStars += rating
+        }
+
+        const avgRating = Number(Number(totalStars / reviews.length).toFixed(1))
+
+        spot.dataValues.avgRating = avgRating ? avgRating : 0
+
+        // spot.dataValues.avgRating = Number(Number.parseFloat(avgRating[0].avgRating).toFixed(1))
+
+        const previewImages = await SpotImage.findAll({
+            where: {
+                spotId: spot.id
+            },
+            attributes: {
+                include: ['url']
+            }
+        })
+
+        let previewUrl = ''
+        for(let previewImage of previewImages){
+            if(previewImage.dataValues.preview === true){
+                previewUrl = previewImage.dataValues.url
+            }
+        }
+
+        spot.dataValues.previewImage = previewUrl
+        spot.dataValues.reviewCount = reviews.length ? reviews.length : 0
+    }
+
+    return res.status(200).json({
+        Spots: spots,
+        page,
+        size
+    })
+})
+// Get all Searched Spots
+router.post('/search', handleValidationErrors, async (req, res, next) => {
+
+
+    const where = {}
+    const size = req.query.size ? req.query.size : 20
+    const page = req.query.page ? req.query.page : 1
+    const spotCity = req.body.city ? req.body.city : ''
+
+
+    if(page <= 0){
+        const err = new Error('Page must be greater than or equal to 1')
+        err.status = 400
+        next(err)
+    }
+
+    if(size <= 0){
+        const err = new Error('Size must be greater than or equal to 1')
+        err.status = 400
+        next(err)
+    }
+
+   const minLat = req.query.minLat ? req.query.minLat : null
+   const maxLat = req.query.maxLat ? req.query.maxLat : null
+   const minLng = req.query.minLng ? req.query.minLng : null
+   const maxLng = req.query.maxLng ? req.query.maxLng : null
+   const minPrice = req.query.minPrice ? req.query.minPrice : null
+   const maxPrice = req.query.maxPrice ? req.query.maxPrice : null
+
+   if(maxLat > 90){
+    const err = new Error('Maximum latitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(minLat < 0){
+    const err = new Error('Maximum latitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(minLng < -90){
+    const err = new Error('Minimum longitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(maxLng > 90){
+    const err = new Error('Maximum longitude is invalid')
+    err.status = 400
+    next(err)
+   }
+
+   if(minPrice < 0){
+    const err = new Error('Minimum price must be greater than or equal to 0')
+    err.status = 400
+    next(err)
+   }
+
+   if(maxPrice < 0){
+    const err = new Error('Maximum price must be greater than or equal to 0')
+    err.status = 400
+    next(err)
+   }
+
+    if(minLat && maxLat){
+        where.lat = {
+                [Op.between]: [minLat, maxLat]
+            }
+    } else if(minLat){
+        where.lat = {
+            [Op.gte]: minLat
+        }
+    } else if(maxLat){
+        where.lat = {
+            [Op.lte]: maxLat
+        }
+    }
+
+
+   if(minLng && maxLng){
+    where.lng =  {
+            [Op.between]: [minLng, maxLng]
+        }
+    } else if(minLng){
+        where.lng = {
+            [Op.gte]: minLng
+        }
+    } else if(maxLat){
+        where.lng = {
+            [Op.lte]: maxLat
+        }
+    }
+
+    if(minPrice && maxPrice){
+        where.price =  {
+                [Op.between]: [minPrice, maxPrice]
+            }
+        } else if(minPrice){
+            where.price = {
+                [Op.gte]: minPrice
+            }
+        } else if(maxPrice){
+            where.price = {
+                [Op.lte]: maxPrice
+            }
+        }
+
+    if(spotCity.length > 1){
+        where.city = {
+            [Op.like]: `%${spotCity}%`
+        }
+    }
+
+    const spots = await Spot.findAll({
+        limit: size,
+        offset: (page - 1) * size,
+        where
+    })
+
+    for(let spot of spots){
+        // const avgRating = await Review.findAll({
+        //     attributes: {
+        //         include: [ 
+        //             [
+        //               sequelize.fn("AVG", sequelize.col("stars")), 
+        //               "avgRating"
+        //             ]
+        //         ]
+        //     },
+        //     where: {
+        //         spotId: spot.id
+        //     },
+        //     subQuery: false,
+        //     raw: true
+        // })
+
+        const reviews = await Review.findAll({
+            where: {
+               spotId: spot.id 
+            }
+        })
+
+        let totalStars = 0
+
+        for(let review of reviews){
+            const rating = review.stars
             totalStars += rating
         }
 
@@ -219,7 +399,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
         for(let review of reviews){
             const rating = review.stars
-            console.log('Rating', rating)
             totalStars += rating
         }
 
@@ -271,7 +450,22 @@ router.get('/:spotId', async (req, res, next) => {
     ]
     })
 
-    
+    const reviews = await Review.findAll({
+        where: {
+           spotId: spot.id 
+        }
+    })
+
+    let totalStars = 0
+
+    for(let review of reviews){
+        const rating = review.stars
+        totalStars += rating
+    }
+
+    const avgRating = Number(Number(totalStars / reviews.length).toFixed(1))
+
+    spot.dataValues.avgRating = avgRating ? avgRating : 0
 
     if(spot){
         const owner = spot.dataValues.User
@@ -414,7 +608,6 @@ router.put('/:spotId', requireAuth, handleValidationErrors, async (req, res, nex
 
 // Delete a Spot - require authentication - require authorization
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
-    console.log(req.params.spotId)
     const paramsId = Number(req.params.spotId)
     const currentSpot = await Spot.findByPk(paramsId)
 
@@ -482,8 +675,6 @@ router.post('/:spotId/reviews', requireAuth, handleValidationErrors, async (req,
             userId: req.user.id
         }
     })
-
-    console.log(potentialReview)
 
     if(potentialReview){
         const err = new Error('User already has a review for this spot')
@@ -602,13 +793,25 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         }
     }
 
+    const startDateArray = startDate.split('-')
+    const startYear = Number(startDateArray[0])
+    const startMonth = Number(startDateArray[1]) - 1
+    const startDay = Number(startDateArray[2])
+
+    const endDateArray = endDate.split('-')
+    const endYear = Number(endDateArray[0])
+    const endMonth = Number(endDateArray[1]) - 1
+    const endDay = Number(endDateArray[2])
+
     const booking = await spot.createBooking({
         userId: req.user.id,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate)
+        startDate: startDate,
+        endDate: endDate
     })
 
     return res.status(200).json(booking)
+
+    // return res.status(200)
 
 })
 

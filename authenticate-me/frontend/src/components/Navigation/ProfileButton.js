@@ -23,7 +23,6 @@ function ProfileButton({ user }){
 
     // Reference to the current user
     const currentUser = useSelector(state => state.session.user)
-    console.log('currentUser: ', currentUser)
 
     // Function to open dropdown menu
     const openMenu = () => {
@@ -58,8 +57,8 @@ function ProfileButton({ user }){
     return (
         <div>
                 <div id='user-menu' className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>
-                    {currentUser && ( <i className='fa-solid fa-user' /> )}
-                    <i className='fa-solid fa-bars' />
+                    {currentUser && ( <i className='fa-solid fa-circle-user user-icon' /> )}
+                    <i className='fa-solid fa-bars hamburger-icon' />
                     <ul className={showMenu ? 'profile-dropdown' : 'hidden'} ref={ulRef}>
                         {user ? (
                         <>
@@ -76,8 +75,13 @@ function ProfileButton({ user }){
                                 <p><b>Manage Your Reviews</b></p>
                                 </Link>
                             </li>
+                            <li className='list-item border-shadows'>
+                                <Link onClick={closeMenu} exact to='/bookings/current'>
+                                <p><b>Manage Your Bookings</b></p>
+                                </Link>
+                            </li>
                             <li className='list-item'>
-                            <button className='logout-button' onClick={logout}>Log Out</button>
+                            <button style={{ cursor: 'pointer' }} className='logout-button' onClick={logout}>Log Out</button>
                             </li>
                         </>
                         ) : (

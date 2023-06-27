@@ -2,6 +2,7 @@
 import './Confirmation.css'
 
 function Confirmation({ label, message, onYes, onNo, yesLabel, noLabel }){
+
     return (
         <>
             <div className='overall-container'>

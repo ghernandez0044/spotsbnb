@@ -127,3 +127,12 @@
 .bold {
     font-weight: bold;
 }
+
+.user-icon{
+    font-size: 25px;
+    color: #717171;
+}
+
+.hamburger-icon{
+    color: #717171;
+}
