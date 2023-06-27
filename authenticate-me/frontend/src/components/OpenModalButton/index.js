@@ -16,7 +16,7 @@ function OpenModalButton({ modalComponent, buttonText, onButtonClick, onModalClo
 
 
     return (
-        <button className='modal-button' style={{ fontFamily: 'Rubik' }} onClick={onClick}>{buttonText}</button>
+        <button className='modal-button' style={{ fontFamily: 'Rubik', cursor: 'pointer' }} onClick={onClick}>{buttonText}</button>
     )
 }
 

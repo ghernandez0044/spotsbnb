@@ -26,4 +26,9 @@ i {
     font-size: 12px;
     margin: 10px 26px;
     text-transform: uppercase;
+    cursor: pointer;
+}
+
+.footer-font:hover{
+    color: lightgray;
 }

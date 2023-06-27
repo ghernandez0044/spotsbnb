@@ -123,7 +123,7 @@ function SpotDetails(){
                                 )}
                                 <NewCalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
                             </div>
-                            <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
+                            <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto', cursor: 'pointer' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
                         </div>
                     ) : <p></p>}
                 </div>

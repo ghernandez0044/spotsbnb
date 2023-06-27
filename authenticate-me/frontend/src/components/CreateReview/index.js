@@ -63,7 +63,6 @@ function CreateReview({ id, edit, data }){
 
             if(edit && data){
                 const editedReview = await dispatch(editAReview(newReviewObj, data.id)).catch(async (res) => {
-                    console.log('res: ', res)
                     const data = res
                     if(data && data.errors) errorsObj.databaseErrors = data.errors
                 })
@@ -103,7 +102,7 @@ function CreateReview({ id, edit, data }){
                     <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Quick review' value={review} onChange={(e) => setReview(e.target.value)} />
                 </div>
                 <div className='rating-input-container'>
-                    {<RatingInput rating={stars} onChange={onChange} />}
+                    <RatingInput rating={stars} onChange={onChange} />
                 </div>
                 <button className='review-button' disabled={review.length < 10 || stars < 1}><p>{!edit ? 'Submit Your Review' : 'Update Your Review' }</p></button>
             </form>

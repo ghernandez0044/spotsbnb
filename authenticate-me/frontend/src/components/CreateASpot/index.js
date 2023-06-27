@@ -206,7 +206,7 @@ function CreateASpot({ edit, spot }){
                         <p><em>Guests will only get your exact address once they have booked a reservation.</em></p>
                         <div className='location-inputs'>
                             <li id='country'>
-                                <label>Country: <br></br>  {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' style={{ width: '400px' }} /></label>
+                                <label>Country:<br></br>  {isSubmitted && errors.countryError && ( <p className='errors'>{errors.countryError}</p> )} <input type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' style={{ width: '400px' }} /></label>
                             </li>
                             <li id='address'>
                                 <label>Address: <br></br>  {isSubmitted && errors.addressError && ( <p className='errors'>{errors.addressError}</p> )}<input type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' style={{ width: '400px' }} /></label>
@@ -263,7 +263,7 @@ function CreateASpot({ edit, spot }){
                     </div>
                     <div className='button-container'>
                         <li>
-                            {!edit ? <button className='spot-form-button' type='submit'>Create A Spot</button> : <button className='spot-form-button' type='submit'>Edit Spot</button>}
+                            {!edit ? <button style={{ cursor: 'pointer' }} className='spot-form-button' type='submit'>Create A Spot</button> : <button style={{ cursor: 'pointer' }} className='spot-form-button' type='submit'>Edit Spot</button>}
                         </li>
                     </div>
                 </ul>

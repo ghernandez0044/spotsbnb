@@ -9,20 +9,23 @@
   --content-font: 'Rubik'
 }
 
+
+
 .rating-input {
     display: flex;
     margin-right: 4px;
+    /* border: 3px solid red; */
   }
   
   .review-item {
     display: flex;
   }
   
-  .rating-input .filled {
+  .rating-input .filled i{
     color: gold;
   }
   
-  .rating-input .empty {
+  .rating-input .empty i{
     color: lightgray;
   }
   

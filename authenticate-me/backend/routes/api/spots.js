@@ -473,8 +473,6 @@ router.get('/:spotId', async (req, res, next) => {
 
     spot.dataValues.avgRating = avgRating ? avgRating : 0
 
-    
-
     if(spot){
         const owner = spot.dataValues.User
         delete spot.dataValues.User

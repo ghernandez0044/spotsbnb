@@ -2,7 +2,8 @@
     /* border: 3px solid pink; */
     border-radius: 15px;
     min-width: 350px;
-    width: fit-content;
+    width: 450px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -81,7 +81,7 @@ function ProfileButton({ user }){
                                 </Link>
                             </li>
                             <li className='list-item'>
-                            <button className='logout-button' onClick={logout}>Log Out</button>
+                            <button style={{ cursor: 'pointer' }} className='logout-button' onClick={logout}>Log Out</button>
                             </li>
                         </>
                         ) : (
