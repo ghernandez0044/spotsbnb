@@ -290,7 +290,7 @@ router.post('/search', handleValidationErrors, async (req, res, next) => {
 
     if(spotCity.length > 1){
         where.city = {
-            [Op.like]: `%${spotCity}%`
+            [Op.iLike]: `%${spotCity}%`
         }
     }
 
