@@ -78,16 +78,24 @@ function SpotDetails(){
             endDate: bookingEndDate
         }
 
+        const alternateCreatedBooking = {
+            startDate: bookingDateRange[0].toString(),
+            endDate: bookingDateRange[1].toString()
+        }
 
-        dispatch(createABooking(createdBooking, spot.id)).then(res => {
-            setIsSubmitted(false)
-            history.push(`/bookings/current`)
-        }).catch(async error => {
-            const errObj = {}
-            const formattedError = await error.json()
-            errObj.backendError = formattedError.message
-            setBackendErrors(errObj)
-        })
+        console.log('SpotDetails createdBooking: ', createdBooking)
+        console.log('SpotDetails alternateCreatedBooking: ', alternateCreatedBooking)
+
+
+        // dispatch(createABooking(createdBooking, spot.id)).then(res => {
+        //     setIsSubmitted(false)
+        //     history.push(`/bookings/current`)
+        // }).catch(async error => {
+        //     const errObj = {}
+        //     const formattedError = await error.json()
+        //     errObj.backendError = formattedError.message
+        //     setBackendErrors(errObj)
+        // })
 
     }
 

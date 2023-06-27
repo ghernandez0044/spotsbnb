@@ -9,13 +9,29 @@ import '../CalendarComponent/CalendarComponent.css'
 
 function UpdateBooking({ startDate, endDate, booking }){
 
+    const startDateArray = startDate.split('-')
+    console.log('UpdateBooking startDateArray: ', startDateArray)
+    const startYear = Number(startDateArray[0])
+    const startMonth = Number(startDateArray[1]) - 1
+    const startDay = startDateArray[2].split('T')[0]
+
+    const endDateArray = booking.endDate.split('-')
+    console.log('UpdateBooking endDateArray: ', endDateArray)
+
+    const endYear = Number(endDateArray[0])
+    const endMonth = Number(endDateArray[1]) - 1
+    const endDay = endDateArray[2].split('T')[0]
+
     // Create state variables
     const [ startDateObject, setStartDateObject ] = useState(startDate)
     const [ endDateObject, setEndDateObject ] = useState(endDate)
-    const [ defaultDate, setDefaultDate ] = useState([new Date(startDate), new Date(endDate)])
+    const [ defaultDate, setDefaultDate ] = useState([new Date(startYear, startMonth, startDay), new Date(endYear, endMonth, endDay)])
     const [bookingDateRange, setBookingDateRange ] = useState([])
     const [ backendErrors, setBackendErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
+
+    console.log('UpdateBooking startDateObject: ', new Date(startYear, startMonth, startDay))
+    console.log('UpdateBooking endDateObject: ', new Date(endYear, endMonth, endDay))
 
     // Create dispatch method
     const dispatch = useDispatch()

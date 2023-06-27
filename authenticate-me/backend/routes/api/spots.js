@@ -785,13 +785,28 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         }
     }
 
-    const booking = await spot.createBooking({
-        userId: req.user.id,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate)
-    })
+    const startDateArray = startDate.split('-')
+    console.log('apiRoutes createABooking Route startDateArray: ', startDateArray)
+    const startYear = Number(startDateArray[0])
+    const startMonth = Number(startDateArray[1]) - 1
+    const startDay = Number(startDateArray[2])
 
-    return res.status(200).json(booking)
+    const endDateArray = endDate.split('-')
+    console.log('apiRoutes createABooking Route endDateArray: ', endDateArray)
+
+    const endYear = Number(endDateArray[0])
+    const endMonth = Number(endDateArray[1]) - 1
+    const endDay = Number(endDateArray[2])
+
+    // const booking = await spot.createBooking({
+    //     userId: req.user.id,
+    //     startDate: new Date(startYear, startMonth, startDay),
+    //     endDate: new Date(endYear, endMonth, endDay)
+    // })
+
+    // return res.status(200).json(booking)
+
+    return res.status(200)
 
 })
 

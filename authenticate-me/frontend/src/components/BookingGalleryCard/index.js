@@ -26,8 +26,24 @@ function BookingGalleryCard({ booking, manage }){
         minute: 'numeric'
     }
 
-    const localStartingTime = new Date(booking.startDate).toLocaleString(navigator.language, options)
-    const localEndingTime = new Date(booking.endDate).toLocaleString(navigator.language, options)
+    console.log('BookingGalleryCard booking: ', booking)
+
+    console.log('BookingGalleryCard startDate: ', booking.startDate.split('-'))
+
+    const startDateArray = booking.startDate.split('-')
+    const startYear = Number(startDateArray[0])
+    const startMonth = Number(startDateArray[1]) - 1
+    const startDay = startDateArray[2].split('T')[0]
+
+    const endDateArray = booking.endDate.split('-')
+    const endYear = Number(endDateArray[0])
+    const endMonth = Number(endDateArray[1]) - 1
+    const endDay = endDateArray[2].split('T')[0]
+
+    const localStartingTime = new Date(startYear, startMonth, startDay).toString()
+    // const localStartingTime = new Date(startYear, startMonth, startDay).toLocaleString(navigator.language, options)
+    const localEndingTime = new Date(booking.endDate).toString()
+    // const localEndingTime = new Date(endYear, endMonth, endDay).toLocaleString(navigator.language, options)
     const localCreatedAtTime = new Date(booking.createdAt).toLocaleString(navigator.language, options)
 
     // Create dispatch method
