@@ -749,6 +749,9 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     const { startDate, endDate } = req.body
 
+    console.log('inside create a booking route startDate: ', startDate)
+    console.log('inside create a booking route endDate: ', endDate)
+
     const potentialBookings = await Booking.findAll({
         where: {
             spotId: req.params.spotId

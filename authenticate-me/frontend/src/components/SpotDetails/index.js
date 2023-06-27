@@ -9,6 +9,7 @@ import { getSpot } from '../../store/spots'
 import { createABooking, getUserBookings } from '../../store/bookings'
 import ReviewGallery from '../ReviewGallery'
 import CalendarComponent from '../CalendarComponent'
+import NewCalendarComponent from '../NewCalendarComponent'
 import './SpotDetails.css'
 
 function SpotDetails(){
@@ -28,7 +29,11 @@ function SpotDetails(){
 
     // Create state variables
     const [ render, setRender ] = useState(false)
-    const [ bookingDateRange, setBookingDateRange ] = useState([])
+    const [ bookingDateRange, setBookingDateRange ] = useState([{
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection'
+    }])
     const [ backendErrors, setBackendErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
     
@@ -70,24 +75,31 @@ function SpotDetails(){
     const reserve = async () => {
         setIsSubmitted(true)
 
-        const bookingStartDate = bookingDateRange[0]?.toISOString().split('T')[0]
-        const bookingEndDate = bookingDateRange[1]?.toISOString().split('T')[0]
+        // const bookingStartDate = bookingDateRange[0]?.toISOString().split('T')[0]
+        // const bookingEndDate = bookingDateRange[1]?.toISOString().split('T')[0]
 
-        const createdBooking = {
-            startDate: bookingStartDate,
-            endDate: bookingEndDate
+        // const createdBooking = {
+        //     startDate: bookingStartDate,
+        //     endDate: bookingEndDate
+        // }
+
+        // const alternateCreatedBooking = {
+        //     startDate: bookingDateRange[0],
+        //     endDate: bookingDateRange[1]
+        // }
+
+        const objectCreatedBooking = {
+            startDate: bookingDateRange[0].startDate,
+            endDate: bookingDateRange[0].endDate
         }
 
-        const alternateCreatedBooking = {
-            startDate: bookingDateRange[0].toString(),
-            endDate: bookingDateRange[1].toString()
-        }
-
-        console.log('SpotDetails createdBooking: ', createdBooking)
-        console.log('SpotDetails alternateCreatedBooking: ', alternateCreatedBooking)
+        console.log('SpotDetails bookingDateRange: ', bookingDateRange)
+        // console.log('SpotDetails createdBooking: ', createdBooking)
+        // console.log('SpotDetails alternateCreatedBooking: ', alternateCreatedBooking)
+        console.log('SpotDetails objectCreatedBooking: ', objectCreatedBooking)
 
 
-        dispatch(createABooking(alternateCreatedBooking, spot.id)).then(res => {
+        dispatch(createABooking(objectCreatedBooking, spot.id)).then(res => {
             setIsSubmitted(false)
             history.push(`/bookings/current`)
         }).catch(async error => {
@@ -138,7 +150,8 @@ function SpotDetails(){
                                 {isSubmitted && backendErrors.backendError && (
                                     <div className='error-decoration'>{backendErrors.backendError}</div>
                                 )}
-                                <CalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
+                                {/* <CalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} /> */}
+                                <NewCalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
                             </div>
                             <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
                         </div>
