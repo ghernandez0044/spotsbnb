@@ -798,15 +798,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     const endMonth = Number(endDateArray[1]) - 1
     const endDay = Number(endDateArray[2])
 
-    // const booking = await spot.createBooking({
-    //     userId: req.user.id,
-    //     startDate: new Date(startYear, startMonth, startDay),
-    //     endDate: new Date(endYear, endMonth, endDay)
-    // })
+    const booking = await spot.createBooking({
+        userId: req.user.id,
+        startDate: startDate,
+        endDate: endDate
+    })
 
-    // return res.status(200).json(booking)
+    return res.status(200).json(booking)
 
-    return res.status(200)
+    // return res.status(200)
 
 })
 
