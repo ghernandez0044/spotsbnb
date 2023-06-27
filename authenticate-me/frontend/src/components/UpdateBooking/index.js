@@ -30,8 +30,6 @@ function UpdateBooking({ startDate, endDate, booking }){
     // Create function to update booking
     const updateBooking = () => {
         setIsSubmitted(true)
-        console.log('UpdateBooking dateRange: ', bookingDateRange)
-
         const objectCreatedUpdateBooking = {
             startDate: bookingDateRange[0].startDate,
             endDate: bookingDateRange[0].endDate

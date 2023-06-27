@@ -5,8 +5,6 @@ import './NewCalendarComponent.css'
 
 function NewCalendarComponent({ bookingDateRange, setBookingDateRange }){
 
-      console.log('NewCalendarComponent dateRange: ', bookingDateRange)
-
     return (
         <div className='new-calendar-component-contanier'>
             <div className='new-react-calendar-container'>

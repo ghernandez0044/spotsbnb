@@ -145,7 +145,6 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
 
         for(let review of reviews){
             const rating = review.stars
-            console.log('Rating', rating)
             totalStars += rating
         }
 
@@ -184,16 +183,12 @@ router.get('/', handleValidationErrors, async (req, res, next) => {
 // Get all Searched Spots
 router.post('/search', handleValidationErrors, async (req, res, next) => {
 
-    console.log('inside the all searched spots route')
 
     const where = {}
-
     const size = req.query.size ? req.query.size : 20
     const page = req.query.page ? req.query.page : 1
-
     const spotCity = req.body.city ? req.body.city : ''
 
-    console.log('inside post route spotName: ', spotCity)
 
     if(page <= 0){
         const err = new Error('Page must be greater than or equal to 1')
@@ -404,7 +399,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
         for(let review of reviews){
             const rating = review.stars
-            console.log('Rating', rating)
             totalStars += rating
         }
 
@@ -614,7 +608,6 @@ router.put('/:spotId', requireAuth, handleValidationErrors, async (req, res, nex
 
 // Delete a Spot - require authentication - require authorization
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
-    console.log(req.params.spotId)
     const paramsId = Number(req.params.spotId)
     const currentSpot = await Spot.findByPk(paramsId)
 
@@ -764,9 +757,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     const { startDate, endDate } = req.body
 
-    console.log('inside create a booking route startDate: ', startDate)
-    console.log('inside create a booking route endDate: ', endDate)
-
     const potentialBookings = await Booking.findAll({
         where: {
             spotId: req.params.spotId
@@ -804,14 +794,11 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     }
 
     const startDateArray = startDate.split('-')
-    console.log('apiRoutes createABooking Route startDateArray: ', startDateArray)
     const startYear = Number(startDateArray[0])
     const startMonth = Number(startDateArray[1]) - 1
     const startDay = Number(startDateArray[2])
 
     const endDateArray = endDate.split('-')
-    console.log('apiRoutes createABooking Route endDateArray: ', endDateArray)
-
     const endYear = Number(endDateArray[0])
     const endMonth = Number(endDateArray[1]) - 1
     const endDay = Number(endDateArray[2])

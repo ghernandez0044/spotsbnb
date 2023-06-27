@@ -9,8 +9,6 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking, sequelize} = requir
 router.delete('/:imageId', requireAuth, async (req, res, next) => {
     const spotImage = await SpotImage.findByPk(req.params.imageId)
 
-    console.log('spotImage', spotImage)
-    
     if(!spotImage){
         const err = new Error("SpotImage couldn't be found")
         err.status = 400
@@ -22,11 +20,7 @@ router.delete('/:imageId', requireAuth, async (req, res, next) => {
             id: spotImage.spotId
         }
     })
-
-    console.log('spot', spot)
-    console.log('owner Id', spot.ownerId)
-    console.log('user Id', req.user.id)
-
+    
     if(spot.ownerId !== req.user.id){
         const err = new Error("User doesn't own this spot")
         err.status = 400

@@ -20,8 +20,6 @@ function ManageBookings(){
     // Subscribe to user bookings slice of state
     const userBookings = useSelector(state => Object.values(state.bookings?.userBookings))
 
-    console.log('ManageBookings userBookings: ', userBookings)
-
     // if(!userBookings || Object.values(userBookings).length === 0) return null
 
     return (

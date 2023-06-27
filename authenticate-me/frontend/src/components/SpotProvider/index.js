@@ -6,7 +6,6 @@ import { loadSpot } from '../../store/oneSpot'
 import CreateASpot from '../CreateASpot'
 
 function SpotProvider(){
-    console.log('SpotProvider component render')
     // Create dispatch method
     const dispatch = useDispatch()
 

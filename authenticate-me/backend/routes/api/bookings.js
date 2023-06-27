@@ -173,8 +173,6 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
         next(err)
     }
 
-    console.log('inside api routes delete a booking, destroy')
-
     await booking.destroy()
     return res.status(200).json({
         "message": "Successfully deleted",

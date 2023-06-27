@@ -92,8 +92,6 @@ const EDIT_SPOT = 'spot/editSpot'
     // LOAD__SEARCHED_SPOTS Thunk
     export const getSearchedSpots = (searchQuery) => async dispatch => {
 
-        console.log('inside of getSearchedSpots thunk')
-
         const searchObj = {
             "city": searchQuery
         }
@@ -104,7 +102,6 @@ const EDIT_SPOT = 'spot/editSpot'
 
         if(res.ok){
             const data = await res.json()
-            console.log('searchedSpotsTunk data: ', data)
             dispatch(loadSearchedSpots(data.Spots))
             return data
         }

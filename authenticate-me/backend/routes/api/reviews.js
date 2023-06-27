@@ -36,11 +36,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
     } else {
         // let payload = reviews
-        // console.log('payload: ', payload)
         const reviewArray = []
         for(let review of reviews){
             let payload = review.toJSON()
-            console.log('payload: ', payload)
             delete payload.Spot.createdAt
             delete payload.Spot.updatedAt
             delete payload.Spot.description
