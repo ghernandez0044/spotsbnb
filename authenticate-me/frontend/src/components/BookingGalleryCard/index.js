@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import Confirmation from '../Confirmation'
 import { deleteABooking } from '../../store/bookings'
+import { loadSpot } from '../../store/oneSpot'
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import UpdateBooking from '../UpdateBooking'
 import './BookingGalleryCard.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function BookingGalleryCard({ booking, manage }){
 
@@ -15,7 +16,16 @@ function BookingGalleryCard({ booking, manage }){
     const [ backendErrors, setBackendErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
 
+    // Create dispatch method
+    const dispatch = useDispatch()
+
     const spot = useSelector(state => state.spots.Spots[booking.spotId])
+
+    useEffect(() => {
+        dispatch(loadSpot(booking.spotId))
+    }, [])
+
+    const singleSpot = useSelector(state => state.singleSpot.singleSpot)
 
     const options = {
         weekday: 'long',
@@ -30,8 +40,6 @@ function BookingGalleryCard({ booking, manage }){
     const localEndingTime = new Date(booking.endDate).toLocaleString(navigator.language, options)
     const localCreatedAtTime = new Date(booking.createdAt).toLocaleString(navigator.language, options)
 
-    // Create dispatch method
-    const dispatch = useDispatch()
 
     // Consume Modal Context for desired function
     const { closeModal } = useModal()
@@ -47,7 +55,6 @@ function BookingGalleryCard({ booking, manage }){
             const formattedError = await error.json()
             errObj.backendError = formattedError.message
             setBackendErrors(errObj)
-            console.log('error: ', formattedError.message)
         })
     }
 
@@ -55,6 +62,8 @@ function BookingGalleryCard({ booking, manage }){
     const onNo = () => {
         closeModal()
     }
+
+    if(!singleSpot || Object.values(singleSpot).length === 0) return null
 
     return (
         <li className='booking-gallery-card'>

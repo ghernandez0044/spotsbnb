@@ -456,6 +456,23 @@ router.get('/:spotId', async (req, res, next) => {
     ]
     })
 
+    const reviews = await Review.findAll({
+        where: {
+           spotId: spot.id 
+        }
+    })
+
+    let totalStars = 0
+
+    for(let review of reviews){
+        const rating = review.stars
+        totalStars += rating
+    }
+
+    const avgRating = Number(Number(totalStars / reviews.length).toFixed(1))
+
+    spot.dataValues.avgRating = avgRating ? avgRating : 0
+
     
 
     if(spot){

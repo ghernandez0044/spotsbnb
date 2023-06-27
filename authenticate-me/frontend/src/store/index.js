@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
   spotImages: spotImageReducer,
   // singleSpot: singleSpotReducer,
   reviews: reviewsReducer,
-  bookings: bookingsReducer
+  bookings: bookingsReducer,
+  singleSpot: singleSpotReducer
 });
 
 
