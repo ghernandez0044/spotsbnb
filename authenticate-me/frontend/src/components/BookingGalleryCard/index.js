@@ -27,15 +27,7 @@ function BookingGalleryCard({ booking, manage }){
     }, [])
 
     let isBookingUnderway = new Date(booking.startDate) < new Date()
-    useEffect(() => {
-        if(new Date(booking.startDate) < new Date()){
-            console.log('This is a past booking')
-
-        }
-    }, [])
-
-    console.log('isBookingUnderway: ', isBookingUnderway)
-
+    
     const singleSpot = useSelector(state => state.singleSpot.singleSpot)
 
     const options = {

@@ -25,8 +25,6 @@ function SpotGalleryCard({ spot, manage }){
     // Subscribe to current user slice of state
     const user = useSelector(state => state.session.user)
 
-    console.log('SpotGalleryCard user: ', user)
-
     // Deconstruct desired properties from spot passed in through props
     const { id, address, avgRating, city, country, description, lat, lng, name, previewImage, price, state } = spot
 

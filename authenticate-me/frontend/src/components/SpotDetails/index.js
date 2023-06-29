@@ -44,7 +44,6 @@ function SpotDetails(){
     const userHasBooking = useSelector(state => Object.values(state.bookings.userBookings))
 
     const currentBooking = userHasBooking.find(booking => booking.spotId === Number(id))
-    console.log('currentBooking: ', currentBooking)
 
     const bookingBoolean = userHasBooking.find(booking => booking.spotId === Number(id)) ? true : false
 
@@ -66,7 +65,6 @@ function SpotDetails(){
 
     // Check to see if booking has already passed
     const bookingHasAlreadyPassed = new Date(currentBooking?.endDate) < new Date()
-    console.log('bookingHasAlreadyPassed: ', bookingHasAlreadyPassed)
 
     // Function to reserve spot
     const reserve = async () => {
