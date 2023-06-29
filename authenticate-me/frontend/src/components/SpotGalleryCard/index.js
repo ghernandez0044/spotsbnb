@@ -6,7 +6,8 @@ import { deleteASpot } from '../../store/spots'
 import { loadSpot } from '../../store/oneSpot'
 import { getSpot } from '../../store/spots'
 import { getReviews } from '../../store/reviews'
-import { useDispatch } from 'react-redux'
+import { getUserBookings } from '../../store/bookings'
+import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from '../../context/Modal'
 import './SpotGalleryCard.css'
 
@@ -20,6 +21,9 @@ function SpotGalleryCard({ spot, manage }){
 
     // Consume Modal Context for desired function
     const { closeModal } = useModal()
+
+    // Subscribe to current user slice of state
+    const user = useSelector(state => state.session.user)
 
     // Deconstruct desired properties from spot passed in through props
     const { id, address, avgRating, city, country, description, lat, lng, name, previewImage, price, state } = spot
@@ -45,8 +49,8 @@ function SpotGalleryCard({ spot, manage }){
 
     // Function to load spot details and reviews upon click
     const load = () => {
-        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => dispatch(getReviews(id)))
-    }
+        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => dispatch(getReviews(id))).then(res => dispatch(getUserBookings(user.id)))
+    }  // when i click on the spot card, i want to dispatch a thunk to get all the user bookings
 
 
     return (

@@ -43,6 +43,8 @@ function SpotDetails(){
     // Check to see if current user has a booking for this spot
     const userHasBooking = useSelector(state => Object.values(state.bookings.userBookings))
 
+    const currentBooking = userHasBooking.find(booking => booking.spotId === Number(id))
+
     const bookingBoolean = userHasBooking.find(booking => booking.spotId === Number(id)) ? true : false
 
     if(!spot) return null
@@ -60,6 +62,9 @@ function SpotDetails(){
     
     // Check to see if current user owns this spot or not
     const belongsToCurrentUser = currentUser?.id === ownerId
+
+    // Check to see if booking has already passed
+    const bookingHasAlreadyPassed = new Date(currentBooking?.endDate) < new Date()
 
     // Function to reserve spot
     const reserve = async () => {
@@ -126,6 +131,12 @@ function SpotDetails(){
                             <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto', cursor: 'pointer' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
                         </div>
                     ) : <p></p>}
+                    {bookingBoolean && !bookingHasAlreadyPassed && (
+                        <div>
+                            <div><p style={{ textAlign: 'center' }}>You Already Have A Booking!</p></div>
+                            <div><p style={{ textAlign: 'center', fontWeight: 'bold' }}>{new Date(currentBooking?.startDate).toLocaleDateString()} - {new Date(currentBooking?.endDate).toLocaleDateString()}</p></div>
+                        </div>    
+                    )}
                 </div>
             </div>
             <div className='reviews-container'>

@@ -15,6 +15,7 @@ function BookingGalleryCard({ booking, manage }){
     // Create state variables
     const [ backendErrors, setBackendErrors ] = useState({})
     const [ isSubmitted, setIsSubmitted ] = useState(false)
+    const [ errors, setErrors ] = useState({})
 
     // Create dispatch method
     const dispatch = useDispatch()
@@ -25,6 +26,8 @@ function BookingGalleryCard({ booking, manage }){
         dispatch(loadSpot(booking.spotId))
     }, [])
 
+    let isBookingUnderway = new Date(booking.startDate) < new Date()
+    
     const singleSpot = useSelector(state => state.singleSpot.singleSpot)
 
     const options = {
@@ -87,10 +90,12 @@ function BookingGalleryCard({ booking, manage }){
                         <h3>Created At:</h3>
                         <div className='card-content'>{localCreatedAtTime}</div>
                 </div>
-                <div className='manage-buttons-container'>    
-                        <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Cancellation' message='Are you sure you want to cancel your booking?' onYes={onYes} yesLabel='Cancel Booking' onNo={onNo} noLabel='Keep Booking' />} buttonText='Cancel Booking' />
-                        <OpenModalButton className='manage-button' modalComponent={<UpdateBooking startDate={booking.startDate} endDate={booking.endDate} booking={booking} />} buttonText='Update' />
-                </div>
+                {!isBookingUnderway && (
+                    <div className='manage-buttons-container'>    
+                    <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Cancellation' message='Are you sure you want to cancel your booking?' onYes={onYes} yesLabel='Cancel Booking' onNo={onNo} noLabel='Keep Booking' />} buttonText='Cancel Booking' />
+                    <OpenModalButton className='manage-button' modalComponent={<UpdateBooking startDate={booking.startDate} endDate={booking.endDate} booking={booking} />} buttonText='Update' />
+            </div>
+                )}
         </li>
     )
 }
