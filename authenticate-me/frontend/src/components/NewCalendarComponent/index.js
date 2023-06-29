@@ -8,7 +8,7 @@ function NewCalendarComponent({ bookingDateRange, setBookingDateRange }){
     return (
         <div className='new-calendar-component-contanier'>
             <div className='new-react-calendar-container'>
-                <DateRange rangeColors={['#FF5A5F', '#3ecf8e', '#fed14c']} editableDateInputs={true}
+                <DateRange minDate={new Date()} rangeColors={['#FF5A5F', '#3ecf8e', '#fed14c']} editableDateInputs={true}
                     onChange={item => setBookingDateRange([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={bookingDateRange} />

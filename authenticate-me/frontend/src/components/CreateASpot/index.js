@@ -76,8 +76,16 @@ function CreateASpot({ edit, spot }){
             errors.latError = 'Latitude is required'
         }
 
+        if(Number(lat) < -90 || Number(lat) > 90){
+            errors.latRangeError = 'Must be between -90 and 90'
+        }
+
         if(lng.length <= 0){
             errors.lngError = 'Longitude is required'
+        }
+
+        if(Number(lng) < -180 || Number(lng) > 180){
+            errors.lngRangeError = 'Must be between -180 and 180'
         }
 
         if(description.length < 30){
@@ -108,7 +116,9 @@ function CreateASpot({ edit, spot }){
         }
         const newPreviewImage = await dispatch(createAnImage(previewImageObj, id)).catch(async (res) => {
             const data = await res.json()
-            if(data && data.errors) errors.push(data.errors)
+            if(data && data.errors){
+                errors.push(data.errors)
+            } 
         })
 
         let images = [imageTwo, imageThree, imageFour, imageFive]
@@ -147,7 +157,9 @@ function CreateASpot({ edit, spot }){
             if(edit && spot){
                 const editedSpot = await dispatch(editASpot(newSpotObj, spot.id)).catch(async (res) => {
                     const data = await res.json()
-                    if(data && data.errors) errors.push(data.errors)
+                    if(data && data.errors){
+                        errors.push(data.errors)
+                    } 
                 })
                 
                 const spotImages = spot.SpotImages
@@ -218,10 +230,10 @@ function CreateASpot({ edit, spot }){
                                 <label>State: {isSubmitted && errors.stateError && ( <p className='errors'>{errors.stateError}</p> )} <input type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE' style={{ width: '110px' }} /></label>
                             </li>
                             <li id='lat'>
-                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude' style={{ width: '245px' }}  /></label>
+                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='errors'>{errors.latError}</p> )} {isSubmitted && errors.latRangeError && ( <p className='errors'>{errors.latRangeError}</p> )} <input type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude' style={{ width: '245px' }}  /></label>
                             </li>
                             <li id='lng'>
-                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude' style={{ width: '245px' }}  /></label>
+                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='errors'>{errors.lngError}</p> )} {isSubmitted && errors.lngRangeError && ( <p className='errors'>{errors.lngRangeError}</p> )} <input type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude' style={{ width: '245px' }}  /></label>
                             </li>
                         </div>
                     </div>
