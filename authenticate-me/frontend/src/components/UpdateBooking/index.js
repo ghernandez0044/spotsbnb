@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { useModal } from "../../context/Modal"
 import Calendar from "react-calendar"
 import { DateRange } from "react-date-range"
+import { addDays } from 'date-fns';
 import { updateABooking, getUserBookings } from "../../store/bookings"
 import '../CalendarComponent/CalendarComponent.css'
 
@@ -26,6 +27,15 @@ function UpdateBooking({ startDate, endDate, booking }){
 
     // Consume Modal Context
     const { closeModal } = useModal()
+
+    // Check for validations on input
+    useEffect(() => {
+        const errObj = {}
+        if(new Date(bookingDateRange[0].startDate) < new Date()){
+            errObj.startDateErr = 'Cannot cancel bookings that are currently underway'
+        }
+        setBackendErrors(errObj)
+    }, [bookingDateRange])
 
     // Create function to update booking
     const updateBooking = () => {
@@ -57,8 +67,11 @@ function UpdateBooking({ startDate, endDate, booking }){
             {isSubmitted && backendErrors.backendError && (
                 <div className='error-decoration'>{backendErrors.backendError}</div>
             )}
+            {isSubmitted && backendErrors.startDateErr && (
+                <div className='error-decoration'>{backendErrors.startDateErr}</div>
+            )}
             <div className="message-container">
-                <DateRange rangeColors={['#FF5A5F', '#3ecf8e', '#fed14c']} editableDateInputs={true}
+                <DateRange minDate={addDays(new Date(), 1)} rangeColors={['#FF5A5F', '#3ecf8e', '#fed14c']} editableDateInputs={true}
                     onChange={item => setBookingDateRange([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={bookingDateRange} />
