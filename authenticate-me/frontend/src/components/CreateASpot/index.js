@@ -190,8 +190,6 @@ function CreateASpot({ edit, spot }){
         }
     }
 
-    const store = useSelector(state => state)
-
     // Gain access to the preview image as well as any other regular images
     let previewImg
     const regularImages = []
