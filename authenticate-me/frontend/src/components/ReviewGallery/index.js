@@ -49,7 +49,6 @@ function ReviewGallery({ id, reviewCount, avgRating, spot }){
     // Check to see if current user has already posted a review
     const posted = reviews.find(review => review.userId === currentUser?.id) ? true : false
 
-
     return (
         <div>
             <div className='reviews-header-container'>
