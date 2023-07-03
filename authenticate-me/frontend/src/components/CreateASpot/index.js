@@ -100,6 +100,10 @@ function CreateASpot({ edit, spot }){
             errors.priceError = 'Price is required'
         }
 
+        if(Number(price) <= 0 || Number(price) >= 5000){
+            errors.priceRangeError = 'Price must be between $0 and $5,000 '
+        }
+
         if(previewImage.length <= 0){
             errors.previewImgError = 'Preview image is required'
         }
@@ -256,6 +260,7 @@ function CreateASpot({ edit, spot }){
                             <h2>Set a base price for your spot</h2>
                             <p><em>Competitive pricing can help your listing stand out and rank higher in search results</em></p>
                             {isSubmitted && errors.priceError && ( <p className='errors'>{errors.priceError}</p> )}
+                            {isSubmitted && errors.priceRangeError && ( <p className='errors'>{errors.priceRangeError}</p> )}
                             <label>$ <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)' style={{ width: '435px' }}  /></label>
                         </li>
                     </div>
