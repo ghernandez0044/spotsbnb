@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     plugins: [
       require('@tailwindcss/forms'),
+      require('@tailwindcss/container-queries'),
     ],
     screens: {
       'phone': '390px',
