@@ -12,8 +12,8 @@ function Navigation({ isLoaded }){
     const sessionUser = useSelector((state) => state.session.user)
 
     return (
-        <nav className='navbar'>
-            <div className='home'>
+        <nav className='h-12 px-5 py-5 flex flex-auto z-10 justify-center items-center my-2.5'>
+            <div className='flex flex-auto justify-center items-center w-28'>
                 <div className='logo-div'>
                     <NavLink exact to='/'>
                         <img src={logo} alt='' style={{ height: '75px', width: '75px' }} />
