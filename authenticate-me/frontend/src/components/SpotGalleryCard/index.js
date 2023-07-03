@@ -49,7 +49,10 @@ function SpotGalleryCard({ spot, manage }){
 
     // Function to load spot details and reviews upon click
     const load = () => {
-        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => dispatch(getReviews(id))).then(res => dispatch(getUserBookings(user.id)))
+        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => dispatch(getReviews(id))).then(res => dispatch(getUserBookings(user.id))).catch(async error => {
+            const formattedError = await error.json()
+            console.log('error: ', formattedError)
+        })
     }  // when i click on the spot card, i want to dispatch a thunk to get all the user bookings
 
 
