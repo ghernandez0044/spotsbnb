@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
     return (
         <nav className='h-12 px-5 py-5 flex flex-auto z-10 justify-center items-center my-2.5'>
             <div className='flex flex-auto justify-center items-center w-28'>
-                <div className='logo-div'>
+                <div className='rounded-xl'>
                     <NavLink exact to='/'>
                         <img src={logo} alt='' style={{ height: '75px', width: '75px' }} />
                     </NavLink>
@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
             </div>
             <SearchBar />
             <ul className='nav-links'>
-                <div className={sessionUser ? 'menu' : 'menu right'}>
+                <div className={sessionUser ? 'flex justify-center items-center min-w-[170px]' : 'flex items-center min-w-[170px] justify-end'}>
                     {isLoaded && (
                         <>
                             {sessionUser && <li id='create-spot'>

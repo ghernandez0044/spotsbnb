@@ -22,7 +22,9 @@ module.exports = {
       'dark-color': '#484848',
       'light-color': '#767676',
       'white': '#ffffff',
-      'transparent': 'transparent'
+      'transparent': 'transparent',
+      'lightgray': '#d3d3d3',
+      'hover-fill': '#dedede66'
     },
     fontFamily: {
         sans: ['Lobster Two', 'sans'],

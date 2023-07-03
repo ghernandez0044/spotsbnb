@@ -55,7 +55,7 @@
 }
 
 .user-menu {
-    border: 1px solid lightgray;
+    border: 1px solid #d3d3d3;
     position: relative;
     border-radius: 10px;
     width: 60px;
