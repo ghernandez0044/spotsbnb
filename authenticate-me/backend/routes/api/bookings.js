@@ -146,24 +146,26 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
         next(err)
     }
 
-    const spot = await Spot.findOne({
-        where: {
-            ownerId: booking.userId
-        }
-    })
+    // const spot = await Spot.findOne({
+    //     where: {
+    //         ownerId: booking.userId
+    //     }
+    // })
 
-    if(!spot){
-        const err = new Error("Spot doesn't exist")
-        err.status = 400
-        next(err)
-    }
+    // const spot = await Spot.findByPk(booking.spotId)
+
+    // if(!spot){
+    //     const err = new Error("Spot doesn't exist")
+    //     err.status = 400
+    //     next(err)
+    // }
 
 
-    if(spot.ownerId !== req.user.id){
-        const err = new Error("Spot doesn't belong to user")
-        err.status = 403
-        next(err)
-    }
+    // if(spot.ownerId !== req.user.id){
+    //     const err = new Error("Spot doesn't belong to user")
+    //     err.status = 403
+    //     next(err)
+    // }
 
     const today = new Date()
 

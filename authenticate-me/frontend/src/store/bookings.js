@@ -95,8 +95,6 @@ const UPDATE_BOOKING = 'bookings/updateBooking'
         })
         if(res.ok){
             const data = await res.json()
-            // await dispatch(deleteABooking(bookingId))
-            // await dispatch(getUserBookings())
             dispatch(actionDeleteBooking(bookingId))
         }
         return res
