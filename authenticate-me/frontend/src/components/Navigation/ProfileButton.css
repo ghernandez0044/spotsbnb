@@ -84,6 +84,7 @@
     color: white;
     height: 35px;
     /* width: 200px; */
+    cursor: pointer;
     width: fit-content;
     min-width: 100px;
     margin-top: 10px;

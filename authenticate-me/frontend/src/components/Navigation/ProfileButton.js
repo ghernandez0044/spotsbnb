@@ -81,19 +81,19 @@ function ProfileButton({ user }){
                                 </Link>
                             </li>
                             <li className='w-56 h-fit flex justify-center items-center text-center my-2'>
-                            <button style={{ cursor: 'pointer' }} className='logout-button' onClick={logout}>Log Out</button>
+                            <button className='logout-button' onClick={logout}>Log Out</button>
                             </li>
                         </>
                         ) : (
-                        <div className='user-menu-items'>
-                            <div className='user-menu-item links'>
+                        <div className='absolute h-24 w-40 flex flex-col justify-evenly items-center rounded-xl bg-white right-2 top-1 shadow-2xl'>
+                            <div className='links'>
                                 <OpenModalMenuItem
                                     itemText="Log In"
                                     onItemClick={closeMenu}
                                     modalComponent={<LoginFormModal />}
                                 />
                             </div>
-                            <div className='user-menu-item links bold'>
+                            <div className='links bold'>
                                 <OpenModalMenuItem
                                     itemText="Sign Up"
                                     onItemClick={closeMenu}
