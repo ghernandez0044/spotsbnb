@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
     const sessionUser = useSelector((state) => state.session.user)
 
     return (
-        <nav className='h-20 px-5 py-5 flex flex-auto z-10 justify-center items-center my-2.5 border-b border-b-lightgray'>
+        <nav className='h-20 px-5 py-5 flex flex-auto z-10 justify-center items-center my-2.5 border-b border-b-lightgray phone:w-80 phone:mx-auto phone:justify-between'>
             <div className='flex flex-auto justify-center items-center w-28'>
                 <div className='rounded-xl'>
                     <NavLink exact to='/'>
@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
                         <>
                             {sessionUser && <li id='create-spot'>
                                 <NavLink exact to ='/spots/new'>
-                                    <p className='hover:text-light-color mx-4 text-center'>Create A Spot</p>
+                                    <p className='hover:text-light-color mx-4 text-center phone:hidden'>Create A Spot</p>
                                 </NavLink>
                             </li>}
                             <li>

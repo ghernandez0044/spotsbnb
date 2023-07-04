@@ -17,7 +17,7 @@ function SearchBar(){
     const history = useHistory()
 
     return (
-        <div className='border border-lightgray flex justify-center items-center w-8/12 h-10 mx-6 my-2.5 rounded-xl'>
+        <div className='border border-lightgray flex justify-center items-center w-8/12 h-10 mx-6 my-2.5 rounded-xl phone:hidden'>
             <div className="text-white w-9 h-full mx-1.5 p-2 rounded-3xl bg-main-color flex justify-center items-center">
                 <i className="fas fa-solid fa-magnifying-glass text-white"></i>
             </div>
