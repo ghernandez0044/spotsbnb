@@ -86,14 +86,14 @@ function ProfileButton({ user }){
                         </>
                         ) : (
                         <div className='absolute h-24 w-40 flex flex-col justify-evenly items-center rounded-xl bg-white right-2 top-1 shadow-2xl'>
-                            <div className='links'>
+                            <div className='text-dark-color hover:text-light-color'>
                                 <OpenModalMenuItem
                                     itemText="Log In"
                                     onItemClick={closeMenu}
                                     modalComponent={<LoginFormModal />}
                                 />
                             </div>
-                            <div className='links bold'>
+                            <div className='text-dark-color hover:text-light-color bold'>
                                 <OpenModalMenuItem
                                     itemText="Sign Up"
                                     onItemClick={closeMenu}

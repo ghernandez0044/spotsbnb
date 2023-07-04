@@ -31,7 +31,11 @@ module.exports = {
         serif: ['Signika Negative', 'sans-serif'],
         mono: ['Merriweather', 'serif']
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        '3xl': '3px 3px black',
+      }
+    },
   },
   plugins: [],
 }
