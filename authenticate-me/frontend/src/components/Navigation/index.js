@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
     const sessionUser = useSelector((state) => state.session.user)
 
     return (
-        <nav className='h-12 px-5 py-5 flex flex-auto z-10 justify-center items-center my-2.5'>
+        <nav className='h-20 px-5 py-5 flex flex-auto z-10 justify-center items-center my-2.5 border-b border-b-lightgray'>
             <div className='flex flex-auto justify-center items-center w-28'>
                 <div className='rounded-xl'>
                     <NavLink exact to='/'>
