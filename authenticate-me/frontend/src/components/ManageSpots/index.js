@@ -29,12 +29,12 @@ function ManageSpots(){
 
     return spots && (
         <div className='manage-spot-container'>
-            <div className='header-container'>
-                <h1 style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Spots</h1>
+            <div className='flex flex-col'>
+                <h1 className='text-left' style={{ marginLeft: '5%' }}>Manage Your Spots</h1>
                 <button onClick={onClick} className='create-spot-button'>Create A Spot</button>
             </div>
             {!spots || Object.keys(spots).length === 0 ? <h2 style={{ textAlign: 'center' }}>You Have No Spots Yet!</h2> : ''}
-            <ul className='spot-card-container'>
+            <ul className='flex flex-wrap justify-center'>
                 {spots.map(spot => (
                     <SpotGalleryCard key={spot.id} spot={spot} manage={true} />
                 ))}
