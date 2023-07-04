@@ -28,7 +28,8 @@ module.exports = {
     },
     fontFamily: {
         sans: ['Lobster Two', 'sans'],
-        serif: ['Signika Negative', 'sans-serif']
+        serif: ['Signika Negative', 'sans-serif'],
+        mono: ['Merriweather', 'serif']
     },
     extend: {},
   },
