@@ -11,7 +11,7 @@ function SpotSearchResults(){
 
     return (
         <div className="spot-search-results-container">
-            <ul className="spot-card-container">
+            <ul className="flex flex-wrap justify-center">
                 {searchedSpots.map(spot => (
                     <SpotGalleryCard key={spot.id} spot={spot} />
                 ))}
