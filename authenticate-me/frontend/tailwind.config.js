@@ -34,7 +34,10 @@ module.exports = {
     extend: {
       boxShadow: {
         '3xl': '3px 3px black',
-      }
+      },
+      inset: {
+                '-2': '-2rem',
+                }
     },
   },
   plugins: [],
