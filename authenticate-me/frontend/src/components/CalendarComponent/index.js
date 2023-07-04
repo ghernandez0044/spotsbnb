@@ -7,8 +7,8 @@ function CalendarComponent({ setBookingDateRange, bookingDateRange }){
     const [ date, setDate ] = useState(new Date())
 
     return (
-        <div className="calendar-component-container">
-            <div className='react-calendar-container'>
+        <div>
+            <div>
                 <Calendar minDate={new Date()} selectRange={true} onChange={setBookingDateRange} />
             </div>
         </div>
