@@ -21,7 +21,7 @@ function SpotGallery(){
 
     return (
         <div>
-            <ul className='spot-card-container'>
+            <ul className='flex flex-wrap justify-center'>
                 {spots.map(spot => (
                         <SpotGalleryCard key={spot.id} spot={spot} />
                 ))}
