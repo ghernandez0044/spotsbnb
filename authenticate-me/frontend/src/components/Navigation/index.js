@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
                         <>
                             {sessionUser && <li id='create-spot'>
                                 <NavLink exact to ='/spots/new'>
-                                    <p className='links'>Create A Spot</p>
+                                    <p className='links mx-4'>Create A Spot</p>
                                 </NavLink>
                             </li>}
                             <li>
