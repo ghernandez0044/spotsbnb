@@ -59,7 +59,7 @@ function ProfileButton({ user }){
                 <div id='user-menu' className={currentUser ? 'border-2 border-lightgray relative rounded-3xl w-fit h-fit flex justify-center items-center p-1.5 hover:shadow-xl' : 'border-2 border-lightgray relative rounded-3xl w-5 h-8 flex justify-center items-center p-4.5 hover:shadow-xl'} onClick={openMenu}>
                     {currentUser && ( <i style={{ margin: '5px' }} className='fa-solid fa-circle-user user-icon' /> )}
                     <i style={{ margin: '5px' }} className='fa-solid fa-bars hamburger-icon' />
-                    <ul className={showMenu ? 'absolute right-3 top-16 w-fit h-fit bg-white rounded-xl shadow-xl flex flex-col justify-evenly items-center' : 'hidden'} ref={ulRef}>
+                    <ul className={showMenu ? 'absolute right-3 top-16 w-fit h-fit bg-white rounded-xl shadow-xl flex flex-col justify-evenly items-center z-10' : 'hidden'} ref={ulRef}>
                         {user ? (
                         <>
                             <li className='w-56 h-fit flex justify-center items-center text-center my-2'><p>Hello, {user.firstName} {user.lastName}.</p></li>
