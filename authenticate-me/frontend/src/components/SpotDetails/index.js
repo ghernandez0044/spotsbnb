@@ -89,12 +89,12 @@ function SpotDetails(){
 
     return (
         <div>
-            <div className='title-header-container'>
-                <h2 style={{ textAlign: 'left', marginLeft: '15px' }}>{name}</h2>
+            <div>
+                <h2 className='text-left' style={{ marginLeft: '15px' }}>{name}</h2>
                 <p style={{ marginLeft: '15px' }}><em>{city}, {state}, {country}</em></p>
             </div>
-            <div className='all-images-container'>
-                <div className='photo-cluster'>
+            <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color'>
+                <div className='flex flex-wrap justify-center items-center flex-1 w-2/3'>
                     <div className='preview-image-container'>
                         <img className='preview-image' src={previewImage?.url} alt='' />
                     </div>
