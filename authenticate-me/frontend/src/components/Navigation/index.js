@@ -16,11 +16,11 @@ function Navigation({ isLoaded }){
             <div className='flex flex-auto justify-center items-center w-28'>
                 <div className='rounded-xl'>
                     <NavLink exact to='/'>
-                        <img src={logo} alt='' style={{ height: '75px', width: '75px' }} />
+                        <img className='h-16 w-16' src={logo} alt='' />
                     </NavLink>
                 </div>
             </div>
-            <SearchBar />
+            <SearchBar mobile={false} />
             <ul className='nav-links'>
                 <div className={sessionUser ? 'flex justify-center items-center min-w-[170px]' : 'flex items-center min-w-[170px] justify-end'}>
                     {isLoaded && (

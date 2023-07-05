@@ -65,19 +65,24 @@ function ProfileButton({ user }){
                             <li className='w-56 h-fit flex justify-center items-center text-center my-2'><p>Hello, {user.firstName} {user.lastName}.</p></li>
                             <li className='w-56 h-fit flex justify-center items-center text-center my-2'><p>Username: {user.username}</p></li>
                             <li className='w-56 h-fit flex justify-center items-center text-center my-2 border-b border-b-hover-fill'><p>Email: {user.email}</p></li>
+                            <li className='w-56 h-10 invisible hover:bg-hover-fill phone:visible phone:flex phone:justify-center phone:items-center phone:text-center'>
+                                <Link onClick={closeMenu} exact to='/spots/new'>
+                                <p>Create A Spot</p>
+                                </Link>
+                            </li>
                             <li className='w-56 h-10 flex justify-center items-center text-center hover:bg-hover-fill'>
                                 <Link onClick={closeMenu} exact to='/spots/current'>
-                                <p><b>Manage Your Spots</b></p>
+                                <p>Manage Your Spots</p>
                                 </Link>
                             </li>
                             <li className='w-56 h-10 flex justify-center items-center text-center hover:bg-hover-fill'>
                                 <Link onClick={closeMenu} exact to='/reviews/current'>
-                                <p><b>Manage Your Reviews</b></p>
+                                <p>Manage Your Reviews</p>
                                 </Link>
                             </li>
                             <li className='w-56 h-10 flex justify-center items-center text-center border-b border-b-hover-fill hover:bg-hover-fill'>
                                 <Link onClick={closeMenu} exact to='/bookings/current'>
-                                <p><b>Manage Your Bookings</b></p>
+                                <p>Manage Your Bookings</p>
                                 </Link>
                             </li>
                             <li className='w-56 h-fit flex justify-center items-center text-center my-2'>
