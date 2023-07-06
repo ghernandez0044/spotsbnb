@@ -11,25 +11,30 @@ function ManageReviews(){
 
     // Create state variable to see if user reviews are loaded
     const [ isLoaded, setIsLoaded ] = useState(false)
+    const [ backendErrors, setBackendErrors ] = useState({})
 
     // Upon component render, load all current user reviews into Redux store
     useEffect(() => {
-        dispatch(getCurrentUserReviews()).then(res => setIsLoaded(true))
+        dispatch(getCurrentUserReviews()).then(res => setIsLoaded(true)).catch(async error => {
+            const errObj = {}
+            const formattedError = await error.json()
+            errObj.backendError = formattedError.message
+            setBackendErrors(errObj)
+        })
     }, [dispatch])
 
     // Reference current user reviews
-    // const data = useSelector(state => state.reviews.userReviews)
-    const reviews = useSelector(state => Object.values(state.reviews.userReviews))
+    const data = useSelector(state => state.reviews.userReviews)
 
     // Reference reviews state slice
     const reviewsState = useSelector(state => state.reviews)
     
-    // let reviews
-    // if(data){
-    //     reviews = Object.values(data)
-    // }
+    let reviews
+    if(data){
+        reviews = Object.values(data)
+    }
 
-    if(!reviews) return ( 
+    if(backendErrors.backendError) return ( 
         <div>
             <h1 style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Reviews</h1>
             <h2 style={{ textAlign: 'center' }}>No Reviews Posted Yet!</h2>
