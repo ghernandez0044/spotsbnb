@@ -14,6 +14,7 @@ import SpotProvider from './components/SpotProvider'
 import SpotSearchResults from './components/SpotSearchResults';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
+import LoadingScreen from './components/LoadingScreen';
 
 
 function App() { 
@@ -34,6 +35,7 @@ function App() {
         <SearchBar mobile={true} />
       </div>
       <Navigation isLoaded={isLoaded} />
+      {/* <LoadingScreen /> */}
       {isLoaded && (
         <>
           <Switch>

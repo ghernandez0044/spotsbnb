@@ -9,6 +9,7 @@ import { createABooking, getUserBookings } from '../../store/bookings'
 import ReviewGallery from '../ReviewGallery'
 import NewCalendarComponent from '../NewCalendarComponent'
 import './SpotDetails.css'
+import LoadingScreen from '../LoadingScreen'
 
 function SpotDetails(){
     // Extract paramater variables from paramater object
@@ -20,9 +21,12 @@ function SpotDetails(){
     // Create history method
     const history = useHistory()
 
+    // Create state variable to see if spot is loaded
+    const [ isLoaded, setIsLoaded ] = useState(false)
+
     // Upon component render, dispatch the action to load the single spot into the Redux store for retrieval 
     useEffect(() => {
-        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => getUserBookings())
+        dispatch(getSpot(id)).then(res => loadSpot(id)).then(res => getUserBookings()).then(res => setIsLoaded(true))
     }, [])
 
     // Create state variables
@@ -86,6 +90,8 @@ function SpotDetails(){
         })
 
     }
+
+    if(!isLoaded) return <LoadingScreen />
 
     return (
         <div>

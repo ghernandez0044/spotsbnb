@@ -1,9 +1,10 @@
 // Necessary imports
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getCurrentUserSpots } from '../../store/spots'
 import SpotGalleryCard from '../SpotGalleryCard'
+import LoadingScreen from '../LoadingScreen'
 
 
 function ManageSpots(){
@@ -13,9 +14,12 @@ function ManageSpots(){
     // Create history method
     const history = useHistory()
 
+    // Create state variable to see if user spots are loaded
+    const [ isLoaded, setIsLoaded ] = useState(false)
+
     // Upon component render, load all current user spots into Redux store
    useEffect(() => {
-        dispatch(getCurrentUserSpots())
+        dispatch(getCurrentUserSpots()).then(res => setIsLoaded(true))
    }, [])
 
     const spots = useSelector((state) => state.spots?.currentUserSpots?.Spots)
@@ -26,6 +30,8 @@ function ManageSpots(){
     const onClick = () => {
         history.push('/spots/new')
     }
+
+    if(!isLoaded) return <LoadingScreen />
 
     return spots && (
         <div className='manage-spot-container'>
