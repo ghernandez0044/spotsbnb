@@ -27,8 +27,8 @@ function ManageBookings(){
     if(!isLoaded) return <LoadingScreen />
 
     return (
-        <div className='manage-bookings-container'>
-            <div className='header-container'>
+        <div>
+            <div>
                 <h1 style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Bookings</h1>
             </div>
             {!userBookings || Object.keys(userBookings).length === 0 ? <h2 style={{ textAlign: 'center' }}>You Have No Bookings Yet!</h2> : ''}

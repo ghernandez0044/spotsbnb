@@ -101,22 +101,22 @@ function SpotDetails(){
             </div>
             <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color'>
                 <div className='flex flex-wrap justify-center items-center flex-1 w-2/3'>
-                    <div className='preview-image-container'>
-                        <img className='preview-image' src={previewImage?.url} alt='' />
+                    <div style={{ width: '550px' }} className='flex justify-center items-center h-full'>
+                        <img style={{ height: '455px', width: '545px', left: '-0.1%', top: '-.1%' }} className='relative m-0' src={previewImage?.url} alt='' />
                     </div>
-                    <div className='images-container'>
+                    <div className='flex flex-wrap flex-1 gap-2 overflow-auto'>
                         {regularImages?.map(image => (
                             <img key={image.id} src={image.url} alt='' style={{ height: '220px', width: '220px' }} />
                         ))}
                     </div>
                 </div>
             </div>
-            <div className='content'>
-                <div className='description-container'>
+            <div className='border-b border-b-lightgray flex justify-between h-fit'>
+                <div className='w-fit py-4 px-5 mx-auto my-2.5'>
                     <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
-                <div className='booking-info-container'>
+                <div className='booking-info-container'>  // This is where I left off
                     <div className='another-container'>
                         <div className='booking-price-container'>
                             <p>${Number(price).toFixed(2)} /night</p>
