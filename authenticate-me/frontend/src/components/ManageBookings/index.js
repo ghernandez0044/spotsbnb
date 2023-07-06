@@ -1,9 +1,10 @@
 // Necessary imports
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getUserBookings } from '../../store/bookings'
 import BookingGalleryCard from '../BookingGalleryCard'
+import LoadingScreen from '../LoadingScreen'
 
 function ManageBookings(){
     // Create dispatch method
@@ -12,15 +13,18 @@ function ManageBookings(){
     // Create history method
     const history = useHistory()
 
+    // Create state variables
+    const [ isLoaded, setIsLoaded ] = useState(false)
+
     // Upon component render, load all current user bookings into Redux store
     useEffect(() => {
-        dispatch(getUserBookings())
+        dispatch(getUserBookings()).then(res => setIsLoaded(true))
     }, [dispatch])
 
     // Subscribe to user bookings slice of state
     const userBookings = useSelector(state => Object.values(state.bookings?.userBookings))
 
-    // if(!userBookings || Object.values(userBookings).length === 0) return null
+    if(!isLoaded) return <LoadingScreen />
 
     return (
         <div className='manage-bookings-container'>
