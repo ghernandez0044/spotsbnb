@@ -102,13 +102,13 @@ function SpotDetails(){
 
 
             {/* <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color phone:w-full'> */}
-                <div className='flex flex-wrap flex-1 justify-center items-center w-10/12 mx-auto tablet:w-full border-2 border-main-color'>
+                <div className='flex flex-wrap justify-center items-center w-8/12 mx-auto tablet:w-full border-2 border-main-color'>
                     <div id='main-picture-container' style={{ width: '455px', height: '455px', border: '2px solid red' }} className=''>
                         <img className='relative m-0 h-full w-full' src={previewImage?.url} alt='' />
                     </div>
-                    <div id='regular-images-container' style={{ width: '455px', height: '455px' }} className='grid grid-cols-2 grid-rows-2 border-2 border-accent-color'>
+                    <div id='regular-images-container' style={{ maxWidth: '455px', height: '455px' }} className='flex flex-wrap flex-1 justify-center items-center border-2 border-accent-color h-full tablet:overflow-x-scroll'>
                         {regularImages?.map(image => (
-                            <img className='h-56 w-56' key={image.id} src={image.url} alt='' />
+                            <img className='laptop:h-56 laptop:w-56 tablet:h-full tablet:w-full' key={image.id} src={image.url} alt='' />
                         ))}
                     {/* </div> */}
                 </div>
