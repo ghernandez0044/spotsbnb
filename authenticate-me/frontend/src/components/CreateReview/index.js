@@ -92,16 +92,16 @@ function CreateReview({ id, edit, data }){
 
 
     return (
-        <div className='main-container'>
-            <h2 style={{ textAlign: 'center' }}>How was your stay at {spot.name}?</h2>
+        <div style={{ width: '500px' }} className='h-fit flex flex-col'>
+            <h1 className='text-center text-3xl my-3.5'>How was your stay at {spot.name}?</h1>
             {isSubmitted && errors.databaseErrors && ( 
                 <p>{`${errors.databaseErrors.split(': ')[1]}`}</p>
              )}
-            <form onSubmit={handleSubmit} className='create-review-form'>
-                <div className='review-content-container'>
+            <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center'>
+                <div style={{ minWidth: '300px', minHeight: '150px' }} className=''>
                     <input type='text' style={{ height: '150px', width: '300px' }} placeholder='Quick review' value={review} onChange={(e) => setReview(e.target.value)} />
                 </div>
-                <div className='rating-input-container'>
+                <div className='p-1'>
                     <RatingInput rating={stars} onChange={onChange} />
                 </div>
                 <button className='review-button' disabled={review.length < 10 || stars < 1}><p>{!edit ? 'Submit Your Review' : 'Update Your Review' }</p></button>

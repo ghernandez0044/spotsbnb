@@ -45,7 +45,7 @@ function ManageReviews(){
 
     return (
         <div>
-            <h1 style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Reviews</h1>
+            <h1 className='bold text-3xl' style={{ textAlign: 'left', marginLeft: '5%', marginBottom: '1%' }}>Manage Your Reviews</h1>
             <ul className='review-card-container'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data={review} manage={true} />

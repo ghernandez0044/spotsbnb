@@ -34,10 +34,10 @@ function ManageSpots(){
     if(!isLoaded) return <LoadingScreen />
 
     return spots && (
-        <div className='manage-spot-container'>
+        <div>
             <div className='flex flex-col'>
-                <h1 className='text-left' style={{ marginLeft: '5%' }}>Manage Your Spots</h1>
-                <button onClick={onClick} className='create-spot-button'>Create A Spot</button>
+                <h1 className='text-left text-3xl' style={{ marginLeft: '5%' }}>Manage Your Spots</h1>
+                <button onClick={onClick} className='create-spot-button' style={{ fontFamily: 'Lobster Two' }}>Create A Spot</button>
             </div>
             {!spots || Object.keys(spots).length === 0 ? <h2 style={{ textAlign: 'center' }}>You Have No Spots Yet!</h2> : ''}
             <ul className='flex flex-wrap justify-center'>

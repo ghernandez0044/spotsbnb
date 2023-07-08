@@ -184,8 +184,11 @@
     height: 60px;
     width: 300px;
     min-width: 100px;
-    margin-top: 5px;
-    margin-bottom: 25px;
+    /* margin-top: 5px;
+    margin-bottom: 25px; */
+    margin: 10px auto;
+    cursor: pointer;
+    font-size: 24px;
     border: 2px solid black;
     box-shadow: 5px 5px black;
 }

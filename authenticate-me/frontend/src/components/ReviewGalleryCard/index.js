@@ -71,8 +71,8 @@ function ReviewGalleryCard({ data, manage }){
 
 return (
     <div className='flex flex-col mx-2 my-1'>
-        {manage && data && ( <h2>{Spot?.name}</h2> )}
-        <h3 className='m-0.5 capitalize'>{User?.firstName}</h3>
+        {manage && data && ( <h2 className='bold text-2xl'>{Spot?.name}</h2> )}
+        <h3 className='m-0.5 capitalize bold text-xl'>{User?.firstName}</h3>
         <p className='text-light-color m-0.5'>{month} {day}, {year}</p>
         <p>{review}</p>
         <div className='w-80 h-8 flex justify-around items-center'>

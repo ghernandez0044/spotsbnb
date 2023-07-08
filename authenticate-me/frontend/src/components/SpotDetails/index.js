@@ -96,7 +96,7 @@ function SpotDetails(){
     return (
         <div>
             <div>
-                <h2 className='text-left' style={{ marginLeft: '15px' }}>{name}</h2>
+                <h2 className='text-left bold text-3xl my-2.5' style={{ marginLeft: '15px' }}>{name}</h2>
                 <p style={{ marginLeft: '15px' }}><em>{city}, {state}, {country}</em></p>
             </div>
                 <div className='flex flex-wrap justify-center items-center w-8/12 mx-auto tablet:w-full phone:w-full phone:my-2'>
@@ -111,7 +111,7 @@ function SpotDetails(){
             </div>
             <div className='border-b border-b-lightgray flex flex-row flex-1 justify-center items-center phone:flex-wrap tablet:flex-nowrap'>
                 <div className='w-9/12 py-4 px-5 my-2.5 self-start'>
-                    <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
+                    <h3 className='bold text-2xl my-2.5'>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
                 <div style={{ borderRadius: '15px', minHeight: '160px', width: '400px' }} className='flex flex-col justify-center items-center h-fit'>
@@ -132,7 +132,7 @@ function SpotDetails(){
                                 )}
                                 <NewCalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
                             </div>
-                            <button onClick={reserve} className='reserve-button animate-bounce hover:animate-none' style={{ margin: '10px auto', cursor: 'pointer' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
+                            <button onClick={reserve} className='reserve-button animate-bounce hover:animate-none'>Reserve</button>
                         </div>
                     ) : <p></p>}
                     {bookingBoolean && !bookingHasAlreadyPassed && (
