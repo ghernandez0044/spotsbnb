@@ -215,48 +215,48 @@ function CreateASpot({ edit, spot }){
             <h1 className='text-center text-4xl bold mb-6 phone:text-2xl'>{!edit ? 'Create A Spot' : 'Edit A Spot'}</h1>
             <form onSubmit={handleSubmit} className='w-2/5 flex justify-center items-center'> 
                 <ul>
-                    <div className='w-full p-3.5 m-2.5 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
+                    <div className='tablet:w-96 p-3.5 m-2.5 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit laptop:w-full'>
                         <h2 className='bold text-lg uppercase phone:text-center'>Where is your place located?</h2>
                         <p className='italic my-3.5 phone:text-center'>Guests will only get your exact address once they have booked a reservation.</p>
-                        <div className='grid grid-cols-4 grid-rows-4 gap-1 phone:flex phone:flex-col phone:justify-center phone:items-start'>
+                        <div className='tablet:grid tablet:grid-cols-4 tablet:grid-rows-4 tablet:gap-1 phone:flex phone:flex-col phone:justify-center phone:itemstablet'>
                             <li id='country'>
-                                <label>Country:<br></br>  {isSubmitted && errors.countryError && ( <p className='text-red-600'>{errors.countryError}</p> )} <input className='placeholder:italic w-96 phone:w-48' type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' /></label>
+                                <label>Country:<br></br>  {isSubmitted && errors.countryError && ( <p className='text-red-600'>{errors.countryError}</p> )} <input className='placeholder:italic laptop:w-96 phone:w-48' type='text' value={country} onChange={(e) => setCountry(e.target.value)} placeholder='Country' /></label>
                             </li>
                             <li id='address'>
-                                <label>Address: <br></br>  {isSubmitted && errors.addressError && ( <p className='text-red-600'>{errors.addressError}</p> )}<input className='placeholder:italic w-96 phone:w-48' type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' /></label>
+                                <label>Address: <br></br>  {isSubmitted && errors.addressError && ( <p className='text-red-600'>{errors.addressError}</p> )}<input className='placeholder:italic laptop:w-96 phone:w-48' type='text' value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' /></label>
                             </li>
                             <li id='city'>
-                                <label>City: <br></br> {isSubmitted && errors.cityError && ( <p className='text-red-600'>{errors.cityError}</p> )} <input className='placeholder:italic w-60 phone:w-40' type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City'  /> </label>
+                                <label>City: <br></br> {isSubmitted && errors.cityError && ( <p className='text-red-600'>{errors.cityError}</p> )} <input className='placeholder:italic laptop:w-60 phone:w-40' type='text' value={city} onChange={(e) => setCity(e.target.value)} placeholder='City'  /> </label>
                             </li>
                             <li id='state'>
-                                <label>State: {isSubmitted && errors.stateError && ( <p className='text-red-600'>{errors.stateError}</p> )}<br/> <input className='placeholder:italic w-28 phone:w-14' type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE'/></label>
+                                <label>State: {isSubmitted && errors.stateError && ( <p className='text-red-600'>{errors.stateError}</p> )}<br/> <input className='placeholder:italic laptop:w-28 phone:w-14' type='text' value={state} onChange={(e) => setState(e.target.value)} placeholder='STATE'/></label>
                             </li>
                             <li id='lat'>
-                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='text-red-600'>{errors.latError}</p> )} {isSubmitted && errors.latRangeError && ( <p className='text-red-600'>{errors.latRangeError}</p> )} <input className='placeholder:italic w-60 phone:w-40' type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude'  /></label>
+                                <label>Latitude: <br></br>  {isSubmitted && errors.latError && ( <p className='text-red-600'>{errors.latError}</p> )} {isSubmitted && errors.latRangeError && ( <p className='text-red-600'>{errors.latRangeError}</p> )} <input className='placeholder:italic laptop:w-60 phone:w-40' type='text' value={lat} onChange={(e) => setLat(e.target.value)} placeholder='Latitude'  /></label>
                             </li>
                             <li id='lng'>
-                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='text-red-600'>{errors.lngError}</p> )} {isSubmitted && errors.lngRangeError && ( <p className='text-red-600'>{errors.lngRangeError}</p> )} <input className='placeholder:italic w-60 phone:w-40' type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude'  /></label>
+                                <label>Longitude: <br></br>  {isSubmitted && errors.lngError && ( <p className='text-red-600'>{errors.lngError}</p> )} {isSubmitted && errors.lngRangeError && ( <p className='text-red-600'>{errors.lngRangeError}</p> )} <input className='placeholder:italic laptop:w-60 phone:w-40' type='text' value={lng} onChange={(e) => setLng(e.target.value)} placeholder='Longitude'  /></label>
                             </li>
                         </div>
                     </div>
-                    <div className='w-full p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
+                    <div className='laptop:w-full tablet:w-96 p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit tablet:flex tablet:flex-col tablet:justify-center tablet:items-center'>
                         <h2 className='bold text-lg uppercase phone:text-center'>Describe your place to guests</h2>
                         {isSubmitted && errors.descriptionError && ( <p className='text-red-600'>{errors.descriptionError}</p> )}
                         <p className='italic my-3.5 phone:text-center'>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
                         <li>
-                            <textarea className='placeholder:italic w-96 h-36 phone:w-48 phone:h-52 phone:ml-4 phone:text-center' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters'  />
+                            <textarea className='placeholder:italic laptop:w-96 laptop:h-36 phone:w-48 phone:h-52 phone:ml-4 phone:text-center' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Please write at least 30 characters'  />
                         </li>
                     </div>
-                    <div className='w-full p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
-                        <li>
+                    <div className='laptop:w-full tablet:w-96 p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
+                        <li className='tablet:flex tablet:flex-col tablet:justify-center tablet:items-center'>
                             <h2 className='bold text-lg uppercase phone:text-center'>Create a title for your spot</h2>
                             <p className='italic my-3.5 phone:text-center'>Catch guests' attention with a spot title that highlights what makes your place special.</p>
                             {isSubmitted && errors.nameError && ( <p className='text-red-600'>{errors.nameError}</p> )}
                             <input className='placeholder:italic w-96 phone:w-48' type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name of your spot'  />
                         </li>
                     </div>
-                    <div className='w-full p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
-                        <li>
+                    <div className='laptop:w-full tablet:w-96 p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
+                        <li className='tablet:flex tablet:flex-col tablet:justify-center tablet:items-center'>
                             <h2 className='bold text-lg uppercase phone:text-center'>Set a base price for your spot</h2>
                             <p className='italic my-3.5 phone:text-center'>Competitive pricing can help your listing stand out and rank higher in search results</p>
                             {isSubmitted && errors.priceError && ( <p className='text-red-600'>{errors.priceError}</p> )}
@@ -264,7 +264,7 @@ function CreateASpot({ edit, spot }){
                             <label>$ <input className='placeholder:italic  w-96 phone:w-48' type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price per night (USD)'  /></label>
                         </li>
                     </div>
-                    <div className='w-full p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit'>
+                    <div className='laptop:w-full tablet:w-96 p-3.5 m-3 border-b border-b-lightgray phone:w-64 phone:mx-auto phone:h-fit tablet:flex tablet:flex-col tablet:justify-center tablet:items-center'>
                         <h2 className='bold text-lg uppercase phone:text-center'>Liven up your spot with photos</h2>
                         <p className='italic my-3.5 phone:text-center'>Submit a link to at least one photo to publish your spot.</p>
                         <div className='flex flex-col items-start'>
