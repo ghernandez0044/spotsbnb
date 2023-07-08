@@ -99,24 +99,28 @@ function SpotDetails(){
                 <h2 className='text-left' style={{ marginLeft: '15px' }}>{name}</h2>
                 <p style={{ marginLeft: '15px' }}><em>{city}, {state}, {country}</em></p>
             </div>
-            <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color'>
-                <div className='flex flex-wrap justify-center items-center flex-1 w-2/3'>
-                    <div style={{ width: '550px' }} className='flex justify-center items-center h-full'>
+
+
+            {/* <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color phone:w-full'> */}
+                <div className='flex flex-wrap justify-center items-center flex-1 w-10/12 mx-auto border-2 border-main-color tablet:w-full'>
+                    <div className='flex justify-center items-center h-full w-4/12 tablet:w-7/12'>
                         <img style={{ height: '455px', width: '545px', left: '-0.1%', top: '-.1%' }} className='relative m-0' src={previewImage?.url} alt='' />
                     </div>
-                    <div className='flex flex-wrap flex-1 gap-2 overflow-auto'>
+                    <div style={{ height: '455px', width: '455px' }} className='grid grid-cols-2 grid-rows-2 border-2 border-accent-color tablet:w-56'>
                         {regularImages?.map(image => (
-                            <img key={image.id} src={image.url} alt='' style={{ height: '220px', width: '220px' }} />
+                            <img className='h-56 w-56' key={image.id} src={image.url} alt='' />
                         ))}
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
+
+
             <div className='border-b border-b-lightgray flex justify-between h-fit'>
                 <div className='w-fit py-4 px-5 mx-auto my-2.5'>
                     <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
-                <div className='booking-info-container'>  // This is where I left off
+                <div className='booking-info-container'>
                     <div className='another-container'>
                         <div className='booking-price-container'>
                             <p>${Number(price).toFixed(2)} /night</p>
