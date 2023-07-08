@@ -21,7 +21,7 @@ function Navigation({ isLoaded }){
                 </div>
             </div>
             <SearchBar mobile={false} />
-            <ul className='nav-links'>
+            <ul>
                 <div className={sessionUser ? 'flex justify-center items-center min-w-[170px]' : 'flex items-center min-w-[170px] justify-end'}>
                     {isLoaded && (
                         <>

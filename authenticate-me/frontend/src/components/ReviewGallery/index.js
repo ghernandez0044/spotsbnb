@@ -57,7 +57,7 @@ function ReviewGallery({ id, reviewCount, avgRating, spot }){
                         <i className='fa-solid fa-star' />
                         {reviews && reviewCount > 0 ? ( <p>{avgRating}</p> ) : ( <p>New</p> )}
                     </div>
-                    {reviews && reviewCount > 0 && (  <><div className='dot'>
+                    {reviews && reviewCount > 0 && (  <><div style={{ minWidth: '15px' }} className='text-center'>
                         {reviews && ( <span>&#183;</span> )}
                     </div>
                     <div style={{ minWidth: '80px' }} className='text-center'>

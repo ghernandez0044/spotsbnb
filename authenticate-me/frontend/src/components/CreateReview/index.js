@@ -92,8 +92,8 @@ function CreateReview({ id, edit, data }){
 
 
     return (
-        <div style={{ width: '500px' }} className='h-fit flex flex-col'>
-            <h1 className='text-center text-3xl my-3.5'>How was your stay at {spot.name}?</h1>
+        <div style={{ width: '500px' }} className='h-fit flex flex-col flex-1'>
+            <h1 className='phone:text-center text-3xl my-3.5 phone:w-1/3 phone:mx-auto tablet:w-2/3'>How was your stay at {spot.name}?</h1>
             {isSubmitted && errors.databaseErrors && ( 
                 <p>{`${errors.databaseErrors.split(': ')[1]}`}</p>
              )}

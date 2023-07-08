@@ -24,5 +24,7 @@
     background-color:white;
     border-radius: 8px;
     height: fit-content;
+    min-width: 300px;
     width: fit-content;
+    /* border: 3px solid red; */
   }
