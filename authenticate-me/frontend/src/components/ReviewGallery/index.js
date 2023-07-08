@@ -34,9 +34,9 @@ function ReviewGallery({ id, reviewCount, avgRating, spot }){
 
     if(!data || !reviews || reviews.length === 0) return (
         <>
-            <div className='stars-container'>
-                <div className='rating'>
-                    <div className='new-star'>
+            <div style={{ minWidth: '60px' }} className='flex center justify-start'>
+                <div style={{ minWidth: '50px' }} className='flex flex-col justify-around items-center p-1.5'>
+                    <div style={{ minWidth: '80px' }} className='flex items-center justify-around'>
                         <i className='fa-solid fa-star' />
                         <h2>New</h2>
                     </div>
@@ -51,22 +51,22 @@ function ReviewGallery({ id, reviewCount, avgRating, spot }){
 
     return (
         <div>
-            <div className='reviews-header-container'>
-                <div className='stars-container'>
-                    <div className='rating row'>
+            <div className='flex flex-col justify-between items-start p-2.5'>
+                <div style={{ minWidth: '60px' }} className='flex justify-start items-center'>
+                    <div style={{ minWidth: '50px' }} className='flex items-center justify-around flex-row p-1.5'>
                         <i className='fa-solid fa-star' />
                         {reviews && reviewCount > 0 ? ( <p>{avgRating}</p> ) : ( <p>New</p> )}
                     </div>
                     {reviews && reviewCount > 0 && (  <><div className='dot'>
                         {reviews && ( <span>&#183;</span> )}
                     </div>
-                    <div className='reviews'>
+                    <div style={{ minWidth: '80px' }} className='text-center'>
                         {reviews && ( <p>{reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}</p> )}
                     </div></> )}
                 </div>
                 {currentUser && !belongsToCurrentUser && !posted ? ( <OpenModalButton modalComponent={<CreateReview id={id} />} buttonText='Post Your Review' /> ) : ( <p></p> )}
             </div>
-            <ul className='reviews-list'>
+            <ul className='flex flex-col-reverse justify-between items-start max-h-fit'>
                 {reviews.map(review => (
                     <ReviewGalleryCard key={review.id} data=
                     {review} />
