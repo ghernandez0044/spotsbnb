@@ -6,7 +6,7 @@ function Confirmation({ label, message, onYes, onNo, yesLabel, noLabel }){
     return (
         <>
             <div className='h-fit w-96 p-4 flex flex-col'>
-                <div className='label'>
+                <div>
                     <h1 className='text-center text-3xl'>{label}</h1>
                 </div>
                 <div className='my-2.5 mx-auto'>

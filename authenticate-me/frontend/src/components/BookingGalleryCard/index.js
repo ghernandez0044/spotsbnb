@@ -71,8 +71,8 @@ function BookingGalleryCard({ booking, manage }){
     return (
         <li className='rounded-2xl w-96 flex flex-col justify-center items-center p-2.5'>
                 <NavLink exact to={`/spots/${booking?.Spot?.id}`}>
-                    <img style={{ width: '100%' }} src={spot?.previewImage} alt='' />
-                    <div className="content-container">
+                    <img className='w-full' src={spot?.previewImage} alt='' />
+                    <div>
                         <div className='h-10 flex justify-between items-center'>
                             <h4>{booking?.Spot?.city}, {booking?.Spot?.state}</h4>
                             {booking?.Spot?.avgRating ? <p><i className='fa-solid fa-star' /> {booking?.Spot?.avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
