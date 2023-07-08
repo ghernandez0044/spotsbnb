@@ -102,8 +102,8 @@ function SpotDetails(){
 
 
             {/* <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color phone:w-full'> */}
-                <div className='flex flex-wrap justify-center items-center flex-1 w-10/12 mx-auto border-2 border-main-color tablet:w-full'>
-                    <div className='flex justify-center items-center h-full w-4/12 tablet:w-7/12'>
+                <div className='flex flex-wrap justify-center items-center flex-1 w-10/12 mx-auto border-2 border-main-color tablet:w-full phone:w-full'>
+                    <div className='flex justify-center items-center h-full w-4/12 tablet:w-7/12 phone:w-full'>
                         <img style={{ height: '455px', width: '545px', left: '-0.1%', top: '-.1%' }} className='relative m-0' src={previewImage?.url} alt='' />
                     </div>
                     <div style={{ height: '455px', width: '455px' }} className='grid grid-cols-2 grid-rows-2 border-2 border-accent-color tablet:w-56'>
