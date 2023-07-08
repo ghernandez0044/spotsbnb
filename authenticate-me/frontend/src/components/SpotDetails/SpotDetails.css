@@ -65,11 +65,19 @@
 }
 
 .grid-container {
-    /* border: 3px solid peru; */
     display: grid;
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
-    grid-template-rows: repeat(2, minmax(100px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr) repeat(2, 1.5fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#main-picture-container{
+    grid-area: 1 / 1 / 3 / 4;
+}
+
+#regular-images-container{
+    grid-area: 1 / 4 / 3 / 6;
 }
 
 .preview-image-container {

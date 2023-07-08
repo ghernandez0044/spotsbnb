@@ -39,6 +39,9 @@ module.exports = {
                 '-2': '-2rem',
                 }
     },
+    gridTemplateColumns: {
+      '000': 'repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 1.5fr))'
+    }
   },
   plugins: [],
 }

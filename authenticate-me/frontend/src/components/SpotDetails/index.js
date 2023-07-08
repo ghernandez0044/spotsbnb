@@ -102,11 +102,11 @@ function SpotDetails(){
 
 
             {/* <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color phone:w-full'> */}
-                <div className='flex flex-wrap justify-center items-center flex-1 w-10/12 mx-auto border-2 border-main-color tablet:w-full phone:w-full'>
-                    <div className='flex justify-center items-center h-full w-4/12 tablet:w-7/12 phone:w-full'>
-                        <img style={{ height: '455px', width: '545px', left: '-0.1%', top: '-.1%' }} className='relative m-0' src={previewImage?.url} alt='' />
+                <div className='flex flex-wrap flex-1 justify-center items-center w-10/12 mx-auto tablet:w-full border-2 border-main-color'>
+                    <div id='main-picture-container' style={{ width: '455px', height: '455px', border: '2px solid red' }} className=''>
+                        <img className='relative m-0 h-full w-full' src={previewImage?.url} alt='' />
                     </div>
-                    <div style={{ height: '455px', width: '455px' }} className='grid grid-cols-2 grid-rows-2 border-2 border-accent-color tablet:w-56'>
+                    <div id='regular-images-container' style={{ width: '455px', height: '455px' }} className='grid grid-cols-2 grid-rows-2 border-2 border-accent-color'>
                         {regularImages?.map(image => (
                             <img className='h-56 w-56' key={image.id} src={image.url} alt='' />
                         ))}
@@ -138,7 +138,7 @@ function SpotDetails(){
                                 )}
                                 <NewCalendarComponent setBookingDateRange={setBookingDateRange} bookingDateRange={bookingDateRange} />
                             </div>
-                            <button onClick={reserve} className='reserve-button' style={{ margin: '10px auto', cursor: 'pointer' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
+                            <button onClick={reserve} className='reserve-button animate-bounce hover:animate-none' style={{ margin: '10px auto', cursor: 'pointer' }}><p style={{ fontSize: '16px' }}>Reserve</p></button>
                         </div>
                     ) : <p></p>}
                     {bookingBoolean && !bookingHasAlreadyPassed && (
