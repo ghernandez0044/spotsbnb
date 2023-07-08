@@ -109,20 +109,14 @@ function SpotDetails(){
                         ))}
                 </div>
             </div>
-
-
-
-
             <div className='border-b border-b-lightgray flex flex-row flex-1 justify-center items-center phone:flex-wrap tablet:flex-nowrap'>
                 <div className='w-9/12 py-4 px-5 my-2.5 self-start'>
                     <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
-
-
                 <div style={{ borderRadius: '15px', minHeight: '160px', width: '400px' }} className='flex flex-col justify-center items-center h-fit'>
-                    <div className='another-container'>
-                        <div className='booking-price-container'>
+                    <div style={{ minHeight: '70px' }} className='flex justify-evenly'>
+                        <div style={{ minWidth: '150px' }} className='flex justify-center items-center p-3.5 m-2.5'>
                             <p>${Number(price).toFixed(2)} /night</p>
                         </div>
                         <div className='rating-container'>
@@ -131,8 +125,8 @@ function SpotDetails(){
                         </div>
                     </div>
                     {currentUser && belongsToCurrentUser ? <p style={{ textAlign: 'center' }}>You Own This Spot!</p> : currentUser && !bookingBoolean ? (
-                        <div className='reservation-container'>
-                            <div className='calendar-testing-container'>
+                        <div className='flex flex-col justify-center items-center'>
+                            <div>
                                 {isSubmitted && backendErrors.backendError && (
                                     <div className='error-decoration'>{backendErrors.backendError}</div>
                                 )}
@@ -148,16 +142,8 @@ function SpotDetails(){
                         </div>    
                     )}
                 </div>
-
-
             </div>
-
-
-
-
-
-
-            <div className='reviews-container'>
+            <div>
                 <ReviewGallery id={id} spot={allSpotsSpot} reviewCount={reviewCount} avgRating={avgRating} />
             </div>
         </div>
