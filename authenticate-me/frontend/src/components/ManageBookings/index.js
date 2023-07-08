@@ -32,7 +32,7 @@ function ManageBookings(){
                 <h1 className='bold text-3xl' style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Bookings</h1>
             </div>
             {!userBookings || Object.keys(userBookings).length === 0 ? <h2 style={{ textAlign: 'center' }}>You Have No Bookings Yet!</h2> : ''}
-            <ul className='spot-card-container'>
+            <ul className='flex flex-wrap justify-evenly'>
                 {userBookings?.map(booking => (
                     <BookingGalleryCard key={booking.id} booking={booking} manage={true} />
                 ))}
