@@ -99,28 +99,28 @@ function SpotDetails(){
                 <h2 className='text-left' style={{ marginLeft: '15px' }}>{name}</h2>
                 <p style={{ marginLeft: '15px' }}><em>{city}, {state}, {country}</em></p>
             </div>
-
-
-            {/* <div className='flex flex-wrap flex-1 justify-center items-center max-w-7xl pl-20 mx-auto my-5 border-2 border-light-color phone:w-full'> */}
-                <div className='flex flex-wrap justify-center items-center w-8/12 mx-auto tablet:w-full border-2 border-main-color'>
-                    <div id='main-picture-container' style={{ width: '455px', height: '455px', border: '2px solid red' }} className=''>
+                <div className='flex flex-wrap justify-center items-center w-8/12 mx-auto tablet:w-full phone:w-full phone:my-2'>
+                    <div id='main-picture-container' style={{ width: '455px', height: '455px' }} className=''>
                         <img className='relative m-0 h-full w-full' src={previewImage?.url} alt='' />
                     </div>
-                    <div id='regular-images-container' style={{ maxWidth: '455px', height: '455px' }} className='flex flex-wrap flex-1 justify-center items-center border-2 border-accent-color h-full tablet:overflow-x-scroll'>
+                    <div id='regular-images-container' style={{ maxWidth: '455px', height: '455px' }} className='flex flex-wrap flex-1 justify-center items-center h-full tablet:overflow-x-scroll phone:overflow-x-scroll'>
                         {regularImages?.map(image => (
-                            <img className='laptop:h-56 laptop:w-56 tablet:h-full tablet:w-full' key={image.id} src={image.url} alt='' />
+                            <img className='laptop:h-56 laptop:w-56 tablet:h-full tablet:w-full phone:w-full phone:h-full' key={image.id} src={image.url} alt='' />
                         ))}
-                    {/* </div> */}
                 </div>
             </div>
 
 
-            <div className='border-b border-b-lightgray flex justify-between h-fit'>
-                <div className='w-fit py-4 px-5 mx-auto my-2.5'>
+
+
+            <div className='border-b border-b-lightgray flex flex-row flex-1 justify-center items-center phone:flex-wrap tablet:flex-nowrap'>
+                <div className='w-9/12 py-4 px-5 my-2.5 self-start'>
                     <h3>Hosted by {Owner?.firstName}, {Owner?.lastName}</h3>
                     <p>{description}</p>
                 </div>
-                <div className='booking-info-container'>
+
+
+                <div style={{ borderRadius: '15px', minHeight: '160px', width: '400px' }} className='flex flex-col justify-center items-center h-fit'>
                     <div className='another-container'>
                         <div className='booking-price-container'>
                             <p>${Number(price).toFixed(2)} /night</p>
@@ -148,7 +148,15 @@ function SpotDetails(){
                         </div>    
                     )}
                 </div>
+
+
             </div>
+
+
+
+
+
+
             <div className='reviews-container'>
                 <ReviewGallery id={id} spot={allSpotsSpot} reviewCount={reviewCount} avgRating={avgRating} />
             </div>
