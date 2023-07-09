@@ -60,9 +60,9 @@ function UpdateBooking({ startDate, endDate, booking }){
     }
 
     return (
-        <div className="overall-container">
+        <div style={{ width: '400px', padding: '15px' }} className="h-fit flex flex-col">
             <div className="label">
-                <h1 style={{ textAlign: 'center' }}>Update Booking</h1>
+                <h1 className="text-center bold text-3xl">Update Booking</h1>
             </div>
             {isSubmitted && backendErrors.backendError && (
                 <div className='error-decoration'>{backendErrors.backendError}</div>
@@ -76,7 +76,7 @@ function UpdateBooking({ startDate, endDate, booking }){
                     moveRangeOnFirstSelection={false}
                     ranges={bookingDateRange} />
             </div>
-            <button onClick={updateBooking} className='reserve-button' style={{ margin: '10px auto' }}><p style={{ fontSize: '16px' }}>Update</p></button>
+            <button onClick={updateBooking} className='reserve-button animate-bounce' style={{ margin: '10px auto', fontSize: '24px' }}>Update</button>
         </div>
     )
 }
