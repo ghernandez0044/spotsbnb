@@ -70,12 +70,12 @@ function ReviewGalleryCard({ data, manage }){
     const day = dateObj.getDate()
 
 return (
-    <div className='review-container'>
-        {manage && data && ( <h2>{Spot?.name}</h2> )}
-        <h3 style={{ margin: '2px' }}>{User?.firstName}</h3>
-        <p className='gray-text' style={{ margin: '2px' }}>{month} {day}, {year}</p>
+    <div className='flex flex-col mx-2 my-1'>
+        {manage && data && ( <h2 className='bold text-2xl'>{Spot?.name}</h2> )}
+        <h3 className='m-0.5 capitalize bold text-xl'>{User?.firstName}</h3>
+        <p className='text-light-color m-0.5'>{month} {day}, {year}</p>
         <p>{review}</p>
-        <div className='review-buttons'>
+        <div className='w-80 h-8 flex justify-around items-center'>
             {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<Confirmation label='Confirm Delete' message='Are you sure you want to delete this review?' onYes={yes} yesLabel='Delete Review' onNo={no} noLabel='Keep Review' />} buttonText='Delete' /></div> )}
             {currentUser?.id === userId && ( <div><OpenModalButton modalComponent={<CreateReview data={data} id={spotId} edit={true} />} buttonText='Update' /></div> )}
         </div>

@@ -44,20 +44,20 @@ function LoginFormModal(){
 
 
     return (
-        <div className='login-container'>
-            <h1 className='form-header'>Log In</h1>
-            <form onSubmit={handleSubmit} className="login-form-container">
+        <div style={{ minHeight: '280px' }} className='max-h-fit pt-4'>
+            <h1 className='flex justify-center text-3xl bold mb-4'>Log In</h1>
+            <form onSubmit={handleSubmit} style={{ minWidth: '500px', minHeight: '250px' }} className="max-h-fit">
                 <ul>
                     {errors.map((error, i) => <li key={error}>{error}</li>)}
                 </ul>
-                <ul className='ul-container'>
-                    <li className='login-element'>
+                <ul className='relative flex flex-col justify-center items-center max-h-fit'>
+                    <li className='w-min-fit max-h-fit text-center flex justify-center items-center w-96'>
                             <input type="text" value={credential} onChange={(e) => setCredential(e.target.value)} placeholder='Username or Email' required style={{ width: '290px', height: '30px' }} />
                     </li>
-                    <li className='login-element'>
+                    <li className='w-min-fit max-h-fit text-center flex justify-center items-center w-96'>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required style={{ width: '290px', height: '30px' }} />
                     </li>
-                    <li className='login-element large'>
+                    <li className='w-min-fit max-h-fit text-center flex justify-center items-center w-96'>
                         <button type='submit' className='login-button'  disabled={credential.length < 4 || password.length < 6}>Log In</button>
                     </li>
                     <li className='login-element'>

@@ -10,8 +10,8 @@ function SpotSearchResults(){
     if(!searchedSpots || searchedSpots.length === 0) return null
 
     return (
-        <div className="spot-search-results-container">
-            <ul className="spot-card-container">
+        <div>
+            <ul className="flex flex-wrap justify-center">
                 {searchedSpots.map(spot => (
                     <SpotGalleryCard key={spot.id} spot={spot} />
                 ))}

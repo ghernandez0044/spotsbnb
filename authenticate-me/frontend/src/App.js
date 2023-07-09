@@ -13,6 +13,8 @@ import ManageBookings from './components/ManageBookings';
 import SpotProvider from './components/SpotProvider'
 import SpotSearchResults from './components/SpotSearchResults';
 import Footer from './components/Footer';
+import SearchBar from './components/SearchBar';
+import LoadingScreen from './components/LoadingScreen';
 
 
 function App() { 
@@ -29,7 +31,11 @@ function App() {
 
   return (
     <>
+      <div className='invisible phone:visible phone:flex phone:justify-center phone:items-center'>
+        <SearchBar mobile={true} />
+      </div>
       <Navigation isLoaded={isLoaded} />
+      {/* <LoadingScreen /> */}
       {isLoaded && (
         <>
           <Switch>

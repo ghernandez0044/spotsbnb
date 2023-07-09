@@ -34,6 +34,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
             "message": "No reviews found",
             "statusCode": 400
         })
+        // return res.status(400).json([])
     } else {
         // let payload = reviews
         const reviewArray = []

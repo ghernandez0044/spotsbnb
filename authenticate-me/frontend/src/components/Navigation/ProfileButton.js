@@ -56,44 +56,49 @@ function ProfileButton({ user }){
 
     return (
         <div>
-                <div id='user-menu' className={currentUser ? 'user-menu' : 'user-menu no-user'} onClick={openMenu}>
-                    {currentUser && ( <i className='fa-solid fa-circle-user user-icon' /> )}
-                    <i className='fa-solid fa-bars hamburger-icon' />
-                    <ul className={showMenu ? 'profile-dropdown' : 'hidden'} ref={ulRef}>
+                <div id='user-menu' className={currentUser ? 'border-2 border-lightgray relative rounded-3xl w-fit h-fit flex justify-center items-center p-1.5 hover:shadow-xl' : 'border-2 border-lightgray relative rounded-3xl w-5 h-8 flex justify-center items-center p-4.5 hover:shadow-xl'} onClick={openMenu}>
+                    {currentUser && ( <i style={{ margin: '5px' }} className='fa-solid fa-circle-user user-icon' /> )}
+                    <i style={{ margin: '5px' }} className='fa-solid fa-bars hamburger-icon' />
+                    <ul className={showMenu ? 'absolute -left-36 top-16 w-fit h-fit bg-white rounded-xl shadow-xl flex flex-col justify-evenly items-center z-10 phone:-right-8 phone:top-20' : 'hidden'} ref={ulRef}>
                         {user ? (
                         <>
-                            <li className='list-item'><p>Hello, {user.firstName} {user.lastName}.</p></li>
-                            <li className='list-item'><p>Username: {user.username}</p></li>
-                            <li className='list-item'><p>Email: {user.email}</p></li>
-                            <li className='list-item border-shadows'>
+                            <li className='w-56 h-fit flex justify-center items-center text-center my-2'><p>Hello, {user.firstName} {user.lastName}.</p></li>
+                            <li className='w-56 h-fit flex justify-center items-center text-center my-2'><p>Username: {user.username}</p></li>
+                            <li className='w-56 h-fit flex justify-center items-center text-center my-2 border-b border-b-hover-fill'><p>Email: {user.email}</p></li>
+                            <li className='w-56 h-10 invisible hover:bg-hover-fill phone:visible phone:flex phone:justify-center phone:items-center phone:text-center'>
+                                <Link onClick={closeMenu} exact to='/spots/new'>
+                                <p>Create A Spot</p>
+                                </Link>
+                            </li>
+                            <li className='w-56 h-10 flex justify-center items-center text-center hover:bg-hover-fill'>
                                 <Link onClick={closeMenu} exact to='/spots/current'>
-                                <p><b>Manage Your Spots</b></p>
+                                <p>Manage Your Spots</p>
                                 </Link>
                             </li>
-                            <li className='list-item border-shadows'>
+                            <li className='w-56 h-10 flex justify-center items-center text-center hover:bg-hover-fill'>
                                 <Link onClick={closeMenu} exact to='/reviews/current'>
-                                <p><b>Manage Your Reviews</b></p>
+                                <p>Manage Your Reviews</p>
                                 </Link>
                             </li>
-                            <li className='list-item border-shadows'>
+                            <li className='w-56 h-10 flex justify-center items-center text-center border-b border-b-hover-fill hover:bg-hover-fill'>
                                 <Link onClick={closeMenu} exact to='/bookings/current'>
-                                <p><b>Manage Your Bookings</b></p>
+                                <p>Manage Your Bookings</p>
                                 </Link>
                             </li>
-                            <li className='list-item'>
-                            <button style={{ cursor: 'pointer' }} className='logout-button' onClick={logout}>Log Out</button>
+                            <li className='w-56 h-fit flex justify-center items-center text-center my-2'>
+                            <button className='logout-button' onClick={logout}>Log Out</button>
                             </li>
                         </>
                         ) : (
-                        <div className='user-menu-items'>
-                            <div className='user-menu-item links'>
+                        <div className='absolute h-24 w-40 flex flex-col justify-evenly items-center rounded-xl bg-white right-2 top-1 shadow-2xl'>
+                            <div className='text-dark-color hover:text-light-color'>
                                 <OpenModalMenuItem
                                     itemText="Log In"
                                     onItemClick={closeMenu}
                                     modalComponent={<LoginFormModal />}
                                 />
                             </div>
-                            <div className='user-menu-item links bold'>
+                            <div className='text-dark-color hover:text-light-color bold'>
                                 <OpenModalMenuItem
                                     itemText="Sign Up"
                                     onItemClick={closeMenu}

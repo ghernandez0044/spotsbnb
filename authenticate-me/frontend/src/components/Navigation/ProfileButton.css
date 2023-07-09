@@ -55,7 +55,7 @@
 }
 
 .user-menu {
-    border: 1px solid lightgray;
+    border: 1px solid #d3d3d3;
     position: relative;
     border-radius: 10px;
     width: 60px;
@@ -84,6 +84,7 @@
     color: white;
     height: 35px;
     /* width: 200px; */
+    cursor: pointer;
     width: fit-content;
     min-width: 100px;
     margin-top: 10px;

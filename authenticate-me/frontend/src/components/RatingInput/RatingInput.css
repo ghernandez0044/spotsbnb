@@ -21,12 +21,14 @@
     display: flex;
   }
   
-  .rating-input .filled i{
+  .filled i{
     color: gold;
+    cursor: pointer;
   }
   
-  .rating-input .empty i{
+  .empty i{
     color: lightgray;
+    cursor: pointer;
   }
   
   .sort {

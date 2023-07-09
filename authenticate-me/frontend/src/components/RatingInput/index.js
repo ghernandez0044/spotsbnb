@@ -12,7 +12,7 @@ function RatingInput({ rating, disabled, onChange }){
       }, [rating])
 
     return (
-        <div className='rating-input'>
+        <div className='flex mr-1'>
             <div className={activeRating < 1 ? 'empty' : 'filled'} onClick={() => onChange(1)}>
             <i className='fa-solid fa-star' onMouseEnter={disabled ? '' : () => setActiveRating(1)} onMouseLeave={disabled ? '' : () => setActiveRating(rating)}></i>
             </div>

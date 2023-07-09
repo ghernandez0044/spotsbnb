@@ -1,9 +1,10 @@
 // Necessary imports
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getCurrentUserSpots } from '../../store/spots'
 import SpotGalleryCard from '../SpotGalleryCard'
+import LoadingScreen from '../LoadingScreen'
 
 
 function ManageSpots(){
@@ -13,9 +14,12 @@ function ManageSpots(){
     // Create history method
     const history = useHistory()
 
+    // Create state variable to see if user spots are loaded
+    const [ isLoaded, setIsLoaded ] = useState(false)
+
     // Upon component render, load all current user spots into Redux store
    useEffect(() => {
-        dispatch(getCurrentUserSpots())
+        dispatch(getCurrentUserSpots()).then(res => setIsLoaded(true))
    }, [])
 
     const spots = useSelector((state) => state.spots?.currentUserSpots?.Spots)
@@ -27,14 +31,16 @@ function ManageSpots(){
         history.push('/spots/new')
     }
 
+    if(!isLoaded) return <LoadingScreen />
+
     return spots && (
-        <div className='manage-spot-container'>
-            <div className='header-container'>
-                <h1 style={{ textAlign: 'left', marginLeft: '5%' }}>Manage Your Spots</h1>
-                <button onClick={onClick} className='create-spot-button'>Create A Spot</button>
+        <div>
+            <div className='flex flex-col'>
+                <h1 className='text-left text-3xl' style={{ marginLeft: '5%' }}>Manage Your Spots</h1>
+                <button onClick={onClick} className='create-spot-button' style={{ fontFamily: 'Lobster Two' }}>Create A Spot</button>
             </div>
             {!spots || Object.keys(spots).length === 0 ? <h2 style={{ textAlign: 'center' }}>You Have No Spots Yet!</h2> : ''}
-            <ul className='spot-card-container'>
+            <ul className='flex flex-wrap justify-center'>
                 {spots.map(spot => (
                     <SpotGalleryCard key={spot.id} spot={spot} manage={true} />
                 ))}

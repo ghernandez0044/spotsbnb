@@ -69,29 +69,29 @@ function BookingGalleryCard({ booking, manage }){
     if(!singleSpot || Object.values(singleSpot).length === 0) return null
 
     return (
-        <li className='booking-gallery-card'>
+        <li className='rounded-2xl w-96 flex flex-col justify-center items-center p-2.5'>
                 <NavLink exact to={`/spots/${booking?.Spot?.id}`}>
-                    <img style={{ width: '100%' }} src={spot?.previewImage} alt='' />
-                    <div className="content-container">
-                        <div className='city-container'>
+                    <img className='w-full' src={spot?.previewImage} alt='' />
+                    <div>
+                        <div className='h-10 flex justify-between items-center'>
                             <h4>{booking?.Spot?.city}, {booking?.Spot?.state}</h4>
                             {booking?.Spot?.avgRating ? <p><i className='fa-solid fa-star' /> {booking?.Spot?.avgRating}</p> : <p><i className='fa-solid fa-star' />New</p>}
                         </div>
-                        <div className='price-info-container'>
+                        <div className='h-9 flex justify-start items-center my-1.5'>
                             <p><b>${Number(booking?.Spot?.price).toFixed(2)}</b> /night</p>
                         </div>
                     </div>
                 </NavLink>
-                <div className='time-content-container'>
-                        <h3>Start Date:</h3>
-                        <div className='card-content'>{localStartingTime}</div>
-                        <h3>End Date:</h3>
-                        <div className='card-content'>{localEndingTime}</div>
-                        <h3>Created At:</h3>
-                        <div className='card-content'>{localCreatedAtTime}</div>
+                <div className='h-fit w-full'>
+                        <h3 className='bold'>Start Date:</h3>
+                        <div className='card-content mb-1'>{localStartingTime}</div>
+                        <h3 className='bold'>End Date:</h3>
+                        <div className='card-content mb-1'>{localEndingTime}</div>
+                        <h3 className='bold'>Created At:</h3>
+                        <div className='card-content mb-1'>{localCreatedAtTime}</div>
                 </div>
                 {!isBookingUnderway && (
-                    <div className='manage-buttons-container'>    
+                    <div className='flex justify-evenly p-1.5 mb-1.5'>    
                     <OpenModalButton className='manage-button' modalComponent={<Confirmation label='Confirm Cancellation' message='Are you sure you want to cancel your booking?' onYes={onYes} yesLabel='Cancel Booking' onNo={onNo} noLabel='Keep Booking' />} buttonText='Cancel Booking' />
                     <OpenModalButton className='manage-button' modalComponent={<UpdateBooking startDate={booking.startDate} endDate={booking.endDate} booking={booking} />} buttonText='Update' />
             </div>

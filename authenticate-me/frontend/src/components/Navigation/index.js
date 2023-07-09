@@ -12,22 +12,22 @@ function Navigation({ isLoaded }){
     const sessionUser = useSelector((state) => state.session.user)
 
     return (
-        <nav className='navbar'>
-            <div className='home'>
-                <div className='logo-div'>
+        <nav className='h-12 px-5 pb-5 flex flex-auto z-10 justify-center items-center mb-3 border-b border-b-lightgray phone:w-full phone:mx-auto phone:justify-between'>
+            <div className='flex flex-auto justify-center items-center w-28'>
+                <div className='rounded-xl'>
                     <NavLink exact to='/'>
-                        <img src={logo} alt='' style={{ height: '75px', width: '75px' }} />
+                        <img className='h-16 w-16' src={logo} alt='' />
                     </NavLink>
                 </div>
             </div>
-            <SearchBar />
-            <ul className='nav-links'>
-                <div className={sessionUser ? 'menu' : 'menu right'}>
+            <SearchBar mobile={false} />
+            <ul>
+                <div className={sessionUser ? 'flex justify-center items-center min-w-[170px]' : 'flex items-center min-w-[170px] justify-end'}>
                     {isLoaded && (
                         <>
                             {sessionUser && <li id='create-spot'>
                                 <NavLink exact to ='/spots/new'>
-                                    <p className='links'>Create A Spot</p>
+                                    <p className='hover:text-light-color mx-4 text-center tablet:visible laptop:visible phone:invisible'>Create A Spot</p>
                                 </NavLink>
                             </li>}
                             <li>

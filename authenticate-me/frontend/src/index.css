@@ -1,8 +1,9 @@
 /* TODO Add site wide styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* font-family: 'Lobster Two', cursive;
-font-family: 'Rubik', sans-serif;
-font-family: 'Signika Negative', sans-serif; */
+
 
 :root {
     --main-color: #FF5A5F;
@@ -18,6 +19,15 @@ font-family: 'Signika Negative', sans-serif; */
 ::placeholder {
     color: gray;
     font-family: var(--content-font);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    color: inherit;
 }
 
 html {
@@ -39,6 +49,15 @@ p {
 input, textarea {
     background-color: rgba(0, 156, 153, 0.15);
     border: 2px solid black;
+}
+
+img {
+    height: 300px;
+    width: 320px;
+    /* position: relative;
+    left: 5%; */
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3); */
+    border-radius: 10px;
 }
 
 .links {
