@@ -54,22 +54,22 @@ function SignupFormModal(){
                 </ul>
                 <ul>
                     <li className='flex justify-center'>
-                            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='First Name' required style={{ width: '360px', height: '25px' }} />
+                            <input className='rounded' type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='First Name' required style={{ width: '360px', height: '25px' }} />
                     </li>
                     <li className='flex justify-center'>
-                            <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' required style={{ width: '360px', height: '25px' }} />
+                            <input className='rounded' type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' required style={{ width: '360px', height: '25px' }} />
                     </li>
                     <li className='flex justify-center'>
-                            <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' required style={{ width: '360px', height: '25px' }} />
+                            <input className='rounded' type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' required style={{ width: '360px', height: '25px' }} />
                     </li>
                     <li className='flex justify-center'>
-                            <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required style={{ width: '360px', height: '25px' }} />
+                            <input className='rounded' type='text' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required style={{ width: '360px', height: '25px' }} />
                     </li>
                     <li className='flex justify-center'>
-                            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required style={{ width: '360px', height: '25px' }} />
+                            <input className='rounded' type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required style={{ width: '360px', height: '25px' }} />
                     </li>
                     <li className='flex justify-center'>
-                            <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' required style={{ width: '360px', height: '25px' }} />
+                            <input className='rounded' type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='Confirm Password' required style={{ width: '360px', height: '25px' }} />
                     </li>
                     <li className='flex justify-center'>
                         <button type='submit' className='signup-button' disabled={firstName.length <= 0 || lastName.length <= 0 || username.length < 4 || email.length <= 0 || password.length < 6 || confirmPassword.length < 6 || password !== confirmPassword}>Sign Up</button>
