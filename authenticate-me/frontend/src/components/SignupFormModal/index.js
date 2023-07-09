@@ -43,7 +43,7 @@ function SignupFormModal(){
 
     return (
         <>
-            <h1 className='form-header'>Sign Up</h1>
+            <h1 className='flex justify-center'>Sign Up</h1>
             <form onSubmit={handleSubmit} className='form-container'>
                 <ul>
                     {errors.map((err, i) => (
