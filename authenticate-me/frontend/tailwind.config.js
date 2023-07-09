@@ -4,10 +4,6 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    plugins: [
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/container-queries'),
-    ],
     screens: {
       'phone': '390px',
       'tablet': '640px',
@@ -43,6 +39,8 @@ module.exports = {
       '000': 'repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 1.5fr))'
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
 
