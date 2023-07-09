@@ -104,7 +104,7 @@ function CreateReview({ id, edit, data }){
                 <div className='p-1'>
                     <RatingInput rating={stars} onChange={onChange} />
                 </div>
-                <button className='review-button' disabled={review.length < 10 || stars < 1}><p>{!edit ? 'Submit Your Review' : 'Update Your Review' }</p></button>
+                <button className='review-button' style={{ fontSize: '18px' }} disabled={review.length < 10 || stars < 1}>{!edit ? 'Submit Your Review' : 'Update Your Review' }</button>
             </form>
         </div>
     )
