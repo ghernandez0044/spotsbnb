@@ -44,7 +44,7 @@ function SignupFormModal(){
     return (
         <>
             <h1 className='flex justify-center'>Sign Up</h1>
-            <form onSubmit={handleSubmit} className='form-container'>
+            <form onSubmit={handleSubmit} style={{ width: '500px' }} className='flex flex-col justify-center items-center'>
                 <ul>
                     {errors.map((err, i) => (
                         <li key={i}>
