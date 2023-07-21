@@ -14,6 +14,9 @@
 # Project Image
 ![project-diagram]
 
+<img width="1509" alt="spotsbnb" src="https://github.com/ghernandez0044/spotsbnb/assets/100185260/4092006f-452c-471c-9d72-15661f909592">
+
+
 [project-diagram]: ./spotsbnb.png
 
 # How To Launch Application Locally
